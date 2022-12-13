@@ -2,7 +2,13 @@ export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
   const countOfGoods = <HTMLDivElement>document.querySelector('.count');
   const popup = document.querySelector('.popup');
-  let count = 0;
+  let count = Number(countOfGoods.textContent);
+
+  goodsList.forEach((goods) => {
+    if (goods.getAttribute('isincart') === 'true') {
+      goods.classList.add('incart');
+    }
+  });
 
   goodsList.forEach((goods) => {
     goods.addEventListener('click', () => {
@@ -10,6 +16,7 @@ export function showPopup() {
         count--;
         countOfGoods.innerHTML = count.toString();
         goods.classList.remove('incart');
+        goods.setAttribute('isInCart', 'false');
       } else {
         if (count === 5) {
           popup?.classList.add('popup_active');
@@ -17,6 +24,7 @@ export function showPopup() {
           count++;
           countOfGoods.innerHTML = count.toString();
           goods.classList.add('incart');
+          goods.setAttribute('isInCart', 'true');
         }
       }
     });

@@ -1,6 +1,7 @@
 import SortData from './sort';
 import { IGoods, IFilter } from './data/types';
 import { addProperty, fltr, produceArr, categoryArr, search /*memoryArr*/ } from './utils/multifilter';
+import { showPopup } from './utils/popup';
 
 const produce = document.querySelector<HTMLElement>('.produce');
 //const memory = document.querySelector<HTMLElement>('.memory');
@@ -23,12 +24,14 @@ class FilterData {
       search.value = '';
       search.focus();
       fltr(dataSort, data);
+      showPopup();
     });
 
     if (produce) {
       produce.onclick = function (e) {
         addProperty(produceArr, e);
         fltr(dataSort, data);
+        showPopup();
       };
     }
 
@@ -43,12 +46,14 @@ class FilterData {
       color.onclick = function (e) {
         addProperty(categoryArr, e);
         fltr(dataSort, data);
+        showPopup();
       };
     }
 
     if (search) {
       search.oninput = function () {
         fltr(dataSort, data);
+        showPopup();
       };
     }
   }
