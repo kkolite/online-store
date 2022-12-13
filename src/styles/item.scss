@@ -43,6 +43,30 @@
         font-size: 12px;
         color: #14294b;
       }
+
+    &__buttons-box {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #14294b;
+        width: 240px;
+        margin-top: 5px;
+        padding-top: 8px;
+    }
+
+    &__button {
+      width: 100px;
+      height: 30px;
+      color: aliceblue;
+      background-color: #14294b;
+      border-radius: 10px;
+      opacity: .9;
+      transition: all .2s;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+        //scale: 1.03;
+      }
+    }
   }
   
   .incart {

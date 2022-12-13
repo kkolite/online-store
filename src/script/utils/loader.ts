@@ -30,7 +30,11 @@ class Goods {
   </p>
   <p class="item__property">
     Range: ${goods.range}
-  </p>`;
+  </p>
+  <div class="item__buttons-box">
+    <button class="item__button button__add">Add to Cart</button>
+    <button class="item__button button__buy-now">Buy Now!</button>
+  </div>`;
       goodsCollection?.appendChild(goodsElement);
     });
   }
