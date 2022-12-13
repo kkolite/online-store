@@ -72,6 +72,8 @@
   }
   
   .incart {
-    transform: scale(0.97);
-    box-shadow: 2px 2px 10px grey;
+    //transform: scale(0.97);
+    box-shadow: 1px 1px 3px grey;
+    border: 2px solid #7aabfa;
+    background-color: rgba(156, 209, 255, .8);
   }

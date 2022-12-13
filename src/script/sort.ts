@@ -1,6 +1,7 @@
 import Goods from './utils/loader';
 import { IGoods, ISort, sortBy } from './data/types';
 import { sortByalphabet } from './utils/multifilter';
+import { showPopup } from './utils/popup';
 
 class SortData {
   goods: ISort;
@@ -35,6 +36,7 @@ class SortData {
         data.sort((a, b) => b.price - a.price);
         this.goods.createGoods(data);
       }
+      showPopup();
     });
   }
 }

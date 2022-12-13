@@ -8,7 +8,7 @@ class Goods {
 
     data.forEach((goods: IGoods) => {
       const goodsElement = document.createElement('div');
-
+      goodsElement.setAttribute('title', `${goods.title}`);
       goodsElement.classList.add('item');
       goodsElement.innerHTML = `<h3 class="item-title">
   ${goods.title}
