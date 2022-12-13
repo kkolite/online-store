@@ -1,5 +1,7 @@
   .main {
     border-bottom: 3px solid #14294b;
+    flex: 1 1 auto;
+
     &__content {
         display: flex;
       }
@@ -88,6 +90,7 @@
   
   .active {
     opacity: 1;
+    color:#14294b;
   }
   
   #sortBy,

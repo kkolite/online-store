@@ -9,10 +9,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 210px;
+    width: 280px;
     padding: 10px;
     border: 2px solid #14294b;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     &-title {
         margin-bottom: 10px;
@@ -25,14 +25,16 @@
 
     &__image {
         margin-bottom: 15px;
-        max-width: 128px;
-        height: 173px;
+        max-width: 200px;
+        max-height: 145px;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
     &__img {
         display: block;
-        max-width: 128px;
-        max-height: 173px;
+        max-width: 200px;
+        max-height: 143px;
     }
 
     &__property {
@@ -43,6 +45,30 @@
         font-size: 12px;
         color: #14294b;
       }
+
+    &__buttons-box {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #14294b;
+        width: 240px;
+        margin-top: 5px;
+        padding-top: 8px;
+    }
+
+    &__button {
+      width: 100px;
+      height: 30px;
+      color: aliceblue;
+      background-color: #14294b;
+      border-radius: 10px;
+      opacity: .9;
+      transition: all .2s;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+        //scale: 1.03;
+      }
+    }
   }
   
   .incart {

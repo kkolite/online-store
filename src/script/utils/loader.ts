@@ -17,7 +17,7 @@ class Goods {
     <img src="${goods.source[0]}" alt="apple-iphone-13" class="item__img">
   </div>
   <p class="item__property">
-    Производитель: ${goods.produce}
+    Produced by ${goods.produce}
   </p>
   <p class="item__property">
     Category: ${goods.category}
@@ -26,11 +26,15 @@ class Goods {
     Capacity: ${goods.capacity}
   </p>
   <p class="item__property">
-    Price: ${goods.price}
+    Price: $${goods.price}
   </p>
   <p class="item__property">
     Range: ${goods.range}
-  </p>`;
+  </p>
+  <div class="item__buttons-box">
+    <button class="item__button button__add">Add to Cart</button>
+    <button class="item__button button__buy-now">Buy Now!</button>
+  </div>`;
       goodsCollection?.appendChild(goodsElement);
     });
   }

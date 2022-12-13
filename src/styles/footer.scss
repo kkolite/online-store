@@ -1,8 +1,10 @@
   .footer {
     padding: 15px 0 5px 0;
+    background-color: rgb(156, 209, 255);
+
     &__content {
         display: flex;
-        justify-content: space-between;  
+        justify-content: space-between;
       }
   }
   
@@ -12,8 +14,13 @@
     font-family: 'Roboto';
     font-weight: 400;
     font-style: normal;
-    font-size: 24px;
+    font-size: 20px;
     color: #14294b;
+  }
+
+  .year {
+    margin-right: 300px;
+    margin-left: 110px;
   }
    
   .gh {
