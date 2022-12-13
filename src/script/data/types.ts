@@ -1,8 +1,8 @@
 export enum aviaCategory {
-  Civil = 'civil',
-  Military = 'miliary',
-  VIP = 'vip',
-  Cargo = 'cargo',
+  Civil = 'Civil',
+  Military = 'Military',
+  VIP = 'VIP',
+  Cargo = 'Cargo',
 }
 
 export interface IGoods {

@@ -1,10 +1,10 @@
 import SortData from './sort';
 import { IGoods, IFilter } from './data/types';
-import { addProperty, fltr, produceArr, colorArr, search, memoryArr } from './utils/multifilter';
+import { addProperty, fltr, produceArr, categoryArr, search /*memoryArr*/ } from './utils/multifilter';
 
 const produce = document.querySelector<HTMLElement>('.produce');
-const memory = document.querySelector<HTMLElement>('.memory');
-const color = document.querySelector<HTMLElement>('.color');
+//const memory = document.querySelector<HTMLElement>('.memory');
+const color = document.querySelector<HTMLElement>('.category');
 const cancel = document.querySelector('.cancel');
 
 class FilterData {
@@ -32,16 +32,16 @@ class FilterData {
       };
     }
 
-    if (memory) {
+    /*if (memory) {
       memory.onclick = function (e) {
         addProperty(memoryArr, e);
         fltr(dataSort, data);
       };
-    }
+    }*/
 
     if (color) {
       color.onclick = function (e) {
-        addProperty(colorArr, e);
+        addProperty(categoryArr, e);
         fltr(dataSort, data);
       };
     }
