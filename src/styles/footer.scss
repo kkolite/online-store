@@ -1,0 +1,33 @@
+  .footer {
+    padding: 15px 0 5px 0;
+    &__content {
+        display: flex;
+        justify-content: space-between;  
+      }
+  }
+  
+  .github,
+  .year,
+  .gh__link {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    color: #14294b;
+  }
+   
+  .gh {
+    filter: invert(12%) sepia(90%) saturate(944%) hue-rotate(192deg) brightness(89%) contrast(94%);
+    &__link {
+        text-decoration: none;
+      }
+  }
+  
+  .rss {
+    height: 24px;
+  }
+  
+  .rsschool {
+    height: 24px;
+    filter: invert(12%) sepia(90%) saturate(944%) hue-rotate(192deg) brightness(89%) contrast(94%);
+  }

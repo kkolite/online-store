@@ -1,0 +1,104 @@
+  .main {
+    border-bottom: 3px solid #14294b;
+    &__content {
+        display: flex;
+      }
+  }
+  
+  .filter {
+    width: 25%;
+
+    &__title {
+        margin: 20px 0 10px 0;
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-style: normal;
+        font-size: 16px;
+        color: #14294b;
+      }
+
+    &__list {
+        margin-bottom: 15px;
+      }
+
+    &__item {
+        margin: 5px 0 0 10px;
+        list-style: none;
+      }
+  }
+  
+  .button {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: #14294b;
+    border: none;
+    background: white;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+        opacity: 0.85;
+    }
+  }
+  
+  .clr {
+    display: flex;
+    &__item {
+        list-style: none;
+    }
+  }
+  
+  .color{
+    &_active {
+        width: 26px;
+        height: 26px;
+        border-radius: 13px;
+    }
+    
+    &_black {
+        border: black 1px solid;
+        background: black;
+        opacity: 0.7;
+    }
+
+    &_blue {
+        border: blue 1px solid;
+        background: blue;
+        opacity: 0.7;
+    }
+
+    &_red {
+        border: red 1px solid;
+        background: red;
+        opacity: 0.7;
+    }
+
+    &_white {
+        background: white;
+        opacity: 0.7;
+    }
+  }
+
+  .sort_select {
+    width: 150px;
+    margin: 20px 0 10px auto;
+  }
+  
+  .active {
+    opacity: 1;
+  }
+  
+  #sortBy,
+  #sortBy:active,
+  #sortBy:focus {
+    width: 150px;
+    border: none;
+    border-bottom: 1px solid #14294b;
+    outline: none;
+  }
+  
+  .goods {
+    width: 75%;
+  }
