@@ -20,9 +20,6 @@ class Goods {
     Производитель: ${goods.produce}
   </p>
   <p class="item__property">
-    About: ${goods.description}
-  </p>
-  <p class="item__property">
     Category: ${goods.category}
   </p>
   <p class="item__property">
