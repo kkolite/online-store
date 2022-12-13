@@ -1,12 +1,20 @@
+export enum aviaCategory {
+  Civil = 'civil',
+  Military = 'miliary',
+  VIP = 'vip',
+  Cargo = 'cargo',
+}
+
 export interface IGoods {
   title: string;
-  source: string;
   produce: string;
-  year: number;
-  color: string;
-  memory: string;
+  category: aviaCategory;
+  description: string;
+  source: string[];
   price: number;
-  favorite: boolean;
+  onstock: number;
+  capacity: number;
+  range: number;
 }
 
 export interface ISort {
