@@ -1,3 +1,5 @@
+import cart from './cart';
+
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
   const countOfGoods = <HTMLDivElement>document.querySelector('.count');
@@ -5,18 +7,25 @@ export function showPopup() {
   let count = Number(countOfGoods.textContent);
 
   goodsList.forEach((goods) => {
-    if (goods.getAttribute('isincart') === 'true') {
-      goods.classList.add('incart');
-    }
+    const key = goods.getAttribute('title');
+    if (key === null) return;
+
+    cart.cartArr.forEach((el) => {
+      if (key === el.title) {
+        goods.classList.add('incart');
+      }
+    });
   });
 
   goodsList.forEach((goods) => {
     goods.addEventListener('click', () => {
+      const key = goods.getAttribute('title');
+      if (key === null) return;
       if (goods.classList.contains('incart')) {
         count--;
         countOfGoods.innerHTML = count.toString();
         goods.classList.remove('incart');
-        goods.setAttribute('isInCart', 'false');
+        cart.deleteFromCart(key);
       } else {
         if (count === 5) {
           popup?.classList.add('popup_active');
@@ -24,7 +33,7 @@ export function showPopup() {
           count++;
           countOfGoods.innerHTML = count.toString();
           goods.classList.add('incart');
-          goods.setAttribute('isInCart', 'true');
+          cart.pushInCart(key);
         }
       }
     });
