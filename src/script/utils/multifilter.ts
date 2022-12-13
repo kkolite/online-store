@@ -1,8 +1,8 @@
 import { Callback, IGoods, IFilter } from '../data/types';
 
 export const produceArr: string[] = [];
-export const memoryArr: string[] = [];
-export const colorArr: string[] = [];
+//export const memoryArr: string[] = [];
+export const categoryArr: string[] = [];
 export const search = <HTMLInputElement>document.querySelector('#search');
 
 export function sortByalphabet(data: IGoods[]) {
@@ -21,14 +21,14 @@ function multifilter(fltr: Array<Callback>) {
 }
 
 function inclColor(goods: IGoods) {
-  return colorArr.includes(goods.color);
+  return categoryArr.includes(goods.category);
 }
 function inclProduce(goods: IGoods) {
   return produceArr.includes(goods.produce);
 }
-function inclMemory(goods: IGoods) {
+/*function inclMemory(goods: IGoods) {
   return memoryArr.includes(goods.memory);
-}
+}*/
 function inclTitle(goods: IGoods) {
   return goods.title.toLowerCase().includes(search.value.toLowerCase());
 }
@@ -36,8 +36,8 @@ function inclTitle(goods: IGoods) {
 export function fltr(filtersList: IFilter, data: IGoods[]) {
   const propArr = [];
 
-  if (colorArr.length !== 0) propArr.push(inclColor);
-  if (memoryArr.length !== 0) propArr.push(inclMemory);
+  if (categoryArr.length !== 0) propArr.push(inclColor);
+  //if (memoryArr.length !== 0) propArr.push(inclMemory);
   if (produceArr.length !== 0) propArr.push(inclProduce);
 
   propArr.push(inclTitle);

@@ -14,25 +14,22 @@ class Goods {
   ${goods.title}
   </h3>
   <div class="item__image">
-    <img src="${goods.source}" alt="apple-iphone-13" class="item__img">
+    <img src="${goods.source[0]}" alt="apple-iphone-13" class="item__img">
   </div>
   <p class="item__property">
     Производитель: ${goods.produce}
   </p>
   <p class="item__property">
-    Год выпуска: ${goods.year}
+    Category: ${goods.category}
   </p>
   <p class="item__property">
-    Цвет: ${goods.color}
+    Capacity: ${goods.capacity}
   </p>
   <p class="item__property">
-    Оперативная память: ${goods.memory}
+    Price: ${goods.price}
   </p>
   <p class="item__property">
-    Цена: ${goods.price}
-  </p>
-  <p class="item__property">
-    Популярный: ${goods.favorite}
+    Range: ${goods.range}
   </p>`;
       goodsCollection?.appendChild(goodsElement);
     });
