@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online-store</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="wrapper">
+      <div class="header__content">
+        <div class="header__logo">
+          <h1 class="header__title">Online-store</h1>
+        </div>
+        <div class="header__search">
+          <form action="" class="header__form">
+            <input type="text" placeholder="Search..." id="search" name="searchPhone" value="" autofocus autocomplete="off">
+            <img src="./assets/svg/cancel.svg" alt="cancel" class="cancel">
+          </form>
+        </div>
+        <div class="header__cart">
+          <img src="./assets/svg/cart-arrow-down-solid.svg" alt="cart" class="cart">
+          <div class="count">0</div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+  <main class="main">
+    <div class="wrapper">
+      <div class="main__content">
+        <aside class="filter">
+          <h4 class="filter__title">Производитель</h4>
+          <ul class="filter__list produce">
+            <li class="filter__item"><button class="button button_apple">Apple</button></li>
+            <li class="filter__item"><button class="button button_huawei">Huawei</button></li>
+            <li class="filter__item"><button class="button button_samsung">Samsung</button></li>
+            <li class="filter__item"><button class="button button_xiaomi">Xiaomi</button></li>
+          </ul>
+          <h4 class="filter__title">Цвет</h4>
+          <ul class="filter__list color">
+              <li class="filter__item"><button class="button button_black">black</button></li>
+              <li class="filter__item"><button class="button button_blue">blue</button></li>
+              <li class="filter__item"><button class="button button_red">red</button></li>
+              <li class="filter__item"><button class="button button_white">white</button></li>
+          </ul>
+          <h4 class="filter__title">Оперативная память</h4>
+          <ul class="filter__list memory">
+            <li class="filter__item"><button class="button button_twogb">2Гб</button></li>
+            <li class="filter__item"><button class="button button_threegb">3Гб</button></li>
+            <li class="filter__item"><button class="button button_fourgb">4Гб</button></li>
+          </ul>
+        </aside>
+        <section class="goods">
+          <div class="sort">
+            <div class="sort_select">
+              <select name="sorting" id="sortBy">
+                <option value="sortByNameUp"><button class="button name_up">от а до я</button></option>
+                <option value="sortByNameDown"><button class="button name_down">от я до а</button></option>
+                <option value="sortByPriceUp"><button class="button price_up">сначала дешевые</button></option>
+                <option value="sortByPriceDown"><button class="button price_down">сначала дорогие</button></option>
+              </select>
+            </div>
+          </div>
+          <div class="items">
+            
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="wrapper">
+      <div class="footer__content">
+        <div class="github">
+          <a href="https://github.com/Shama8nchez" class="gh__link">
+            <img src="./assets/svg/github.svg" alt="github" class="gh">
+            <span>Shama8nchez</span>
+          </a>
+        </div>
+        <div class="year">
+          2022
+        </div>
+        <div class="rss">
+          <a href="https://rs.school/js/">
+            <img src="https://rs.school/images/rs_school_js.svg" alt="rss" class="rsschool">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="popup">
+    <div class="alert">
+      <p class="alert__message">The cart is full!</p>
+    </div>
+  </div>
+</body>
+</html>
