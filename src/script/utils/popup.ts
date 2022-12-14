@@ -7,7 +7,7 @@ export function showPopup() {
   const popup = document.querySelector('.popup');
   let count = Number(countOfGoods.textContent);
 
-  buttonList.forEach((el) => {
+  goodsList.forEach((el) => {
     el.addEventListener('click', (e) => {
       alert('click!');
       e.stopPropagation();
@@ -25,7 +25,34 @@ export function showPopup() {
     });
   });
 
-  goodsList.forEach((goods) => {
+  buttonList.forEach((button) => {
+    const goods = button.parentElement?.parentElement;
+    if (goods === null || goods === undefined) {
+      return;
+    }
+    button.addEventListener('click', (e) => {
+      const key = goods.getAttribute('title');
+      if (key === null) return;
+      if (goods.classList.contains('incart')) {
+        count--;
+        countOfGoods.innerHTML = count.toString();
+        goods.classList.remove('incart');
+        cart.deleteFromCart(key);
+      } else {
+        if (count === 5) {
+          popup?.classList.add('popup_active');
+        } else {
+          count++;
+          countOfGoods.innerHTML = count.toString();
+          goods.classList.add('incart');
+          cart.pushInCart(key);
+        }
+      }
+      e.stopPropagation();
+    });
+  });
+
+  /*goodsList.forEach((goods) => {
     goods.addEventListener('click', () => {
       const key = goods.getAttribute('title');
       if (key === null) return;
@@ -45,7 +72,7 @@ export function showPopup() {
         }
       }
     });
-  });
+  });*/
 
   popup?.addEventListener('click', () => popup.classList.remove('popup_active'));
 }
