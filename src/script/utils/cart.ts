@@ -22,6 +22,11 @@ class Cart {
       }
     });
   }
+
+  cartCounter() {
+    const set = new Set(this.cartArr);
+    return set.size;
+  }
 }
 
 const cart = new Cart();

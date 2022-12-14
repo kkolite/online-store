@@ -34,18 +34,18 @@ export function showPopup() {
       const key = goods.getAttribute('title');
       if (key === null) return;
       if (goods.classList.contains('incart')) {
-        count--;
-        countOfGoods.innerHTML = count.toString();
         goods.classList.remove('incart');
         cart.deleteFromCart(key);
+        count = cart.cartCounter();
+        countOfGoods.innerHTML = count.toString();
       } else {
         if (count === 5) {
           popup?.classList.add('popup_active');
         } else {
-          count++;
-          countOfGoods.innerHTML = count.toString();
           goods.classList.add('incart');
           cart.pushInCart(key);
+          count = cart.cartCounter();
+          countOfGoods.innerHTML = count.toString();
         }
       }
       e.stopPropagation();
