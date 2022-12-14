@@ -2,9 +2,17 @@ import cart from './cart';
 
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
+  const buttonList = document.querySelectorAll('.button__add');
   const countOfGoods = <HTMLDivElement>document.querySelector('.count');
   const popup = document.querySelector('.popup');
   let count = Number(countOfGoods.textContent);
+
+  buttonList.forEach((el) => {
+    el.addEventListener('click', (e) => {
+      alert('click!');
+      e.stopPropagation();
+    });
+  });
 
   goodsList.forEach((goods) => {
     const key = goods.getAttribute('title');
