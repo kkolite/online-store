@@ -19,15 +19,24 @@ class Cart {
     this.cartArr.forEach((good) => {
       if (good.title === str) {
         this.cartArr.splice(this.cartArr.indexOf(good), 1);
+        return;
       }
     });
+  }
+
+  deleteAllFromCart(str: string) {
+    this.cartArr = this.cartArr.filter((el) => el.title !== str);
   }
 
   cartCounter() {
     return this.cartArr.length;
   }
 
-  itemInCart(title: string) {
+  itemsInCart(str: string) {
+    return this.cartArr.filter((el) => el.title === str).length;
+  }
+
+  isItemInCart(title: string) {
     const arr = this.cartArr.filter((item) => item.title === title);
     const onstock = arr[0].onstock;
     if (onstock > 0 && onstock > arr.length) {

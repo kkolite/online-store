@@ -42,6 +42,11 @@ class Goods {
   <div class="item__buttons-box">
     <button class="item__button button__add">Add to Cart</button>
     <button class="item__button button__buy-now">Buy Now!</button>
+  </div>
+  <div class="item__count">
+    <span class="item__minus">-</span>
+    <span class="item__value">0</span>
+    <span class="item__plus">+</span>
   </div>`;
       goodsCollection?.appendChild(goodsElement);
     });
