@@ -24,8 +24,16 @@ class Cart {
   }
 
   cartCounter() {
-    const set = new Set(this.cartArr);
-    return set.size;
+    return this.cartArr.length;
+  }
+
+  itemInCart(title: string) {
+    const arr = this.cartArr.filter((item) => item.title === title);
+    const onstock = arr[0].onstock;
+    if (onstock > 0 && onstock > arr.length) {
+      return true;
+    }
+    return false;
   }
 }
 

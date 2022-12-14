@@ -34,19 +34,24 @@ export function showPopup() {
       const key = goods.getAttribute('title');
       if (key === null) return;
       if (goods.classList.contains('incart')) {
-        goods.classList.remove('incart');
-        cart.deleteFromCart(key);
-        count = cart.cartCounter();
-        countOfGoods.innerHTML = count.toString();
-      } else {
-        if (count === 5) {
-          popup?.classList.add('popup_active');
-        } else {
-          goods.classList.add('incart');
+        if (cart.itemInCart(key) === true) {
           cart.pushInCart(key);
           count = cart.cartCounter();
           countOfGoods.innerHTML = count.toString();
+        } else {
+          alert(`We haven't so many ${key} onstock!`);
+          /*goods.classList.remove('incart');
+          button.textContent = 'Add to Cart';
+          cart.deleteFromCart(key);
+          count = cart.cartCounter();
+          countOfGoods.innerHTML = count.toString();*/
         }
+      } else {
+        goods.classList.add('incart');
+        button.textContent = 'Add More';
+        cart.pushInCart(key);
+        count = cart.cartCounter();
+        countOfGoods.innerHTML = count.toString();
       }
       e.stopPropagation();
     });
