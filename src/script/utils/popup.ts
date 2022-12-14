@@ -1,11 +1,12 @@
 import cart from './cart';
-//import { listener } from './listener';
+import { listener } from './listener';
 
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
   const buttonList = document.querySelectorAll('.button__add');
   const minusList = document.querySelectorAll('.item__minus');
   const plusList = document.querySelectorAll('.item__plus');
+  const itemsCountersList = document.querySelectorAll('.item__value');
   const countOfGoods = <HTMLDivElement>document.querySelector('.count');
   const popup = document.querySelector('.popup');
   let count = Number(countOfGoods.textContent);
@@ -28,6 +29,17 @@ export function showPopup() {
     });
   });
 
+  itemsCountersList.forEach((el) => {
+    const goods = el.parentElement?.parentElement;
+    if (goods === null || goods === undefined) {
+      return;
+    }
+
+    const key = goods.getAttribute('title');
+    if (key === null) return;
+    el.textContent = `${cart.itemsInCart(key)}`;
+  });
+
   // Listners
 
   minusList.forEach((minus) => {
@@ -37,19 +49,24 @@ export function showPopup() {
     }
     minus.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
-      if (key === null) return;
+      const button = minus.parentElement?.previousElementSibling?.children[0];
+      if (key === null || button === undefined) return;
       if (goods.classList.contains('incart')) {
         cart.deleteFromCart(key);
-        const count = cart.itemsInCart(key);
-        if (count < 1) {
+
+        if (cart.itemsInCart(key) < 1) {
           goods.classList.remove('incart');
+          button.textContent = 'Add to Cart';
         }
 
-        const counter = minus.nextSibling;
+        count = cart.cartCounter();
+        countOfGoods.innerHTML = count.toString();
+        const counter = minus.nextElementSibling;
         if (counter === null) {
           return;
         }
-        counter.textContent = `${count}`;
+
+        counter.textContent = `${cart.itemsInCart(key)}`;
       }
       e.stopPropagation();
     });
@@ -62,13 +79,18 @@ export function showPopup() {
     }
     plus.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
-      const counter = plus.previousSibling;
-      if (key === null || counter === null) return;
+      const counter = plus.previousElementSibling;
+      const button = plus.parentElement?.previousElementSibling?.children[0];
+      if (key === null || counter === null || button === undefined) return;
+
       if (!cart.isItemInCart(key)) {
         cart.pushInCart(key);
         count = cart.cartCounter();
         countOfGoods.innerHTML = count.toString();
-        counter.textContent = `${cart.itemsInCart(key)}`;
+        console.log(counter.textContent);
+        counter.textContent = cart.itemsInCart(key).toString();
+        goods.classList.add('incart');
+        button.textContent = 'Remove';
       } else {
         alert(`We haven't so many ${key} onstock!`);
       }
@@ -83,18 +105,19 @@ export function showPopup() {
     }
     button.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
-      const counter = button.parentElement?.nextSibling?.childNodes[1];
+      const counter = button.parentElement?.nextElementSibling?.children[1];
       if (key === null || counter === undefined) return;
+
       if (goods.classList.contains('incart')) {
         goods.classList.remove('incart');
-        //button.textContent = 'Add to Cart';
+        button.textContent = 'Add to Cart';
         cart.deleteAllFromCart(key);
         count = cart.cartCounter();
         countOfGoods.innerHTML = count.toString();
         counter.textContent = '0';
       } else {
         goods.classList.add('incart');
-        //button.textContent = 'Add More';
+        button.textContent = 'Remove';
         cart.pushInCart(key);
         count = cart.cartCounter();
         countOfGoods.innerHTML = count.toString();
@@ -104,28 +127,6 @@ export function showPopup() {
     });
   });
 
-  /*goodsList.forEach((goods) => {
-    goods.addEventListener('click', () => {
-      const key = goods.getAttribute('title');
-      if (key === null) return;
-      if (goods.classList.contains('incart')) {
-        count--;
-        countOfGoods.innerHTML = count.toString();
-        goods.classList.remove('incart');
-        cart.deleteFromCart(key);
-      } else {
-        if (count === 5) {
-          popup?.classList.add('popup_active');
-        } else {
-          count++;
-          countOfGoods.innerHTML = count.toString();
-          goods.classList.add('incart');
-          cart.pushInCart(key);
-        }
-      }
-    });
-  });*/
-
   popup?.addEventListener('click', () => popup.classList.remove('popup_active'));
-  //listener();
+  listener();
 }

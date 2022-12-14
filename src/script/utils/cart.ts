@@ -16,12 +16,10 @@ class Cart {
   }
 
   deleteFromCart(str: string) {
-    this.cartArr.forEach((good) => {
-      if (good.title === str) {
-        this.cartArr.splice(this.cartArr.indexOf(good), 1);
-        return;
-      }
-    });
+    const temp = this.cartArr.map((el) => el.title);
+    if (temp.includes(str)) {
+      this.cartArr.splice(temp.indexOf(str), 1);
+    }
   }
 
   deleteAllFromCart(str: string) {
@@ -38,9 +36,11 @@ class Cart {
 
   isItemInCart(title: string) {
     const arr = this.cartArr.filter((item) => item.title === title);
-    const onstock = arr[0].onstock;
-    if (onstock > 0 && onstock > arr.length) {
-      return true;
+    if (arr.length > 0) {
+      const onstock = arr[0].onstock;
+      if (onstock > 0 && onstock <= arr.length) {
+        return true;
+      }
     }
     return false;
   }

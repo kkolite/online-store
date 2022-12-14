@@ -79,6 +79,24 @@
         //scale: 1.03;
       }
     }
+
+    &__count {
+      width: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    &__minus,
+    &__plus {
+      padding: 5px;
+      border: 1px solid #14294b;
+      border-radius: 12.5px;
+      width: 30px;
+      text-align: center;
+      background-color: rgba(255,255,255,.5);
+    }
   }
 
   .item__list {
