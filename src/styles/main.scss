@@ -28,6 +28,20 @@
         list-style: none;
       }
   }
+
+  .sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .goods__view_list,
+  .goods__view_grid {
+    display: inline-block;
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+  }
   
   .button {
     font-family: 'Roboto';
