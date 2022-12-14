@@ -4,6 +4,10 @@
     padding: 20px 0;
     gap: 20px;
   }
+
+  .items__list{
+    flex-direction: column;
+  }
   
   .item {
     display: flex;
@@ -35,6 +39,12 @@
         display: block;
         max-width: 200px;
         max-height: 143px;
+    }
+
+    &__properties {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     &__property {
@@ -69,6 +79,12 @@
         //scale: 1.03;
       }
     }
+  }
+
+  .item__list {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   }
   
   .incart {

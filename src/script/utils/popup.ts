@@ -1,4 +1,5 @@
 import cart from './cart';
+import { listener } from './listener';
 
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
@@ -80,4 +81,5 @@ export function showPopup() {
   });*/
 
   popup?.addEventListener('click', () => popup.classList.remove('popup_active'));
+  listener();
 }
