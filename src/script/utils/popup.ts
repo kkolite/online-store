@@ -48,8 +48,8 @@ export function showPopup() {
 
     minus.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
-      const button = minus.parentElement?.previousElementSibling?.children[0];
-      if (key === null || button === undefined) return;
+      const button = goods.querySelector('.button__add');
+      if (key === null || button === null) return;
       if (goods.classList.contains('incart')) {
         cart.deleteFromCart(key);
 
@@ -60,7 +60,7 @@ export function showPopup() {
 
         count = cart.cartLength();
         countOfGoods.innerHTML = `${count}`;
-        const counter = minus.nextElementSibling;
+        const counter = goods.querySelector('.item__value');
         if (counter === null) return;
 
         counter.textContent = `${cart.itemsInCart(key)}`;
@@ -76,9 +76,9 @@ export function showPopup() {
     }
     plus.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
-      const counter = plus.previousElementSibling;
-      const button = plus.parentElement?.previousElementSibling?.children[0];
-      if (key === null || counter === null || button === undefined) return;
+      const counter = goods.querySelector('.item__value');
+      const button = goods.querySelector('.button__add');
+      if (key === null || counter === null || button === null) return;
 
       if (!cart.isEnough(key)) {
         cart.pushInCart(key);
@@ -101,8 +101,8 @@ export function showPopup() {
     }
     button.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
-      const counter = button.parentElement?.nextElementSibling?.children[1];
-      if (key === null || counter === undefined) return;
+      const counter = goods.querySelector('.item__value');
+      if (key === null || counter === null) return;
 
       if (goods.classList.contains('incart')) {
         goods.classList.remove('incart');
