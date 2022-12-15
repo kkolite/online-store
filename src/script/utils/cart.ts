@@ -16,22 +16,31 @@ class Cart {
   }
 
   deleteFromCart(str: string) {
-    this.cartArr.forEach((good) => {
-      if (good.title === str) {
-        this.cartArr.splice(this.cartArr.indexOf(good), 1);
-      }
-    });
+    const temp = this.cartArr.map((el) => el.title);
+    if (temp.includes(str)) {
+      this.cartArr.splice(temp.indexOf(str), 1);
+    }
   }
 
-  cartCounter() {
+  deleteAllFromCart(str: string) {
+    this.cartArr = this.cartArr.filter((el) => el.title !== str);
+  }
+
+  cartLength() {
     return this.cartArr.length;
   }
 
-  itemInCart(title: string) {
+  itemsInCart(str: string) {
+    return this.cartArr.filter((el) => el.title === str).length;
+  }
+
+  isEnough(title: string) {
     const arr = this.cartArr.filter((item) => item.title === title);
-    const onstock = arr[0].onstock;
-    if (onstock > 0 && onstock > arr.length) {
-      return true;
+    if (arr.length > 0) {
+      const onstock = arr[0].onstock;
+      if (onstock > 0 && onstock <= arr.length) {
+        return true;
+      }
     }
     return false;
   }
