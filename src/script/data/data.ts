@@ -16,6 +16,20 @@ const data: IGoods[] = [
     range: 6150,
   },
   {
+    title: 'Airbus A320neo',
+    produce: 'Airbus',
+    category: aviaCategory.Civil,
+    description: 'Better then usual A320: more eco, less fuel.',
+    source: [
+      'https://aircraft.airbus.com/sites/g/files/jlcbta126/files/styles/airbus_608x608/public/2022-07/A320neo%20PW%2016-9.jpg?itok=V6Opmd8e',
+      'https://img.aeroexpo.com.ru/images_ar/photo-g/173753-17959787.jpg',
+    ],
+    price: 110000000,
+    onstock: 4,
+    capacity: 180,
+    range: 6500,
+  },
+  {
     title: 'Airbus A321',
     produce: 'Airbus',
     category: aviaCategory.Civil,
@@ -46,7 +60,7 @@ const data: IGoods[] = [
     range: 4000,
   },
   {
-    title: 'Airbus A330',
+    title: 'Airbus A330-300',
     produce: 'Airbus',
     category: aviaCategory.Civil,
     description:
@@ -76,7 +90,7 @@ const data: IGoods[] = [
     range: 15000,
   },
   {
-    title: 'Airbus A350',
+    title: 'Airbus A350-900',
     produce: 'Airbus',
     category: aviaCategory.Civil,
     description: 'The Airbus A350 is a long-range, wide-body twin-engine jet airliner developed and produced by Airbus',
@@ -131,6 +145,20 @@ const data: IGoods[] = [
     onstock: 8,
     capacity: 120,
     range: 8000,
+  },
+  {
+    title: 'Airbus A319 VIP',
+    produce: 'Airbus',
+    category: aviaCategory.Civil,
+    description: 'Private jet based on A320 family',
+    source: [
+      'https://i.insider.com/5e85f5d3ba85ee5ac101a833?width=1000&format=jpeg&auto=webp',
+      'https://images.prismic.io/privatefly/54d260d83c0432dff8fad3918a6966816361a87a_airbus-319-corporate-jet-privatefly-aa9612.jpg?auto=compress,format',
+    ],
+    price: 100000000,
+    onstock: 2,
+    capacity: 18,
+    range: 6300,
   },
   {
     title: 'Boeing 737-800',
@@ -204,6 +232,21 @@ const data: IGoods[] = [
     range: 8000,
   },
   {
+    title: 'Boeing 767-300',
+    produce: 'Boeing',
+    category: aviaCategory.Civil,
+    description:
+      'The 767 is a low-wing cantilever monoplane with a conventional tail unit featuring a single fin and rudder',
+    source: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Delta_Air_Lines_B767-332_N130DL.jpg/800px-Delta_Air_Lines_B767-332_N130DL.jpg',
+      'https://i.insider.com/62e54262205f7500187a11bc?width=600&format=jpeg&auto=webp',
+    ],
+    price: 184000000,
+    onstock: 4,
+    capacity: 250,
+    range: 9800,
+  },
+  {
     title: 'Boeing 777-300',
     produce: 'Boeing',
     category: aviaCategory.Civil,
@@ -217,6 +260,21 @@ const data: IGoods[] = [
     onstock: 8,
     capacity: 365,
     range: 10300,
+  },
+  {
+    title: 'Boeing 777X',
+    produce: 'Boeing',
+    category: aviaCategory.Civil,
+    description:
+      'The Boeing 777X is the latest series of the long-range, wide-body, twin-engine jetliners in the Boeing 777',
+    source: [
+      'https://www.aex.ru/images/media/900/24913.jpg',
+      'https://www.assemblymag.com/ext/resources/LatestHeadlines/Boeing-News-4-24.jpg?1556041094',
+    ],
+    price: 440000000,
+    onstock: 3,
+    capacity: 380,
+    range: 14000,
   },
   {
     title: 'Boeing 787-9',
@@ -307,6 +365,21 @@ const data: IGoods[] = [
     range: 15000,
   },
   {
+    title: 'An-124 Ruslan',
+    produce: 'Antonov',
+    category: aviaCategory.Cargo,
+    description:
+      'The An-124 is the world\'s 2nd heaviest gross weight production cargo airplane',
+    source: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Antonov_An-124.jpg/1024px-Antonov_An-124.jpg',
+      'http://www.military-today.com/aircraft/an_124.jpg',
+    ],
+    price: 300000000,
+    onstock: 4,
+    capacity: 150,
+    range: 5500,
+  },
+  {
     title: 'Bombardier Challenger 650',
     produce: 'Bombardier',
     category: aviaCategory.VIP,
@@ -319,6 +392,20 @@ const data: IGoods[] = [
     onstock: 5,
     capacity: 8,
     range: 6300,
+  },
+  {
+    title: 'Bombardier Clobal 6000',
+    produce: 'Bombardier',
+    category: aviaCategory.VIP,
+    description: 'Good option, if you need VIP-jet with extra-range',
+    source: [
+      'https://www.aircharter.kz/upload/iblock/f17/Bombardier%20Global%20XRS_6000_tcm114-3789.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/4/42/Bombardier_Global_Express_1294136.jpg',
+    ],
+    price: 48000000,
+    onstock: 4,
+    capacity: 12,
+    range: 9300,
   },
 ];
 
