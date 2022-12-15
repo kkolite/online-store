@@ -1,11 +1,13 @@
 import { IGoods } from '../data/types';
+import { categoryCount, produceCount } from './filterCount';
 
 class Goods {
   createGoods(data: IGoods[]): void {
     const goodsCollection = <Element>document.querySelector('.items');
 
     goodsCollection.innerHTML = '';
-
+    produceCount(data);
+    categoryCount(data);
     data.forEach((goods: IGoods) => {
       const goodsElement = document.createElement('div');
       goodsElement.setAttribute('title', `${goods.title}`);

@@ -2,6 +2,7 @@ import Goods from './utils/loader';
 import { IGoods, ISort, sortBy } from './data/types';
 import { sortByalphabet } from './utils/multifilter';
 import { showPopup } from './utils/popup';
+import { categoryCount, produceCount } from './utils/filterCount';
 
 class SortData {
   goods: ISort;
@@ -37,6 +38,8 @@ class SortData {
         this.goods.createGoods(data);
       }
       showPopup();
+      produceCount(data);
+      categoryCount(data);
     });
   }
 }

@@ -46,10 +46,11 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
 
 export function addProperty(property: Array<string>, e: Event) {
   (<HTMLElement>e.target).classList.toggle('active');
-
-  if (property.includes((<HTMLElement>e.target).innerHTML)) {
-    property.splice(property.indexOf((<HTMLElement>e.target).innerHTML), 1);
+  const key = (<HTMLElement>e.target).getAttribute('title');
+  if (key === null) return;
+  if (property.includes(key)) {
+    property.splice(property.indexOf(key), 1);
   } else {
-    property.push((<HTMLElement>e.target).innerHTML);
+    property.push(key);
   }
 }
