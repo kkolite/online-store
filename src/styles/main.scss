@@ -26,6 +26,19 @@
     &__item {
         margin: 5px 0 0 10px;
         list-style: none;
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-style: normal;
+        font-size: 16px;
+        color: #14294b;
+        border: none;
+        background: white;
+        opacity: 0.5;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+            opacity: 0.85;
+        }
       }
   }
 
@@ -42,23 +55,7 @@
     width: 20px;
     height: 20px;
   }
-  
-  .button {
-    font-family: 'Roboto';
-    font-weight: 400;
-    font-style: normal;
-    font-size: 16px;
-    color: #14294b;
-    border: none;
-    background: white;
-    opacity: 0.5;
-    cursor: pointer;
-    transition: 0.3s;
-    &:hover {
-        opacity: 0.85;
-    }
-  }
-  
+    
   .clr {
     display: flex;
     &__item {

@@ -6,7 +6,7 @@ export function produceCount(arr: IGoods[]) {
     const key = el.getAttribute('title');
     console.log(key);
     const count = arr.filter((item) => item.produce === key).length;
-    el.textContent = ` (${count})`;
+    el.textContent = `${key} (${count})`;
   });
 }
 
@@ -15,6 +15,6 @@ export function categoryCount(arr: IGoods[]) {
   filterList.forEach((el) => {
     const key = el.getAttribute('title');
     const count = arr.filter((item) => item.category === key).length;
-    el.textContent = ` (${count})`;
+    el.textContent = `${key} (${count})`;
   });
 }
