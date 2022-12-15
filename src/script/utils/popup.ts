@@ -7,8 +7,11 @@ export function showPopup() {
   const minusList = document.querySelectorAll('.item__minus');
   const plusList = document.querySelectorAll('.item__plus');
   const itemsCountersList = document.querySelectorAll('.item__value');
+  const moneyInCart = <Element>document.querySelector('.money');
   const countOfGoods = <HTMLDivElement>document.querySelector('.count');
   let count = Number(countOfGoods.textContent);
+
+  moneyInCart.textContent = cart.moneySum();
 
   goodsList.forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -60,6 +63,7 @@ export function showPopup() {
 
         count = cart.cartLength();
         countOfGoods.innerHTML = `${count}`;
+        moneyInCart.textContent = cart.moneySum();
         const counter = goods.querySelector('.item__value');
         if (counter === null) return;
 
@@ -84,6 +88,7 @@ export function showPopup() {
         cart.pushInCart(key);
         count = cart.cartLength();
         countOfGoods.innerHTML = count.toString();
+        moneyInCart.textContent = cart.moneySum();
         counter.textContent = `${cart.itemsInCart(key)}`;
         goods.classList.add('incart');
         button.textContent = 'Remove';
@@ -108,17 +113,17 @@ export function showPopup() {
         goods.classList.remove('incart');
         button.textContent = 'Add to Cart';
         cart.deleteAllFromCart(key);
-        count = cart.cartLength();
-        countOfGoods.innerHTML = count.toString();
         counter.textContent = '0';
       } else {
         goods.classList.add('incart');
         button.textContent = 'Remove';
         cart.pushInCart(key);
-        count = cart.cartLength();
-        countOfGoods.innerHTML = count.toString();
         counter.textContent = '1';
       }
+
+      count = cart.cartLength();
+      countOfGoods.innerHTML = count.toString();
+      moneyInCart.textContent = cart.moneySum();
       e.stopPropagation();
     });
   });

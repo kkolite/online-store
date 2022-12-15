@@ -10,6 +10,7 @@
     &__content {
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 
     &__title {
@@ -28,6 +29,11 @@
     &__cart {
         position: relative;
         height: 35px;
+    }
+
+    &__money {
+      font-size: 20px;
+      width: 155px;
     }
   }
    
