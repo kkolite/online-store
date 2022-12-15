@@ -1,10 +1,9 @@
 import SortData from './sort';
 import { IGoods, IFilter } from './data/types';
-import { addProperty, fltr, produceArr, categoryArr, search /*memoryArr*/ } from './utils/multifilter';
+import { addProperty, fltr, produceArr, categoryArr, search } from './utils/multifilter';
 import { showPopup } from './utils/popup';
 
 const produce = document.querySelector<HTMLElement>('.produce');
-//const memory = document.querySelector<HTMLElement>('.memory');
 const color = document.querySelector<HTMLElement>('.category');
 const cancel = document.querySelector('.cancel');
 
@@ -17,7 +16,6 @@ class FilterData {
 
   filterGoods(data: IGoods[]) {
     const dataSort = this.sortGood;
-
     dataSort.sortGoods(data);
 
     cancel?.addEventListener('click', () => {
@@ -34,13 +32,6 @@ class FilterData {
         showPopup();
       };
     }
-
-    /*if (memory) {
-      memory.onclick = function (e) {
-        addProperty(memoryArr, e);
-        fltr(dataSort, data);
-      };
-    }*/
 
     if (color) {
       color.onclick = function (e) {
