@@ -26,7 +26,7 @@ class Cart {
     this.cartArr = this.cartArr.filter((el) => el.title !== str);
   }
 
-  cartCounter() {
+  cartLength() {
     return this.cartArr.length;
   }
 
@@ -34,7 +34,7 @@ class Cart {
     return this.cartArr.filter((el) => el.title === str).length;
   }
 
-  isItemInCart(title: string) {
+  isEnough(title: string) {
     const arr = this.cartArr.filter((item) => item.title === title);
     if (arr.length > 0) {
       const onstock = arr[0].onstock;

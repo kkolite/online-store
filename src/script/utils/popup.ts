@@ -8,7 +8,6 @@ export function showPopup() {
   const plusList = document.querySelectorAll('.item__plus');
   const itemsCountersList = document.querySelectorAll('.item__value');
   const countOfGoods = <HTMLDivElement>document.querySelector('.count');
-  const popup = document.querySelector('.popup');
   let count = Number(countOfGoods.textContent);
 
   goodsList.forEach((el) => {
@@ -37,6 +36,7 @@ export function showPopup() {
 
     const key = goods.getAttribute('title');
     if (key === null) return;
+
     el.textContent = `${cart.itemsInCart(key)}`;
   });
 
@@ -44,9 +44,8 @@ export function showPopup() {
 
   minusList.forEach((minus) => {
     const goods = minus.parentElement?.parentElement;
-    if (goods === null || goods === undefined) {
-      return;
-    }
+    if (goods === null || goods === undefined) return;
+
     minus.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
       const button = minus.parentElement?.previousElementSibling?.children[0];
@@ -59,12 +58,10 @@ export function showPopup() {
           button.textContent = 'Add to Cart';
         }
 
-        count = cart.cartCounter();
-        countOfGoods.innerHTML = count.toString();
+        count = cart.cartLength();
+        countOfGoods.innerHTML = `${count}`;
         const counter = minus.nextElementSibling;
-        if (counter === null) {
-          return;
-        }
+        if (counter === null) return;
 
         counter.textContent = `${cart.itemsInCart(key)}`;
       }
@@ -83,12 +80,11 @@ export function showPopup() {
       const button = plus.parentElement?.previousElementSibling?.children[0];
       if (key === null || counter === null || button === undefined) return;
 
-      if (!cart.isItemInCart(key)) {
+      if (!cart.isEnough(key)) {
         cart.pushInCart(key);
-        count = cart.cartCounter();
+        count = cart.cartLength();
         countOfGoods.innerHTML = count.toString();
-        console.log(counter.textContent);
-        counter.textContent = cart.itemsInCart(key).toString();
+        counter.textContent = `${cart.itemsInCart(key)}`;
         goods.classList.add('incart');
         button.textContent = 'Remove';
       } else {
@@ -112,14 +108,14 @@ export function showPopup() {
         goods.classList.remove('incart');
         button.textContent = 'Add to Cart';
         cart.deleteAllFromCart(key);
-        count = cart.cartCounter();
+        count = cart.cartLength();
         countOfGoods.innerHTML = count.toString();
         counter.textContent = '0';
       } else {
         goods.classList.add('incart');
         button.textContent = 'Remove';
         cart.pushInCart(key);
-        count = cart.cartCounter();
+        count = cart.cartLength();
         countOfGoods.innerHTML = count.toString();
         counter.textContent = '1';
       }
@@ -127,6 +123,5 @@ export function showPopup() {
     });
   });
 
-  popup?.addEventListener('click', () => popup.classList.remove('popup_active'));
   listener();
 }
