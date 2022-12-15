@@ -149,7 +149,7 @@ const data: IGoods[] = [
   {
     title: 'Airbus A319 VIP',
     produce: 'Airbus',
-    category: aviaCategory.Civil,
+    category: aviaCategory.VIP,
     description: 'Private jet based on A320 family',
     source: [
       'https://i.insider.com/5e85f5d3ba85ee5ac101a833?width=1000&format=jpeg&auto=webp',
@@ -368,8 +368,7 @@ const data: IGoods[] = [
     title: 'An-124 Ruslan',
     produce: 'Antonov',
     category: aviaCategory.Cargo,
-    description:
-      'The An-124 is the world\'s 2nd heaviest gross weight production cargo airplane',
+    description: "The An-124 is the world's 2nd heaviest gross weight production cargo airplane",
     source: [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Antonov_An-124.jpg/1024px-Antonov_An-124.jpg',
       'http://www.military-today.com/aircraft/an_124.jpg',
