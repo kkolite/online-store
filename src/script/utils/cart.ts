@@ -44,6 +44,14 @@ class Cart {
     }
     return false;
   }
+
+  moneySum() {
+    const sum = this.cartArr.reduce((acc, el) => acc + el.price, 0);
+    if (sum === 0) {
+      return '0';
+    }
+    return `${sum / 1000000} m.`;
+  }
 }
 
 const cart = new Cart();
