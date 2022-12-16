@@ -1,9 +1,17 @@
 import { Callback, IGoods, IFilter } from '../data/types';
 
 export const produceArr: string[] = [];
-//export const priceArr: string[] = [];
+//export const minPriceArr: string[] = [];
 export const categoryArr: string[] = [];
 export const search = <HTMLInputElement>document.querySelector('#search');
+export const fromPrice = <HTMLInputElement>document.querySelector('#fromPrice');
+export const toPrice = <HTMLInputElement>document.querySelector('#toPrice');
+export const fromCapacity = <HTMLInputElement>document.querySelector('#fromCapacity');
+export const toCapacity = <HTMLInputElement>document.querySelector('#toCapacity');
+export const minPrice = <HTMLElement>document.querySelector('#minPrice');
+export const maxPrice = <HTMLElement>document.querySelector('#maxPrice');
+export const minCapacity = <HTMLElement>document.querySelector('#minCapacity');
+export const maxCapacity = <HTMLElement>document.querySelector('#maxCapacity');
 
 export function sortByalphabet(data: IGoods[]) {
   data.sort((a, b) => {
@@ -26,9 +34,18 @@ function inclColor(goods: IGoods) {
 function inclProduce(goods: IGoods) {
   return produceArr.includes(goods.produce);
 }
-/*function inclPrice(goods: IGoods) {
-  return (goods.price >= minPrice && goods.price <= maxPrice);
-}*/
+function inclMinPrice(goods: IGoods) {
+  return goods.price >= +minPrice.innerHTML * 1000000;
+}
+function inclMaxPrice(goods: IGoods) {
+  return goods.price <= +maxPrice.innerHTML * 1000000;
+}
+function inclMinCapacity(goods: IGoods) {
+  return goods.capacity >= +minCapacity.innerHTML;
+}
+function inclMaxCapacity(goods: IGoods) {
+  return goods.capacity <= +maxCapacity.innerHTML;
+}
 function inclTitle(goods: IGoods) {
   return goods.title.toLowerCase().includes(search.value.toLowerCase());
 }
@@ -41,6 +58,10 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
   if (produceArr.length !== 0) propArr.push(inclProduce);
 
   propArr.push(inclTitle);
+  propArr.push(inclMinPrice);
+  propArr.push(inclMaxPrice);
+  propArr.push(inclMinCapacity);
+  propArr.push(inclMaxCapacity);
   filtersList.sortGoods(data.filter(multifilter(propArr)));
 }
 

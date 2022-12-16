@@ -122,7 +122,8 @@
     width: 75%;
   }
 
-  .price__control {
+  .price__control,
+  .capacity__control {
     position: relative;
     min-height: 20px;
   }
@@ -169,12 +170,14 @@
     pointer-events: none;
   }
   
-  #fromPrice {
+  #fromPrice,
+  #fromCapacity {
     height: 0;
     z-index: 1;
   }
 
-  .price__view {
+  .price__view,
+  .capacity__view {
     display: flex;
     justify-content: space-between;
     width: 80%;

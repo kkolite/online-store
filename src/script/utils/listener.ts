@@ -1,5 +1,6 @@
 import { showList, showGrid } from './actions';
 import { controlFromSlider, controlToSlider, setToggleAccessible } from './fromtofilter';
+import { toCapacity, fromCapacity, minCapacity, maxCapacity } from './multifilter';
 
 const listView = <Element>document.querySelector('.goods__view_list');
 const gridView = <Element>document.querySelector('.goods__view_grid');
@@ -22,4 +23,9 @@ export function listener() {
 
   fromPrice.oninput = () => controlFromSlider(fromPrice, toPrice, minPrice);
   toPrice.oninput = () => controlToSlider(fromPrice, toPrice, maxPrice, '#toPrice');
+
+  setToggleAccessible(toCapacity, '#toCapacity');
+
+  fromCapacity.oninput = () => controlFromSlider(fromCapacity, toCapacity, minCapacity);
+  toCapacity.oninput = () => controlToSlider(fromCapacity, toCapacity, maxCapacity, '#toCapacity');
 }
