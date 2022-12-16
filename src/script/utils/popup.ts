@@ -1,5 +1,6 @@
 import cart from './cart';
 import { listener } from './listener';
+import { router } from './router';
 
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
@@ -15,7 +16,7 @@ export function showPopup() {
 
   goodsList.forEach((el) => {
     el.addEventListener('click', (e) => {
-      alert('click!');
+      router(e);
       e.stopPropagation();
     });
   });
