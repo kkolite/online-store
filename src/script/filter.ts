@@ -55,6 +55,13 @@ class FilterData {
         showPopup();
       };
     }
+
+    if (toPrice) {
+      toPrice.onchange = function () {
+        fltr(dataSort, data);
+        showPopup();
+      };
+    }
   }
 }
 

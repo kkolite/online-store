@@ -7,6 +7,7 @@ export const search = <HTMLInputElement>document.querySelector('#search');
 export const fromPrice = <HTMLInputElement>document.querySelector('#fromPrice');
 export const toPrice = <HTMLInputElement>document.querySelector('#toPrice');
 export const minPrice = <HTMLElement>document.querySelector('#minPrice');
+export const maxPrice = <HTMLElement>document.querySelector('#maxPrice');
 
 export function sortByalphabet(data: IGoods[]) {
   data.sort((a, b) => {
@@ -32,6 +33,9 @@ function inclProduce(goods: IGoods) {
 function inclMinPrice(goods: IGoods) {
   return goods.price >= +minPrice.innerHTML * 1000000;
 }
+function inclMaxPrice(goods: IGoods) {
+  return goods.price <= +maxPrice.innerHTML * 1000000;
+}
 function inclTitle(goods: IGoods) {
   return goods.title.toLowerCase().includes(search.value.toLowerCase());
 }
@@ -45,6 +49,7 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
 
   propArr.push(inclTitle);
   propArr.push(inclMinPrice);
+  propArr.push(inclMaxPrice);
   filtersList.sortGoods(data.filter(multifilter(propArr)));
 }
 
