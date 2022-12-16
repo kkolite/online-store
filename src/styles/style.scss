@@ -17,3 +17,8 @@
 @import 'item';
 @import 'footer';
 @import 'popup';
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
+}
