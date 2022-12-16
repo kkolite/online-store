@@ -1,11 +1,12 @@
 import SortData from './sort';
 import { IGoods, IFilter } from './data/types';
-import { addProperty, fltr, produceArr, categoryArr, search } from './utils/multifilter';
+import { addProperty, fltr, produceArr, categoryArr, search, fromPrice, toPrice } from './utils/multifilter';
 import { showPopup } from './utils/popup';
 
 const produce = document.querySelector<HTMLElement>('.produce');
 const color = document.querySelector<HTMLElement>('.category');
 const cancel = document.querySelector('.cancel');
+const minPrice = <HTMLElement>document.querySelector('#minPrice');
 
 class FilterData {
   sortGood: IFilter;
@@ -43,6 +44,13 @@ class FilterData {
 
     if (search) {
       search.oninput = function () {
+        fltr(dataSort, data);
+        showPopup();
+      };
+    }
+
+    if (fromPrice) {
+      fromPrice.onchange = function () {
         fltr(dataSort, data);
         showPopup();
       };
