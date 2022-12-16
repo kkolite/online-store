@@ -6,8 +6,12 @@ export const categoryArr: string[] = [];
 export const search = <HTMLInputElement>document.querySelector('#search');
 export const fromPrice = <HTMLInputElement>document.querySelector('#fromPrice');
 export const toPrice = <HTMLInputElement>document.querySelector('#toPrice');
+export const fromCapacity = <HTMLInputElement>document.querySelector('#fromCapacity');
+export const toCapacity = <HTMLInputElement>document.querySelector('#toCapacity');
 export const minPrice = <HTMLElement>document.querySelector('#minPrice');
 export const maxPrice = <HTMLElement>document.querySelector('#maxPrice');
+export const minCapacity = <HTMLElement>document.querySelector('#minCapacity');
+export const maxCapacity = <HTMLElement>document.querySelector('#maxCapacity');
 
 export function sortByalphabet(data: IGoods[]) {
   data.sort((a, b) => {
@@ -36,6 +40,12 @@ function inclMinPrice(goods: IGoods) {
 function inclMaxPrice(goods: IGoods) {
   return goods.price <= +maxPrice.innerHTML * 1000000;
 }
+function inclMinCapacity(goods: IGoods) {
+  return goods.capacity >= +minCapacity.innerHTML;
+}
+function inclMaxCapacity(goods: IGoods) {
+  return goods.capacity <= +maxCapacity.innerHTML;
+}
 function inclTitle(goods: IGoods) {
   return goods.title.toLowerCase().includes(search.value.toLowerCase());
 }
@@ -50,6 +60,8 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
   propArr.push(inclTitle);
   propArr.push(inclMinPrice);
   propArr.push(inclMaxPrice);
+  propArr.push(inclMinCapacity);
+  propArr.push(inclMaxCapacity);
   filtersList.sortGoods(data.filter(multifilter(propArr)));
 }
 

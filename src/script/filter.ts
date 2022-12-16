@@ -1,6 +1,6 @@
 import SortData from './sort';
 import { IGoods, IFilter } from './data/types';
-import { addProperty, fltr, produceArr, categoryArr, search, fromPrice, toPrice } from './utils/multifilter';
+import { addProperty, fltr, produceArr, categoryArr, search, fromPrice, toPrice, fromCapacity, toCapacity } from './utils/multifilter';
 import { showPopup } from './utils/popup';
 
 const produce = document.querySelector<HTMLElement>('.produce');
@@ -58,6 +58,20 @@ class FilterData {
 
     if (toPrice) {
       toPrice.onchange = function () {
+        fltr(dataSort, data);
+        showPopup();
+      };
+    }
+
+    if (fromCapacity) {
+      fromCapacity.onchange = function () {
+        fltr(dataSort, data);
+        showPopup();
+      };
+    }
+
+    if (toCapacity) {
+      toCapacity.onchange = function () {
         fltr(dataSort, data);
         showPopup();
       };
