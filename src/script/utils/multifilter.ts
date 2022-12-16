@@ -1,7 +1,7 @@
 import { Callback, IGoods, IFilter } from '../data/types';
 
 export const produceArr: string[] = [];
-//export const memoryArr: string[] = [];
+//export const priceArr: string[] = [];
 export const categoryArr: string[] = [];
 export const search = <HTMLInputElement>document.querySelector('#search');
 
@@ -26,8 +26,8 @@ function inclColor(goods: IGoods) {
 function inclProduce(goods: IGoods) {
   return produceArr.includes(goods.produce);
 }
-/*function inclMemory(goods: IGoods) {
-  return memoryArr.includes(goods.memory);
+/*function inclPrice(goods: IGoods) {
+  return (goods.price >= minPrice && goods.price <= maxPrice);
 }*/
 function inclTitle(goods: IGoods) {
   return goods.title.toLowerCase().includes(search.value.toLowerCase());
