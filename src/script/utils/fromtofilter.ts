@@ -1,23 +1,28 @@
-export function controlFromSlider(fromPrice: HTMLInputElement, toPrice: HTMLInputElement, minPrice: Element) {
-  const [from, to] = getParsed(fromPrice, toPrice);
+export function controlFromSlider(fromProperty: HTMLInputElement, toProperty: HTMLInputElement, minValue: Element) {
+  const [from, to] = getParsed(fromProperty, toProperty);
   if (from > to) {
-    fromPrice.value = to.toString();
-    minPrice.innerHTML = to.toString();
+    fromProperty.value = to.toString();
+    minValue.innerHTML = to.toString();
   } else {
-    minPrice.innerHTML = from.toString();
+    minValue.innerHTML = from.toString();
   }
 }
 
-export function controlToSlider(fromPrice: HTMLInputElement, toPrice: HTMLInputElement, maxPrice: Element) {
-  const [from, to] = getParsed(fromPrice, toPrice);
+export function controlToSlider(
+  fromProperty: HTMLInputElement,
+  toProperty: HTMLInputElement,
+  maxValue: Element,
+  id: string
+) {
+  const [from, to] = getParsed(fromProperty, toProperty);
 
-  setToggleAccessible(toPrice);
+  setToggleAccessible(toProperty, id);
   if (from <= to) {
-    toPrice.value = to.toString();
-    maxPrice.innerHTML = to.toString();
+    toProperty.value = to.toString();
+    maxValue.innerHTML = to.toString();
   } else {
-    maxPrice.innerHTML = from.toString();
-    toPrice.value = from.toString();
+    maxValue.innerHTML = from.toString();
+    toProperty.value = from.toString();
   }
 }
 
@@ -27,11 +32,11 @@ function getParsed(currentFrom: HTMLInputElement, currentTo: HTMLInputElement) {
   return [from, to];
 }
 
-export function setToggleAccessible(currentTarget: HTMLInputElement) {
-  const toPrice = document.querySelector('#toPrice');
+export function setToggleAccessible(currentTarget: HTMLInputElement, id: string) {
+  const toElement = document.querySelector(id);
   if (Number(currentTarget.value) <= 0) {
-    (<HTMLElement>toPrice).style.zIndex = '2';
+    (<HTMLElement>toElement).style.zIndex = '2';
   } else {
-    (<HTMLElement>toPrice).style.zIndex = '0';
+    (<HTMLElement>toElement).style.zIndex = '0';
   }
 }

@@ -18,8 +18,8 @@ export function listener() {
     }
   });
 
-  setToggleAccessible(toPrice);
+  setToggleAccessible(toPrice, '#toPrice');
 
   fromPrice.oninput = () => controlFromSlider(fromPrice, toPrice, minPrice);
-  toPrice.oninput = () => controlToSlider(fromPrice, toPrice, maxPrice);
+  toPrice.oninput = () => controlToSlider(fromPrice, toPrice, maxPrice, '#toPrice');
 }
