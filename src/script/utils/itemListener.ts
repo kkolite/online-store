@@ -1,5 +1,6 @@
 import { IGoods } from '../data/types';
 import cart from './cart';
+import { createMain } from './pagesCreator';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');
@@ -8,12 +9,20 @@ export function itemListener(item: IGoods) {
   const itemCounter = document.querySelector('.item__value');
   const moneyInCart = <Element>document.querySelector('.money');
   const countOfGoods = <HTMLDivElement>document.querySelector('.count');
-  const itemTitle = document.querySelector('.item-page__title');
-  //const imgList = document.querySelectorAll('.item-page__img');
+  const breadMain = document.querySelector('.bread__main');
   const imgMain = document.querySelector('.item-page__main-img');
   const imgBox = document.querySelector('.item-page__img-box');
+  const infoCont = document.querySelector('.item-page__info-container');
 
-  if (plus == null || minus == null || button == null || itemCounter == null || itemTitle === null || imgBox === null) {
+  if (
+    plus == null ||
+    breadMain === null ||
+    minus == null ||
+    button == null ||
+    itemCounter == null ||
+    infoCont === null ||
+    imgBox === null
+  ) {
     return;
   }
 
@@ -24,17 +33,17 @@ export function itemListener(item: IGoods) {
 
   cart.cartArr.forEach((el) => {
     if (key === el.title) {
-      itemTitle.classList.add('item-page__title_incart');
+      infoCont.classList.add('item-page__info-container_active');
       button.textContent = 'Remove';
     }
   });
 
   minus.addEventListener('click', (/* e */) => {
-    if (itemTitle.classList.contains('item-page__title_incart')) {
+    if (infoCont.classList.contains('item-page__info-container_active')) {
       cart.deleteFromCart(key);
 
       if (cart.itemsInCart(key) < 1) {
-        itemTitle.classList.remove('item-page__title_incart');
+        infoCont.classList.remove('item-page__info-container_active');
         button.textContent = 'Add to Cart';
       }
 
@@ -53,7 +62,7 @@ export function itemListener(item: IGoods) {
       countOfGoods.innerHTML = count.toString();
       moneyInCart.textContent = cart.moneySum();
       itemCounter.textContent = `${cart.itemsInCart(key)}`;
-      itemTitle.classList.add('item-page__title_incart');
+      infoCont.classList.add('item-page__info-container_active');
       button.textContent = 'Remove';
     } else {
       alert(`We haven't so many ${key} onstock!`);
@@ -62,13 +71,13 @@ export function itemListener(item: IGoods) {
   });
 
   button.addEventListener('click', (/* e */) => {
-    if (itemTitle.classList.contains('item-page__title_incart')) {
-      itemTitle.classList.remove('item-page__title_incart');
+    if (infoCont.classList.contains('item-page__info-container_active')) {
+      infoCont.classList.remove('item-page__info-container_active');
       button.textContent = 'Add to Cart';
       cart.deleteAllFromCart(key);
       itemCounter.textContent = '0';
     } else {
-      itemTitle.classList.add('item-page__title_incart');
+      infoCont.classList.add('item-page__info-container_active');
       button.textContent = 'Remove';
       cart.pushInCart(key);
       itemCounter.textContent = '1';
@@ -80,16 +89,14 @@ export function itemListener(item: IGoods) {
     //e.stopPropagation();
   });
 
-  /*imgList.forEach((img) => {
-    if (!(img instanceof Image) || !(imgMain instanceof Image)) return;
-    img.addEventListener('click', () => {
-      imgMain.src = img.src; 
-    })
-  })*/
-
   imgBox.addEventListener('click', (e) => {
     const target = e.target;
     if (!(target instanceof Image) || !(imgMain instanceof Image)) return;
     imgMain.src = target.src;
+  });
+
+  breadMain.addEventListener('click', () => {
+    history.pushState({}, 'newUrl', 'index.html');
+    createMain();
   });
 }
