@@ -1,9 +1,9 @@
 import SortData from './sort';
-import { IGoods, IFilter } from './data/types';
+import { IGoods, IFilter } from '../../data/types';
 //import { createFilters } from './utils/filtersCreator';
-import { addProperty, fltr, produceArr, categoryArr, search } from './utils/multifilter';
-import { showPopup } from './utils/goodsListener';
-import Goods from './utils/goodsCreator';
+import { addProperty, fltr, produceArr, categoryArr, search } from './multifilter';
+import { showPopup } from '../goods/goodsListener';
+import Goods from '../goods/goodsCreator';
 
 //const minPrice = <HTMLElement>document.querySelector('#minPrice');
 

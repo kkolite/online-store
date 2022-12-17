@@ -1,6 +1,6 @@
-import { IGoods } from '../data/types';
-import cart from './cart';
-import { createMain } from './pagesCreator';
+import { IGoods } from '../../data/types';
+import cart from '../cart/cart';
+import { createMain } from '../pagesCreator';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');

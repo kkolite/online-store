@@ -1,4 +1,4 @@
-import data from '../data/data';
+import data from '../../data/data';
 
 function createCatagoryFilter() {
   const categoryList = document.querySelector('.category');

@@ -1,10 +1,10 @@
 import { IGoods } from '../data/types';
-import { createFilters } from './filtersCreator';
-import { showPopup } from './goodsListener';
+import { createFilters } from './filter/filtersCreator';
+import { showPopup } from './goods/goodsListener';
 //import Goods from './goodsCreator';
-import FilterData from '../filter';
+import FilterData from './filter/filter';
 import data from '../data/data';
-import { itemListener } from './itemListener';
+import { itemListener } from './item/itemListener';
 
 export function сreateItemPage(item: IGoods) {
   const main = <Element>document.querySelector('.main__content');
@@ -12,7 +12,9 @@ export function сreateItemPage(item: IGoods) {
   const page = document.createElement('div');
   page.classList.add('item-page');
   page.innerHTML = `<div class="item-page__img-box">
-      <pre class="item-page__route"><span class="bread__main">Main</span>   -   ${item.produce}   -   ${item.title}</pre>
+      <pre class="item-page__route"><span class="bread__main">Main</span>   -   ${item.produce}   -   ${
+    item.title
+  }</pre>
       <img src="${item.source[0]}" alt="item_photo_1" class="item-page__img">
       <img src="${item.source[1]}" alt="item_photo_2" class="item-page__img">
     </div>

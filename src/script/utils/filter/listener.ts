@@ -1,4 +1,4 @@
-import { showList, showGrid } from './actions';
+import { showList, showGrid } from '../view/view';
 import { controlFromSlider, controlToSlider, setToggleAccessible } from './fromtofilter';
 
 export function listener() {

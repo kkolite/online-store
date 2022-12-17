@@ -1,4 +1,4 @@
-import { IGoods } from '../data/types';
+import { IGoods } from '../../data/types';
 
 export function produceCount(arr: IGoods[]) {
   const filterList = document.querySelectorAll('.filter__produce');

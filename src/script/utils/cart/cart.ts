@@ -1,5 +1,5 @@
-import { IGoods } from '../data/types';
-import data from '../data/data';
+import { IGoods } from '../../data/types';
+import data from '../../data/data';
 
 class Cart {
   cartArr: IGoods[];

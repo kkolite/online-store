@@ -1,4 +1,4 @@
-import { Callback, IGoods, IFilter } from '../data/types';
+import { Callback, IGoods, IFilter } from '../../data/types';
 
 export const produceArr: string[] = [];
 //export const minPriceArr: string[] = [];

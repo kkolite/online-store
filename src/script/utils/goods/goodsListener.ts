@@ -1,6 +1,6 @@
-import cart from './cart';
-import { listener } from './listener';
-import { router } from './router';
+import cart from '../cart/cart';
+import { listener } from '../filter/listener';
+import { router } from '../router';
 
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');

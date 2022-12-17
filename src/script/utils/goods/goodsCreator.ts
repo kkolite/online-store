@@ -1,5 +1,5 @@
-import { IGoods } from '../data/types';
-import { categoryCount, produceCount } from './filterCount';
+import { IGoods } from '../../data/types';
+import { categoryCount, produceCount } from '../filter/filterCount';
 
 class Goods {
   static currentItems: IGoods[] = [];
