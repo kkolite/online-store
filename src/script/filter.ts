@@ -13,10 +13,8 @@ import {
   toCapacity,
 } from './utils/multifilter';
 import { showPopup } from './utils/itemListener';
+import Goods from './utils/goodsCreator';
 
-const produce = document.querySelector<HTMLElement>('.produce');
-const color = document.querySelector<HTMLElement>('.category');
-const cancel = document.querySelector('.cancel');
 //const minPrice = <HTMLElement>document.querySelector('#minPrice');
 
 class FilterData {
@@ -28,8 +26,15 @@ class FilterData {
   }
 
   filterGoods(data: IGoods[]) {
+    const produce = document.querySelector<HTMLElement>('.produce');
+    const color = document.querySelector<HTMLElement>('.category');
+    const cancel = document.querySelector('.cancel');
     const dataSort = this.sortGood;
-    dataSort.sortGoods(data);
+    if (Goods.currentItems.length === 0) {
+      dataSort.sortGoods(data);
+    } else {
+      dataSort.sortGoods(Goods.currentItems);
+    }
 
     cancel?.addEventListener('click', () => {
       search.value = '';

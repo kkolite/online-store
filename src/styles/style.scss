@@ -9,6 +9,7 @@
   flex-direction: column;
   //justify-content: space-between;
   min-height: 100vh;
+  font-family: 'Roboto';
 }
 
 @import 'fonts';
@@ -17,6 +18,7 @@
 @import 'item';
 @import 'footer';
 @import 'popup';
+@import 'item-page';
 
 .hide {
   visibility: hidden;
