@@ -1,8 +1,6 @@
 .item-page {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
-    width: 80%;
     margin-top: 20px;
     min-height: 70vh;
     max-height: 650px;
@@ -19,6 +17,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        margin-left: 100px;
+        width: 680px;
     }
 
     &__info-container {
@@ -65,7 +65,9 @@
     }
 
     &__desc {
+        font-size: 18px;
         margin-top: 15px;
+        width: 600px;
     }
 
     &__buttons-box {
