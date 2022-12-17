@@ -1,7 +1,7 @@
 import Goods from './utils/goodsCreator';
 import { IGoods, ISort, sortBy } from './data/types';
 import { sortByalphabet } from './utils/multifilter';
-import { showPopup } from './utils/itemListener';
+import { showPopup } from './utils/goodsListener';
 import { categoryCount, produceCount } from './utils/filterCount';
 
 class SortData {

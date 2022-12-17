@@ -1,13 +1,7 @@
 import data from '../data/data';
 
-const categoryList = document.querySelector('.category');
-const produceList = document.querySelector('.produce');
-const priceControls = document.querySelector('.price__control');
-const priceView = document.querySelector('.price__view');
-const capacityControls = document.querySelector('.capacity__control');
-const capacityView = document.querySelector('.capacity__view');
-
 function createCatagoryFilter() {
+  const categoryList = document.querySelector('.category');
   const categories = data.map((el) => el.category);
   const set = new Set(categories);
   set.forEach((cat) => {
@@ -20,6 +14,7 @@ function createCatagoryFilter() {
 }
 
 function createProduceFilter() {
+  const produceList = document.querySelector('.produce');
   const produce = data.map((el) => el.produce);
   const set = new Set(produce);
   set.forEach((prod) => {
@@ -32,6 +27,8 @@ function createProduceFilter() {
 }
 
 function createPriceFilter() {
+  const priceControls = document.querySelector('.price__control');
+  const priceView = document.querySelector('.price__view');
   const price = data.map((el) => el.price);
   const max = Math.max(...price) / 1000000;
   const min = Math.min(...price) / 1000000;
@@ -55,6 +52,8 @@ function createPriceFilter() {
 }
 
 function createCapacityFilter() {
+  const capacityControls = document.querySelector('.capacity__control');
+  const capacityView = document.querySelector('.capacity__view');
   const capacity = data.map((el) => el.capacity);
   const max = Math.max(...capacity);
   const min = Math.min(...capacity);

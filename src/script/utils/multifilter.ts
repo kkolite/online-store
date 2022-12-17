@@ -66,7 +66,7 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
 }
 
 export function addProperty(property: Array<string>, e: Event) {
-  (<HTMLElement>e.target).classList.toggle('active');
+  //(<HTMLElement>e.target).classList.toggle('active');
   const key = (<HTMLElement>e.target).getAttribute('title');
   if (key === null) return;
   if (property.includes(key)) {

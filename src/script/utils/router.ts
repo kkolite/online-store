@@ -1,10 +1,5 @@
-import { сreateItemPage } from './pagesCreator';
+import { createMain, сreateItemPage } from './pagesCreator';
 import data from '../data/data';
-import { showPopup } from './itemListener';
-import Goods from './goodsCreator';
-
-const filters = document.querySelector('.filter');
-const search = document.querySelector('.header__search');
 
 export function router(event: Event) {
   event.preventDefault();
@@ -24,8 +19,6 @@ export function router(event: Event) {
   if (item === undefined) return;
 
   сreateItemPage(item);
-  filters?.classList.add('hide');
-  search?.classList.add('hide');
 }
 
 window.addEventListener('popstate', function () {
@@ -33,11 +26,7 @@ window.addEventListener('popstate', function () {
   const page = route[route.length - 1];
   console.log(page);
   if (page === 'index.html') {
-    const createMain = new Goods();
-    createMain.createGoods(Goods.currentItems);
-    showPopup();
-    filters?.classList.remove('hide');
-    search?.classList.remove('hide');
+    createMain();
   } else if (page === 'cart') {
     // createCart(); Метод создания корзины - пока ничего нет
   } else {
