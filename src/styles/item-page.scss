@@ -24,6 +24,11 @@
         font-size: 18px;
     }
 
+    &__title{
+        &_incart{
+            background-color: red; //temp
+        }
+    }
     &__img {
         max-height: 90px;
         border-radius: 8px;

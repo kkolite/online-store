@@ -1,9 +1,10 @@
 import { IGoods } from '../data/types';
 import { createFilters } from './filtersCreator';
-import { showPopup } from './itemListener';
+import { showPopup } from './goodsListener';
 //import Goods from './goodsCreator';
 import FilterData from '../filter';
 import data from '../data/data';
+import { itemListener } from './itemListener';
 
 export function сreateItemPage(item: IGoods) {
   const main = <Element>document.querySelector('.main__content');
@@ -26,7 +27,7 @@ export function сreateItemPage(item: IGoods) {
       <p class="item-page__property">On stock: ${item.onstock}</p>
       <p class="item-page__desc">${item.description}</p>
       <div class="item-page__buttons-box">
-        <button class="item-page__button" title="${item.title}">Add to Cart!</button>
+        <button class="button__add item-page__button" title="${item.title}">Add to Cart!</button>
         <button class="item-page__button" title="${item.title}">Buy Now!</button>
       </div>
       <div class="item__count">
@@ -36,7 +37,7 @@ export function сreateItemPage(item: IGoods) {
       </div>
     </div>`;
   main?.appendChild(page);
-  showPopup();
+  itemListener(item);
 }
 
 export function createCart(cart: IGoods[]) {

@@ -12,7 +12,7 @@ import {
   fromCapacity,
   toCapacity,
 } from './utils/multifilter';
-import { showPopup } from './utils/itemListener';
+import { showPopup } from './utils/goodsListener';
 import Goods from './utils/goodsCreator';
 
 //const minPrice = <HTMLElement>document.querySelector('#minPrice');
