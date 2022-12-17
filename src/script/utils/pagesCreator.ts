@@ -27,7 +27,7 @@ export function сreateItemPage(item: IGoods) {
       <p class="item-page__property">On stock: ${item.onstock}</p>
       <p class="item-page__desc">${item.description}</p>
       <div class="item-page__buttons-box">
-        <button class="button__add item-page__button" title="${item.title}">Add to Cart!</button>
+        <button class="button__add item-page__button" title="${item.title}">Add to Cart</button>
         <button class="item-page__button" title="${item.title}">Buy Now!</button>
       </div>
       <div class="item__count">

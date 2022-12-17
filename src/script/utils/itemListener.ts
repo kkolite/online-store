@@ -22,6 +22,7 @@ export function itemListener(item: IGoods) {
   cart.cartArr.forEach((el) => {
     if (key === el.title) {
       itemTitle.classList.add('item-page__title_incart');
+      button.textContent = 'Remove';
     }
   });
 

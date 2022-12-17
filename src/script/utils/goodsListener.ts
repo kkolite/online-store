@@ -23,11 +23,15 @@ export function showPopup() {
 
   goodsList.forEach((goods) => {
     const key = goods.getAttribute('title');
-    if (key === null) return;
+    const button = goods.querySelector('.button__add');
+    if (key === null || button === null) return;
 
     cart.cartArr.forEach((el) => {
       if (key === el.title) {
         goods.classList.add('incart');
+        button.textContent = 'Remove';
+      } else {
+        button.textContent = 'Add to Cart';
       }
     });
   });
