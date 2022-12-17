@@ -1,17 +1,7 @@
 import SortData from './sort';
 import { IGoods, IFilter } from './data/types';
 //import { createFilters } from './utils/filtersCreator';
-import {
-  addProperty,
-  fltr,
-  produceArr,
-  categoryArr,
-  search,
-  fromPrice,
-  toPrice,
-  fromCapacity,
-  toCapacity,
-} from './utils/multifilter';
+import { addProperty, fltr, produceArr, categoryArr, search } from './utils/multifilter';
 import { showPopup } from './utils/goodsListener';
 import Goods from './utils/goodsCreator';
 
@@ -29,6 +19,10 @@ class FilterData {
     const produce = document.querySelector<HTMLElement>('.produce');
     const color = document.querySelector<HTMLElement>('.category');
     const cancel = document.querySelector('.cancel');
+    const fromPrice = <HTMLInputElement>document.querySelector('#fromPrice');
+    const toPrice = <HTMLInputElement>document.querySelector('#toPrice');
+    const fromCapacity = <HTMLInputElement>document.querySelector('#fromCapacity');
+    const toCapacity = <HTMLInputElement>document.querySelector('#toCapacity');
     const dataSort = this.sortGood;
     if (Goods.currentItems.length === 0) {
       dataSort.sortGoods(data);

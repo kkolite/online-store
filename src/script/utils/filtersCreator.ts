@@ -38,9 +38,9 @@ function createPriceFilter() {
   ].forEach((el) => {
     const input = document.createElement('input');
     input.setAttribute('type', 'range');
-    input.setAttribute('value', `${el[0]}`);
     input.setAttribute('min', `${min}`);
     input.setAttribute('max', `${max}`);
+    input.setAttribute('value', `${el[0]}`);
     input.id = `${el[1]}`;
     priceControls?.appendChild(input);
 
@@ -63,9 +63,9 @@ function createCapacityFilter() {
   ].forEach((el) => {
     const input = document.createElement('input');
     input.setAttribute('type', 'range');
-    input.setAttribute('value', `${el[0]}`);
     input.setAttribute('min', `${min}`);
     input.setAttribute('max', `${max}`);
+    input.setAttribute('value', `${el[0]}`);
     input.id = `${el[1]}`;
     capacityControls?.appendChild(input);
 
@@ -77,8 +77,8 @@ function createCapacityFilter() {
 }
 
 export function createFilters() {
-  //createCapacityFilter();
+  createCapacityFilter();
   createCatagoryFilter();
-  //createPriceFilter();
+  createPriceFilter();
   createProduceFilter();
 }
