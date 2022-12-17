@@ -33,8 +33,8 @@ export function showPopup() {
   });
 
   itemsCountersList.forEach((el) => {
-    const goods = el.parentElement?.parentElement;
-    if (goods === null || goods === undefined) {
+    const goods = el.closest('.item');
+    if (goods === null) {
       return;
     }
 
@@ -47,8 +47,8 @@ export function showPopup() {
   // Listners
 
   minusList.forEach((minus) => {
-    const goods = minus.parentElement?.parentElement;
-    if (goods === null || goods === undefined) return;
+    const goods = minus.closest('.item');
+    if (goods === null) return;
 
     minus.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
@@ -75,8 +75,8 @@ export function showPopup() {
   });
 
   plusList.forEach((plus) => {
-    const goods = plus.parentElement?.parentElement;
-    if (goods === null || goods === undefined) {
+    const goods = plus.closest('.item');
+    if (goods === null) {
       return;
     }
     plus.addEventListener('click', (e) => {
@@ -101,8 +101,8 @@ export function showPopup() {
   });
 
   buttonList.forEach((button) => {
-    const goods = button.parentElement?.parentElement;
-    if (goods === null || goods === undefined) {
+    const goods = button.closest('.item');
+    if (goods === null) {
       return;
     }
     button.addEventListener('click', (e) => {

@@ -29,8 +29,14 @@ export function сreateItemPage(item: IGoods) {
         <button class="item-page__button" title="${item.title}">Add to Cart!</button>
         <button class="item-page__button" title="${item.title}">Buy Now!</button>
       </div>
+      <div class="item__count">
+        <span class="item__minus">-</span>
+        <span class="item__value">0</span>
+        <span class="item__plus">+</span>
+      </div>
     </div>`;
   main?.appendChild(page);
+  showPopup();
 }
 
 export function createCart(cart: IGoods[]) {
