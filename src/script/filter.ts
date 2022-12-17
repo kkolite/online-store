@@ -1,17 +1,29 @@
 import SortData from './sort';
 import { IGoods, IFilter } from './data/types';
-import { addProperty, fltr, produceArr, categoryArr, search, fromPrice, toPrice, fromCapacity, toCapacity } from './utils/multifilter';
-import { showPopup } from './utils/popup';
+//import { createFilters } from './utils/filtersCreator';
+import {
+  addProperty,
+  fltr,
+  produceArr,
+  categoryArr,
+  search,
+  fromPrice,
+  toPrice,
+  fromCapacity,
+  toCapacity,
+} from './utils/multifilter';
+import { showPopup } from './utils/itemListener';
 
 const produce = document.querySelector<HTMLElement>('.produce');
 const color = document.querySelector<HTMLElement>('.category');
 const cancel = document.querySelector('.cancel');
-const minPrice = <HTMLElement>document.querySelector('#minPrice');
+//const minPrice = <HTMLElement>document.querySelector('#minPrice');
 
 class FilterData {
   sortGood: IFilter;
 
   constructor() {
+    //createFilters();
     this.sortGood = new SortData();
   }
 

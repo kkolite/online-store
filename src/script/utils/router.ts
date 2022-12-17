@@ -1,7 +1,7 @@
-import { сreateItemPage } from './creators';
+import { сreateItemPage } from './pagesCreator';
 import data from '../data/data';
-import { showPopup } from './popup';
-import Goods from './loader';
+import { showPopup } from './itemListener';
+import Goods from './goodsCreator';
 
 const filters = document.querySelector('.filter');
 const search = document.querySelector('.header__search');
