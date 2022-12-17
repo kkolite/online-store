@@ -1,14 +1,17 @@
 import { showList, showGrid } from './actions';
 import { controlFromSlider, controlToSlider, setToggleAccessible } from './fromtofilter';
-import { toCapacity, fromCapacity, minCapacity, maxCapacity } from './multifilter';
 
 export function listener() {
   const listView = document.querySelector('.goods__view_list');
   const gridView = document.querySelector('.goods__view_grid');
-  const fromPrice = document.querySelector('#fromPrice');
-  const toPrice = document.querySelector('#toPrice');
-  const minPrice = document.querySelector('#minPrice');
-  const maxPrice = document.querySelector('#maxPrice');
+  const fromPrice = <HTMLInputElement>document.querySelector('#fromPrice');
+  const toPrice = <HTMLInputElement>document.querySelector('#toPrice');
+  const minPrice = <HTMLElement>document.querySelector('#minPrice');
+  const maxPrice = <HTMLElement>document.querySelector('#maxPrice');
+  const fromCapacity = <HTMLInputElement>document.querySelector('#fromCapacity');
+  const toCapacity = <HTMLInputElement>document.querySelector('#toCapacity');
+  const minCapacity = <HTMLElement>document.querySelector('#minCapacity');
+  const maxCapacity = <HTMLElement>document.querySelector('#maxCapacity');
 
   if (
     listView === null ||
@@ -30,13 +33,17 @@ export function listener() {
     }
   });
 
-  setToggleAccessible(toPrice, '#toPrice');
+  setToggleAccessible(<HTMLInputElement>document.querySelector('#toPrice'), '#toPrice');
 
-  fromPrice.oninput = () => controlFromSlider(fromPrice, toPrice, minPrice);
-  toPrice.oninput = () => controlToSlider(fromPrice, toPrice, maxPrice, '#toPrice');
+  (<HTMLInputElement>document.querySelector('#fromPrice')).oninput = () =>
+    controlFromSlider(fromPrice, toPrice, minPrice);
+  (<HTMLInputElement>document.querySelector('#toPrice')).oninput = () =>
+    controlToSlider(fromPrice, toPrice, maxPrice, '#toPrice');
 
-  setToggleAccessible(toCapacity, '#toCapacity');
+  setToggleAccessible(<HTMLInputElement>document.querySelector('#toCapacity'), '#toCapacity');
 
-  fromCapacity.oninput = () => controlFromSlider(fromCapacity, toCapacity, minCapacity);
-  toCapacity.oninput = () => controlToSlider(fromCapacity, toCapacity, maxCapacity, '#toCapacity');
+  (<HTMLInputElement>document.querySelector('#fromCapacity')).oninput = () =>
+    controlFromSlider(fromCapacity, toCapacity, minCapacity);
+  (<HTMLInputElement>document.querySelector('#toCapacity')).oninput = () =>
+    controlToSlider(fromCapacity, toCapacity, maxCapacity, '#toCapacity');
 }
