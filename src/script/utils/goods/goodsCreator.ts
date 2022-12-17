@@ -5,7 +5,8 @@ class Goods {
   static currentItems: IGoods[] = [];
 
   createGoods(data: IGoods[]): void {
-    const goodsCollection = <Element>document.querySelector('.items');
+    const goodsCollection = document.querySelector('.items');
+    if (goodsCollection === null) return;
 
     goodsCollection.innerHTML = '';
     produceCount(data);
@@ -54,7 +55,7 @@ class Goods {
     <span class="item__value">0</span>
     <span class="item__plus">+</span>
   </div>`;
-      goodsCollection?.appendChild(goodsElement);
+      goodsCollection.appendChild(goodsElement);
     });
   }
 }

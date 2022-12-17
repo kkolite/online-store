@@ -1,36 +1,45 @@
 import SortData from './sort';
 import { IGoods, IFilter } from '../../data/types';
-//import { createFilters } from './utils/filtersCreator';
 import { addProperty, fltr, produceArr, categoryArr, search } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
-
-//const minPrice = <HTMLElement>document.querySelector('#minPrice');
 
 class FilterData {
   sortGood: IFilter;
 
   constructor() {
-    //createFilters();
     this.sortGood = new SortData();
   }
 
   filterGoods(data: IGoods[]) {
-    const produce = document.querySelector<HTMLElement>('.produce');
-    const color = document.querySelector<HTMLElement>('.category');
+    const produce = document.querySelector('.produce');
+    const color = document.querySelector('.category');
     const cancel = document.querySelector('.cancel');
-    const fromPrice = <HTMLInputElement>document.querySelector('#fromPrice');
-    const toPrice = <HTMLInputElement>document.querySelector('#toPrice');
-    const fromCapacity = <HTMLInputElement>document.querySelector('#fromCapacity');
-    const toCapacity = <HTMLInputElement>document.querySelector('#toCapacity');
+    const fromPrice = document.querySelector('#fromPrice');
+    const toPrice = document.querySelector('#toPrice');
+    const fromCapacity = document.querySelector('#fromCapacity');
+    const toCapacity = document.querySelector('#toCapacity');
     const dataSort = this.sortGood;
+
+    if (
+      !(produce instanceof HTMLElement) ||
+      !(color instanceof HTMLElement) ||
+      !(fromPrice instanceof HTMLInputElement) ||
+      !(fromCapacity instanceof HTMLInputElement) ||
+      !(toPrice instanceof HTMLInputElement) ||
+      !(toCapacity instanceof HTMLInputElement) ||
+      cancel === null
+    ) {
+      return;
+    }
+
     if (Goods.currentItems.length === 0) {
       dataSort.sortGoods(data);
     } else {
       dataSort.sortGoods(Goods.currentItems);
     }
 
-    cancel?.addEventListener('click', () => {
+    cancel.addEventListener('click', () => {
       search.value = '';
       search.focus();
       fltr(dataSort, data);
