@@ -36,14 +36,14 @@ export function listener() {
   setToggleAccessible(<HTMLInputElement>document.querySelector('#toPrice'), '#toPrice');
 
   (<HTMLInputElement>document.querySelector('#fromPrice')).oninput = () =>
-    controlFromSlider(fromPrice, toPrice, minPrice);
+    controlFromSlider(fromPrice, toPrice, minPrice, 'minPrice');
   (<HTMLInputElement>document.querySelector('#toPrice')).oninput = () =>
-    controlToSlider(fromPrice, toPrice, maxPrice, '#toPrice');
+    controlToSlider(fromPrice, toPrice, maxPrice, '#toPrice', 'maxPrice');
 
   setToggleAccessible(<HTMLInputElement>document.querySelector('#toCapacity'), '#toCapacity');
 
   (<HTMLInputElement>document.querySelector('#fromCapacity')).oninput = () =>
-    controlFromSlider(fromCapacity, toCapacity, minCapacity);
+    controlFromSlider(fromCapacity, toCapacity, minCapacity, 'minCapacity');
   (<HTMLInputElement>document.querySelector('#toCapacity')).oninput = () =>
-    controlToSlider(fromCapacity, toCapacity, maxCapacity, '#toCapacity');
+    controlToSlider(fromCapacity, toCapacity, maxCapacity, '#toCapacity', 'maxCapacity');
 }
