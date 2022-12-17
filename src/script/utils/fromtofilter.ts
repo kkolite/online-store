@@ -1,4 +1,9 @@
-export function controlFromSlider(fromProperty: HTMLInputElement, toProperty: HTMLInputElement, minValue: Element) {
+export function controlFromSlider(
+  fromProperty: HTMLInputElement,
+  toProperty: HTMLInputElement,
+  minValue: Element,
+  key: string
+) {
   const [from, to] = getParsed(fromProperty, toProperty);
   if (from > to) {
     fromProperty.value = to.toString();
@@ -6,13 +11,15 @@ export function controlFromSlider(fromProperty: HTMLInputElement, toProperty: HT
   } else {
     minValue.innerHTML = from.toString();
   }
+  sessionStorage.setItem(key, from.toString());
 }
 
 export function controlToSlider(
   fromProperty: HTMLInputElement,
   toProperty: HTMLInputElement,
   maxValue: Element,
-  id: string
+  id: string,
+  key: string
 ) {
   const [from, to] = getParsed(fromProperty, toProperty);
 
@@ -24,6 +31,7 @@ export function controlToSlider(
     maxValue.innerHTML = from.toString();
     toProperty.value = from.toString();
   }
+  sessionStorage.setItem(key, to.toString());
 }
 
 function getParsed(currentFrom: HTMLInputElement, currentTo: HTMLInputElement) {

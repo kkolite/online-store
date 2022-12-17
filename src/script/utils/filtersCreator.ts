@@ -35,20 +35,28 @@ function createPriceFilter() {
   const max = Math.max(...price) / 1000000;
   const min = Math.min(...price) / 1000000;
   [
-    [min, 'fromPrice', 'minPrice'],
-    [max, 'toPrice', 'maxPrice'],
+    [min, 'fromPrice', 'minPrice', sessionStorage.getItem('minPrice')],
+    [max, 'toPrice', 'maxPrice', sessionStorage.getItem('maxPrice')],
   ].forEach((el) => {
     const input = document.createElement('input');
     input.setAttribute('type', 'range');
     input.setAttribute('min', `${min}`);
     input.setAttribute('max', `${max}`);
-    input.setAttribute('value', `${el[0]}`);
+    if (el[3]) {
+      input.setAttribute('value', `${el[3]}`);
+    } else {
+      input.setAttribute('value', `${el[0]}`);
+    }
     input.id = `${el[1]}`;
     priceControls?.appendChild(input);
 
     const div = document.createElement('div');
     div.id = `${el[2]}`;
-    div.textContent = `${el[0]}`;
+    if (el[3]) {
+      div.textContent = `${el[3]}`;
+    } else {
+      div.textContent = `${el[0]}`;
+    }
     priceView?.appendChild(div);
   });
 }
@@ -62,20 +70,28 @@ function createCapacityFilter() {
   const max = Math.max(...capacity);
   const min = Math.min(...capacity);
   [
-    [min, 'fromCapacity', 'minCapacity'],
-    [max, 'toCapacity', 'maxCapacity'],
+    [min, 'fromCapacity', 'minCapacity', sessionStorage.getItem('minCapacity')],
+    [max, 'toCapacity', 'maxCapacity', sessionStorage.getItem('maxCapacity')],
   ].forEach((el) => {
     const input = document.createElement('input');
     input.setAttribute('type', 'range');
     input.setAttribute('min', `${min}`);
     input.setAttribute('max', `${max}`);
-    input.setAttribute('value', `${el[0]}`);
+    if (el[3]) {
+      input.setAttribute('value', `${el[3]}`);
+    } else {
+      input.setAttribute('value', `${el[0]}`);
+    }
     input.id = `${el[1]}`;
     capacityControls?.appendChild(input);
 
     const div = document.createElement('div');
     div.id = `${el[2]}`;
-    div.textContent = `${el[0]}`;
+    if (el[3]) {
+      div.textContent = `${el[3]}`;
+    } else {
+      div.textContent = `${el[0]}`;
+    }
     capacityView?.appendChild(div);
   });
 }
