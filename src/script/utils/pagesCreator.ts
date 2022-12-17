@@ -12,7 +12,9 @@ export function сreateItemPage(item: IGoods) {
   const page = document.createElement('div');
   page.classList.add('item-page');
   page.innerHTML = `<div class="item-page__img-box">
-      <pre class="item-page__route">Main   -   ${item.produce}   -   ${item.title}</pre>
+      <pre class="item-page__route"><span class="bread__main">Main</span>   -   ${item.produce}   -   ${
+    item.title
+  }</pre>
       <img src="${item.source[0]}" alt="item_photo_1" class="item-page__img">
       <img src="${item.source[1]}" alt="item_photo_2" class="item-page__img">
     </div>

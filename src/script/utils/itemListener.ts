@@ -1,5 +1,6 @@
 import { IGoods } from '../data/types';
 import cart from './cart';
+import { createMain } from './pagesCreator';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');
@@ -9,11 +10,19 @@ export function itemListener(item: IGoods) {
   const moneyInCart = <Element>document.querySelector('.money');
   const countOfGoods = <HTMLDivElement>document.querySelector('.count');
   const itemTitle = document.querySelector('.item-page__title');
-  //const imgList = document.querySelectorAll('.item-page__img');
+  const breadMain = document.querySelector('.bread__main');
   const imgMain = document.querySelector('.item-page__main-img');
   const imgBox = document.querySelector('.item-page__img-box');
 
-  if (plus == null || minus == null || button == null || itemCounter == null || itemTitle === null || imgBox === null) {
+  if (
+    plus == null ||
+    breadMain === null ||
+    minus == null ||
+    button == null ||
+    itemCounter == null ||
+    itemTitle === null ||
+    imgBox === null
+  ) {
     return;
   }
 
@@ -80,16 +89,14 @@ export function itemListener(item: IGoods) {
     //e.stopPropagation();
   });
 
-  /*imgList.forEach((img) => {
-    if (!(img instanceof Image) || !(imgMain instanceof Image)) return;
-    img.addEventListener('click', () => {
-      imgMain.src = img.src; 
-    })
-  })*/
-
   imgBox.addEventListener('click', (e) => {
     const target = e.target;
     if (!(target instanceof Image) || !(imgMain instanceof Image)) return;
     imgMain.src = target.src;
+  });
+
+  breadMain.addEventListener('click', () => {
+    history.pushState({}, 'newUrl', 'index.html');
+    createMain();
   });
 }
