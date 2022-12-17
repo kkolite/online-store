@@ -28,7 +28,9 @@ function createProduceFilter() {
 
 function createPriceFilter() {
   const priceControls = document.querySelector('.price__control');
+  (<Element>priceControls).innerHTML = '';
   const priceView = document.querySelector('.price__view');
+  (<Element>priceView).innerHTML = '';
   const price = data.map((el) => el.price);
   const max = Math.max(...price) / 1000000;
   const min = Math.min(...price) / 1000000;
@@ -53,7 +55,9 @@ function createPriceFilter() {
 
 function createCapacityFilter() {
   const capacityControls = document.querySelector('.capacity__control');
+  (<Element>capacityControls).innerHTML = '';
   const capacityView = document.querySelector('.capacity__view');
+  (<Element>capacityView).innerHTML = '';
   const capacity = data.map((el) => el.capacity);
   const max = Math.max(...capacity);
   const min = Math.min(...capacity);
