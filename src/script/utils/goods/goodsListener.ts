@@ -8,8 +8,11 @@ export function showPopup() {
   const minusList = document.querySelectorAll('.item__minus');
   const plusList = document.querySelectorAll('.item__plus');
   const itemsCountersList = document.querySelectorAll('.item__value');
-  const moneyInCart = <Element>document.querySelector('.money');
-  const countOfGoods = <HTMLDivElement>document.querySelector('.count');
+  const moneyInCart = document.querySelector('.money');
+  const countOfGoods = document.querySelector('.count');
+
+  if (moneyInCart === null || countOfGoods === null) return;
+
   let count = Number(countOfGoods.textContent);
 
   moneyInCart.textContent = cart.moneySum();
