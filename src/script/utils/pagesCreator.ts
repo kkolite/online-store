@@ -5,6 +5,7 @@ import { showPopup } from './goods/goodsListener';
 import FilterData from './filter/filter';
 import data from '../data/data';
 import { itemListener } from './item/itemListener';
+import { cartListener } from './cart/cartListener';
 
 export function сreateItemPage(item: IGoods) {
   const main = <Element>document.querySelector('.main__content');
@@ -52,9 +53,11 @@ export function createCart(cart: IGoods[]) {
   const page = document.createElement('div');
   const list = document.createElement('ul');
   page.classList.add('cart');
-  cart.forEach((item) => {
+  const set = new Set(cart);
+  set.forEach((item) => {
     const listItem = document.createElement('li');
     listItem.classList.add('cart__item');
+    listItem.setAttribute('title', `${item.title}`);
     listItem.innerHTML = `<img src="${item.source[0]}" alt="${item.title}" class="cart__item-img">
     <a href="${item.title.replace(' ', '_')}" class="cart__item-link">
       <div class="cart__item-info">
@@ -82,6 +85,7 @@ export function createCart(cart: IGoods[]) {
   page.appendChild(list);
   page.appendChild(controls);
   main?.appendChild(page);
+  cartListener();
 }
 
 export function createMain() {
