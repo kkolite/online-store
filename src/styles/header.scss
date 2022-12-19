@@ -60,14 +60,14 @@
     width: 16px;
     right: 8px;
     top: 12px;
-    filter: invert(0.4);
+    //filter: invert(0.4);
     cursor: pointer;
   }
   
-  .cart {
+  .header__cart-img {
     display: block;
     height: 35px;
-    filter: invert(12%) sepia(90%) saturate(944%) hue-rotate(192deg) brightness(89%) contrast(94%);
+    //filter: invert(12%) sepia(90%) saturate(944%) hue-rotate(192deg) brightness(89%) contrast(94%);
   }
   
   .count {
