@@ -17,13 +17,7 @@ export function cartListener() {
   const itemsCountersList = document.querySelectorAll('.item__value');
   const removeList = document.querySelectorAll('.cart__item-remove');
   const priceList = document.querySelectorAll('.cart__item-price');
-  const moneyInCart = document.querySelector('.money');
-  const countOfGoods = document.querySelector('.count');
-
-  if (moneyInCart === null || countOfGoods === null) return;
-
-  let count = Number(countOfGoods.textContent);
-
+  
   priceList.forEach((el) => {
     const good = el.closest('.cart__item');
     if (good === null) return;
@@ -108,13 +102,17 @@ export function cartListener() {
 
   function checkPrice(good: Element, key: string) {
     const price = good.querySelector('.cart__item-price');
-    if (moneyInCart === null || countOfGoods === null || price === null) return;
+    const moneyInCart = document.querySelector('.money');
+    const countOfGoods = document.querySelector('.count');
+    const totalSum = document.querySelector('.cart__controls-sum');
+    const products = document.querySelector('.cart__controls-products');
+    if (moneyInCart === null || countOfGoods === null || price === null || products === null || totalSum === null) return;
 
     price.textContent = `$${cart.itemPriceSum(key) / 1000000} m.`;
-    count = cart.cartLength();
+    const count = cart.cartLength();
     countOfGoods.innerHTML = count.toString();
+    products.textContent = count.toString();
     moneyInCart.textContent = cart.moneySum();
+    totalSum.textContent = cart.moneySum();
   }
 }
-
-
