@@ -52,6 +52,11 @@ class Cart {
     }
     return `${sum / 1000000} m.`;
   }
+
+  itemPriceSum(key: string) {
+    const arr = this.cartArr.filter((el) => el.title === key);
+    return arr.reduce((acc, el) => acc + el.price, 0);
+  }
 }
 
 const cart = new Cart();

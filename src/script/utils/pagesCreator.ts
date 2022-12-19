@@ -80,7 +80,9 @@ export function createCart(cart: IGoods[]) {
   });
   const controls = document.createElement('div');
   controls.classList.add('cart__controls');
-  controls.innerHTML = `<button class="cart__button_clear">Clear</button>
+  controls.innerHTML = `<p>Products: <span class="cart__controls-products"></span></p>
+    <p>Total: $<span class="cart__controls-sum"></span></p>
+    <input type="text" placeholder="Have a promocode?" id="promo" name="promo" value="" autofocus autocomplete="off">
     <button class="cart__button_pay">Pay</button>`;
   page.appendChild(list);
   page.appendChild(controls);

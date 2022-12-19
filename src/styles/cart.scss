@@ -1,3 +1,12 @@
+.cart {
+    display: flex;
+}
+
+.cart__controls {
+    display: flex;
+    flex-direction: column;
+}
+
 .cart__item {
     margin-top: 20px;
     list-style: none;
@@ -24,6 +33,7 @@
         display: flex;
         flex-direction: column;
         margin-left: 10px;
+        margin-right: 30px;
         align-items: center;
         justify-content: space-between;
         height: 90px;
