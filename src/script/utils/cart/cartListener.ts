@@ -1,3 +1,4 @@
+import promocodes from '../../data/promocodes';
 import { createCart, createMain } from '../pagesCreator';
 import cart from './cart';
 
@@ -16,6 +17,9 @@ export function cartListener() {
   const plusList = document.querySelectorAll('.item__plus');
   const removeList = document.querySelectorAll('.cart__item-remove');
   const itemList = document.querySelectorAll('.cart__item');
+  //const promo = document.querySelector('.cart__controls-promo');
+
+  //if (!(promo instanceof HTMLInputElement)) return;
 
   itemList.forEach((el) => {
     const key = el.getAttribute('title');
@@ -89,6 +93,13 @@ export function cartListener() {
       e.stopPropagation();
     });
   });
+
+  /*promo.addEventListener('input', () => {
+    const keys = promocodes.map((el) => el.key);
+    if (keys.includes(promo.value)) {
+
+    }
+  })*/
 
   function checkPrice(good: Element, key: string) {
     const price = good.querySelector('.cart__item-price');
