@@ -17,6 +17,11 @@ export interface IGoods {
   range: number;
 }
 
+export interface Promocode {
+  key: string;
+  discount: number;
+}
+
 export interface ISort {
   createGoods(data: IGoods[]): void;
 }
