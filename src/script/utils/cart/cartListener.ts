@@ -14,29 +14,17 @@ export function headerListener() {
 export function cartListener() {
   const minusList = document.querySelectorAll('.item__minus');
   const plusList = document.querySelectorAll('.item__plus');
-  const itemsCountersList = document.querySelectorAll('.item__value');
   const removeList = document.querySelectorAll('.cart__item-remove');
-  const priceList = document.querySelectorAll('.cart__item-price');
-  
-  priceList.forEach((el) => {
-    const good = el.closest('.cart__item');
-    if (good === null) return;
+  const itemList = document.querySelectorAll('.cart__item');
 
-    const key = good.getAttribute('title');
-    if (key === null) return;
+  itemList.forEach((el) => {
+    const key = el.getAttribute('title');
+    const value = el.querySelector('.item__value');
+    if (key === null || value === null) return;
 
-    el.textContent = `$${cart.itemPriceSum(key) / 1000000} m.`;
-  });
-
-  itemsCountersList.forEach((el) => {
-    const good = el.closest('.cart__item');
-    if (good === null) return;
-
-    const key = good.getAttribute('title');
-    if (key === null) return;
-
-    el.textContent = `${cart.itemsInCart(key)}`;
-  });
+    value.textContent = `${cart.itemsInCart(key)}`;
+    checkPrice(el, key);
+  })
 
   // Listeners
 
