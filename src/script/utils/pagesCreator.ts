@@ -47,16 +47,29 @@ export function сreateItemPage(item: IGoods) {
 }
 
 export function createCart(cart: IGoods[]) {
-  const goodsCollection = <Element>document.querySelector('.items');
-  goodsCollection.innerHTML = '';
+  const main = <Element>document.querySelector('.main__content');
+  main.innerHTML = '';
   const page = document.createElement('div');
   const list = document.createElement('ul');
   page.classList.add('cart');
   cart.forEach((item) => {
     const listItem = document.createElement('li');
     listItem.classList.add('list__item');
-    listItem.innerHTML = `<p><a href="">${item.title}</a></p>
-      <button>Delete</button>`;
+    listItem.innerHTML = `<div class="list__item-info">
+      <p><a href="">${item.title}</a></p>
+      <p class="list__item-desc">${item.category} aircraft, produced by ${item.produce}.<br>
+      Capacity: ${item.capacity}. Range: ${item.range}.</p>
+    </div>
+    <div class="list__item-controls">
+      <p class="list__item-onstock>Stock: ${item.onstock}"</p>
+      <div class="item__count">
+        <span class="item__minus">-</span>
+        <span class="item__value">0</span>
+        <span class="item__plus">+</span>
+      </div>
+      <p class="list__item-price">
+      <button>Remove All</button>
+    </div>`;
     list.appendChild(listItem);
   });
   const controls = document.createElement('div');
@@ -65,7 +78,7 @@ export function createCart(cart: IGoods[]) {
     <button class="cart__button_pay">Pay</button>`;
   page.appendChild(list);
   page.appendChild(controls);
-  goodsCollection?.appendChild(page);
+  main?.appendChild(page);
 }
 
 export function createMain() {
