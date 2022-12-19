@@ -1,4 +1,4 @@
-import { createCart } from '../pagesCreator';
+import { createCart, createMain } from '../pagesCreator';
 import cart from './cart';
 
 export function headerListener() {
@@ -47,6 +47,7 @@ export function cartListener() {
 
         if (cart.itemsInCart(key) < 1) {
           good.remove();
+          checkEmpty();
         }
       }
       e.stopPropagation();
@@ -83,6 +84,7 @@ export function cartListener() {
 
       cart.deleteAllFromCart(key);
       good.remove();
+      checkEmpty();
       checkPrice(good, key);
       e.stopPropagation();
     });
@@ -103,4 +105,20 @@ export function cartListener() {
     moneyInCart.textContent = cart.moneySum();
     totalSum.textContent = cart.moneySum();
   }
+
+  function checkEmpty() {
+    if (cart.cartLength() === 0) {
+      createCart(cart.cartArr);
+    }
+  }
+}
+
+export function emptyCartListener() {
+  const button = document.querySelector('.cart__close-empty');
+  if (button === null) return;
+
+  button.addEventListener('click', () => {
+    history.pushState({}, 'newUrl', 'index.html');
+    createMain();
+  })
 }

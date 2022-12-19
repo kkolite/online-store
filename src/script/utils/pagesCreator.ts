@@ -5,7 +5,7 @@ import { showPopup } from './goods/goodsListener';
 import FilterData from './filter/filter';
 import data from '../data/data';
 import { itemListener } from './item/itemListener';
-import { cartListener } from './cart/cartListener';
+import { cartListener, emptyCartListener } from './cart/cartListener';
 
 export function сreateItemPage(item: IGoods) {
   const main = <Element>document.querySelector('.main__content');
@@ -54,6 +54,14 @@ export function createCart(cart: IGoods[]) {
   const list = document.createElement('ul');
   page.classList.add('cart');
   const set = new Set(cart);
+  if (set.size === 0) {
+    page.innerHTML = `<p>Cart is Empty</p>
+    <button class="cart__close-empty">Back to List</button>`;
+    page.classList.add('cart_empty');
+    main.appendChild(page);
+    emptyCartListener();
+    return;
+  }
   set.forEach((item) => {
     const listItem = document.createElement('li');
     listItem.classList.add('cart__item');
