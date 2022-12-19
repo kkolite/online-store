@@ -27,6 +27,11 @@
         text-align: center;
         background-color: #14294b;
         color: aliceblue;
+        transition: all .2s;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
     }
     &-promo {
         height: 30px;
@@ -34,6 +39,7 @@
         border-radius: 5px;
         background-color: rgb(226, 242, 255);
         margin-top: 25px;
+        text-align: center;
     }
 }
 
@@ -79,6 +85,11 @@
         border-radius: 3px;
         background-color: #14294b;
         opacity: .9;
+        transition: all .2s;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
     }
 
 }
