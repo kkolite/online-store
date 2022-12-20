@@ -1,4 +1,4 @@
-import promocodes from '../../data/promocodes';
+//import promocodes from '../../data/promocodes';
 import { createCart, createMain } from '../pagesCreator';
 import cart from './cart';
 
@@ -28,7 +28,7 @@ export function cartListener() {
 
     value.textContent = `${cart.itemsInCart(key)}`;
     checkPrice(el, key);
-  })
+  });
 
   // Listeners
 
@@ -107,7 +107,8 @@ export function cartListener() {
     const countOfGoods = document.querySelector('.count');
     const totalSum = document.querySelector('.cart__controls-sum');
     const products = document.querySelector('.cart__controls-products');
-    if (moneyInCart === null || countOfGoods === null || price === null || products === null || totalSum === null) return;
+    if (moneyInCart === null || countOfGoods === null || price === null || products === null || totalSum === null)
+      return;
 
     price.textContent = `$${cart.itemPriceSum(key) / 1000000} m.`;
     const count = cart.cartLength();
@@ -131,5 +132,5 @@ export function emptyCartListener() {
   button.addEventListener('click', () => {
     history.pushState({}, 'newUrl', 'index.html');
     createMain();
-  })
+  });
 }
