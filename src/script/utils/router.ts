@@ -26,7 +26,7 @@ window.addEventListener('popstate', function () {
   const route = window.location.pathname.split('/');
   const page = route[route.length - 1];
   console.log(page);
-  if (page === 'index.html') {
+  if (page === 'index.html' || page === '') {
     createMain();
   } else if (page === 'cart') {
     createCart(cart.cartArr);
