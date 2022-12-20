@@ -45,10 +45,10 @@ window.addEventListener('popstate', function () {
 
 export function location() {
   const route = window.location.pathname.replace('_', ' ').slice(1);
-  const arr = data.map((el) => el.title.toLowerCase());
+  const arr = data.map((el) => el.title);
   console.log(route);
 
-  if (arr.includes(route.toLowerCase())) {
+  if (arr.includes(route)) {
     const item = data.find((el) => el.title === route);
     if (item === undefined) return;
     createItemPage(item);
