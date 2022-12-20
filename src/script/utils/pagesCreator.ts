@@ -7,7 +7,7 @@ import data from '../data/data';
 import { itemListener } from './item/itemListener';
 import { cartListener, emptyCartListener } from './cart/cartListener';
 
-export function сreateItemPage(item: IGoods) {
+export function createItemPage(item: IGoods) {
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
   const page = document.createElement('div');
@@ -149,4 +149,10 @@ export function createMain() {
   const filter = new FilterData();
   filter.filterGoods(data);
   showPopup();
+}
+
+export function createError() {
+  const main = <Element>document.querySelector('.main__content');
+  main.innerHTML = `<p>Page not found</p>
+  <button>Back to Main</button>`;
 }
