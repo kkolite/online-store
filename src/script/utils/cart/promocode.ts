@@ -30,6 +30,9 @@ export class Promocode {
 
     checkPromo(promo: string) {
         const promoArr = promocodes.map((el) => el.key);
+        const currArr = Promocode.activePromo.map((el) => el.key);
+        if (currArr.includes(promo)) return;
+        
         if (promoArr.includes(promo)) {
             this.addPromo(promo);
         }
