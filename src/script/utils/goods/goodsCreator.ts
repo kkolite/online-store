@@ -5,9 +5,14 @@ class Goods {
   static currentItems: IGoods[] = [];
 
   createGoods(data: IGoods[]): void {
+    console.log(data.length);
     const goodsCollection = document.querySelector('.items');
     if (goodsCollection === null) return;
 
+    if (data.length === 0) {
+      goodsCollection.innerHTML = 'No products were found matching your request';
+      return;
+    }
     goodsCollection.innerHTML = '';
     produceCount(data);
     categoryCount(data);

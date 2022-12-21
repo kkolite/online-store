@@ -45,13 +45,13 @@ module.exports = {
       ],
     }),
     new NetlifyPlugin({redirects: [
-      {
-        from: "/*",
-        to: "/index.html",
-        status: 200,
-        force: false,
-      }
-    ]
-  })
+        {
+          from: "/*",
+          to: "/index.html",
+          status: 200,
+          force: false,
+        }
+      ]
+    })
   ]
 }
