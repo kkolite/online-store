@@ -1,5 +1,6 @@
+import data from '../../data/data';
 import promocodes from '../../data/promocodes';
-import { createCart, createMain } from '../pagesCreator';
+import { createCart, createItemPage, createMain } from '../pagesCreator';
 import cart from './cart';
 import { Promocode } from './promocode';
 
@@ -23,6 +24,8 @@ export function cartListener() {
   const promo = document.querySelector('.cart__controls-promo');
   const promoList = document.querySelector('.promo-list');
   const paginationPage = document.querySelectorAll('.pagination-page');
+  const linkList = document.querySelectorAll('.cart__item-link');
+
 
   if (!(promo instanceof HTMLInputElement) || promoList === null) return;
 
@@ -43,6 +46,18 @@ export function cartListener() {
   });
 
   // Listeners
+
+  linkList.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const key = link.parentElement?.getAttribute('title');
+      const item = data.find((el) => el.title === key);
+      if (item === undefined) return;
+
+      createItemPage(item);
+      history.pushState({}, 'newUrl', `${item.title.replace(' ', '_')}`);
+    })
+  })
 
   minusList.forEach((minus) => {
     const good = minus.closest('.cart__item');
