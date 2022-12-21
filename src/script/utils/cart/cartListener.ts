@@ -23,9 +23,18 @@ export function cartListener() {
   const itemList = document.querySelectorAll('.cart__item');
   const promo = document.querySelector('.cart__controls-promo');
   const promoList = document.querySelector('.promo-list');
+  const paginationPage = document.querySelectorAll('.pagination-page');
   const linkList = document.querySelectorAll('.cart__item-link');
 
+
   if (!(promo instanceof HTMLInputElement) || promoList === null) return;
+
+  if (paginationPage) {
+    paginationPage.forEach((item) => {
+      const pageNumber = +item.innerHTML;
+      item.addEventListener('click', () => createCart(cart.cartArr, pageNumber));
+    });
+  }
 
   itemList.forEach((el) => {
     const key = el.getAttribute('title');

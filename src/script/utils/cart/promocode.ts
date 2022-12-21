@@ -1,5 +1,5 @@
-import promocodes from "../../data/promocodes";
-import { IPromocode } from "../../data/types";
+import promocodes from '../../data/promocodes';
+import { IPromocode } from '../../data/types';
 
 export class Promocode {
     static activePromo: IPromocode[] = [];
