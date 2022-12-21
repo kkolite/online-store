@@ -4,7 +4,6 @@ export function produceCount(arr: IGoods[]) {
   const filterList = document.querySelectorAll('.filter__produce');
   filterList.forEach((el) => {
     const key = el.getAttribute('title');
-    console.log(key);
     const count = arr.filter((item) => item.produce === key).length;
     el.classList.add('active');
     if (count === 0) {
