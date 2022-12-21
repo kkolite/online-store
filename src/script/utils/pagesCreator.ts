@@ -68,7 +68,7 @@ export function createCart(cart: IGoods[]) {
     listItem.classList.add('cart__item');
     listItem.setAttribute('title', `${item.title}`);
     listItem.innerHTML = `<img src="${item.source[0]}" alt="${item.title}" class="cart__item-img">
-    <a href="${item.title.replace(' ', '_')}" class="cart__item-link">
+    <a href="${item.title}" class="cart__item-link">
       <div class="cart__item-info">
         <p>${item.title}</p>
         <p class="cart__item-desc">${item.category} aircraft, produced by ${item.produce}.<br>
