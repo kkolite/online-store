@@ -1,6 +1,7 @@
-const items = <Element>document.querySelector('.items');
-
 export function showList() {
+  const items = document.querySelector('.items');
+  if (items === null) return;
+
   const item = items.querySelectorAll('.item');
   items.classList.add('items__list');
   if (item) {
@@ -11,6 +12,9 @@ export function showList() {
 }
 
 export function showGrid() {
+  const items = document.querySelector('.items');
+  if (items === null) return;
+
   const item = items.querySelectorAll('.item');
   items.classList.remove('items__list');
   if (item) {
