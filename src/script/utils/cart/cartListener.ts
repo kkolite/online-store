@@ -1,6 +1,9 @@
-//import promocodes from '../../data/promocodes';
+import promocodes from '../../data/promocodes';
 import { createCart, createMain } from '../pagesCreator';
 import cart from './cart';
+import { Promocode } from './promocode';
+
+const promocode = new Promocode();
 
 export function headerListener() {
   const headerCart = document.querySelector('.header__cart');
@@ -17,9 +20,10 @@ export function cartListener() {
   const plusList = document.querySelectorAll('.item__plus');
   const removeList = document.querySelectorAll('.cart__item-remove');
   const itemList = document.querySelectorAll('.cart__item');
-  //const promo = document.querySelector('.cart__controls-promo');
+  const promo = document.querySelector('.cart__controls-promo');
+  const promoList = document.querySelector('.promo-list');
 
-  //if (!(promo instanceof HTMLInputElement)) return;
+  if (!(promo instanceof HTMLInputElement) || promoList === null) return;
 
   itemList.forEach((el) => {
     const key = el.getAttribute('title');
@@ -94,12 +98,27 @@ export function cartListener() {
     });
   });
 
-  /*promo.addEventListener('input', () => {
+  promo.addEventListener('input', () => {
     const keys = promocodes.map((el) => el.key);
     if (keys.includes(promo.value)) {
-
+      promocode.checkPromo(promo.value);
+      promo.value = '';
+      priceWithPromo();
     }
-  })*/
+  });
+
+  promoList.addEventListener('click', (e) => {
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+
+    if (target.classList.contains('promo-list__remove')) {
+      const key = target.parentElement?.id;
+      if (key === undefined) return;
+
+      promocode.deletePromo(key);
+      priceWithPromo();
+    }
+  });
 
   function checkPrice(good: Element, key: string) {
     const price = good.querySelector('.cart__item-price');
@@ -116,11 +135,29 @@ export function cartListener() {
     products.textContent = count.toString();
     moneyInCart.textContent = cart.moneySum();
     totalSum.textContent = cart.moneySum();
+    priceWithPromo();
   }
 
   function checkEmpty() {
     if (cart.cartLength() === 0) {
       createCart(cart.cartArr);
+    }
+  }
+
+  function priceWithPromo() {
+    const totalSum = document.querySelector('.cart__controls-sum');
+    const withPromoSum = document.querySelector('.cart__new-price');
+
+    if (totalSum === null || withPromoSum === null) return;
+
+    if (Promocode.activePromo.length > 0) {
+      totalSum.classList.add('cart__controls-sum_none');
+      const currPrice = cart.cartArr.reduce((acc, el) => acc + el.price, 0) / 1000000;
+      const discount = promocode.sumDiscount();
+      withPromoSum.textContent = `$${promocode.newPrice(currPrice, discount)} m.`;
+    } else {
+      totalSum.classList.remove('cart__controls-sum_none');
+      withPromoSum.textContent = '';
     }
   }
 }

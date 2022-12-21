@@ -1,6 +1,6 @@
-import { Promocode } from './types';
+import { IPromocode } from './types';
 
-const promocodes: Promocode[] = [
+const promocodes: IPromocode[] = [
   {
     key: 'kkolite',
     discount: 10,

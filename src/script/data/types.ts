@@ -17,7 +17,7 @@ export interface IGoods {
   range: number;
 }
 
-export interface Promocode {
+export interface IPromocode {
   key: string;
   discount: number;
 }
