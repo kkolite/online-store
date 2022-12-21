@@ -27,6 +27,9 @@
             opacity: 1;
         }
     }
+    &__new-price {
+        color: red;
+    }
 }
 
 .cart__controls {
@@ -43,8 +46,6 @@
         width: 70%;
         align-self: center;
         height: 50px;
-        margin-top: 20px;
-        margin-bottom: 30px;
         font-size: 30px;
         border-radius: 10px;
         opacity: .9;
@@ -62,8 +63,12 @@
         font-size: 20px;
         border-radius: 5px;
         background-color: rgb(226, 242, 255);
-        margin-top: 25px;
+        margin-top: 15px;
         text-align: center;
+    }
+    &-sum_none {
+        text-decoration: line-through;
+        font-size: 18px;
     }
 }
 

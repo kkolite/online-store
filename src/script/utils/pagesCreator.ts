@@ -6,6 +6,7 @@ import FilterData from './filter/filter';
 import data from '../data/data';
 import { itemListener } from './item/itemListener';
 import { cartListener, emptyCartListener } from './cart/cartListener';
+import { Promocode } from './cart/promocode';
 
 export function createItemPage(item: IGoods) {
   const main = <Element>document.querySelector('.main__content');
@@ -90,11 +91,13 @@ export function createCart(cart: IGoods[]) {
   controls.classList.add('cart__controls');
   controls.innerHTML = `<p>Products: <span class="cart__controls-products"></span></p>
     <p>Total: $<span class="cart__controls-sum"></span><span class="cart__new-price"></span></p>
-    <input type="text" placeholder="Have a promocode?" id="promo" name="promo" value="" autofocus autocomplete="off" class="cart__controls-promo">
+    <input type="text" placeholder="Have a promocode?" id="promo" name="promo" value="" autofocus autocomplete="off" maxlength="11" class="cart__controls-promo">
+    <ul class="promo-list"></ul>
     <button class="cart__controls-pay">Pay</button>`;
   page.appendChild(list);
   page.appendChild(controls);
   main?.appendChild(page);
+  Promocode.activePromo = [];
   cartListener();
 }
 
