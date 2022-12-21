@@ -1,3 +1,18 @@
+.pagination {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.pagination-page {
+    display: inline-block;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.pagination-page_active {
+    font-weight: 700;
+}
+
 .cart {
     display: flex;
     margin-top: 20px;

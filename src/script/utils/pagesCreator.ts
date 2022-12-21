@@ -1,7 +1,7 @@
 import { IGoods } from '../data/types';
 import { createFilters } from './filter/filtersCreator';
 import { showPopup } from './goods/goodsListener';
-//import Goods from './goodsCreator';
+import { CART_LIMIT } from '../data/constants';
 import FilterData from './filter/filter';
 import data from '../data/data';
 import { itemListener } from './item/itemListener';
@@ -48,7 +48,7 @@ export function createItemPage(item: IGoods) {
   itemListener(item);
 }
 
-export function createCart(cart: IGoods[]) {
+export function createCart(cart: IGoods[], pageNumber = 1) {
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
   const page = document.createElement('div');
@@ -63,7 +63,28 @@ export function createCart(cart: IGoods[]) {
     emptyCartListener();
     return;
   }
-  set.forEach((item) => {
+  if (set.size > CART_LIMIT) {
+    const countPages = Math.ceil(set.size / CART_LIMIT);
+    const pagination = document.createElement('div');
+    pagination.classList.add('pagination');
+    const pageSpan = document.createElement('span');
+    pageSpan.innerHTML = 'Page:';
+    pagination.appendChild(pageSpan);
+    for (let i = 1; i <= countPages; i++) {
+      const paginationPage = document.createElement('span');
+      paginationPage.classList.add('pagination-page');
+      if (i === pageNumber) {
+        paginationPage.classList.add('pagination-page_active');
+      }
+      paginationPage.innerHTML = `${i}`;
+      pagination.appendChild(paginationPage);
+    }
+    main.appendChild(pagination);
+  }
+  const uniqGoods: Array<IGoods> = [];
+  set.forEach((item) => uniqGoods.push(item));
+  const goodsPerPage = uniqGoods.slice((pageNumber - 1) * CART_LIMIT, CART_LIMIT * pageNumber);
+  goodsPerPage.forEach((item) => {
     const listItem = document.createElement('li');
     listItem.classList.add('cart__item');
     listItem.setAttribute('title', `${item.title}`);
