@@ -1,73 +1,74 @@
-import promocodes from '../../data/promocodes';
-import { IPromocode } from '../../data/types';
+import promocodes from "../../data/promocodes";
+import { IPromocode } from "../../data/types";
 
 export class Promocode {
-  static activePromo: IPromocode[] = [];
+    static activePromo: IPromocode[] = [];
 
-  private addPromo(promo: string) {
-    const obj = promocodes.find((el) => el.key === promo);
-    if (obj === undefined) return;
+    private addPromo(promo: string) {
+        const obj = promocodes.find((el) => el.key === promo);
+        if (obj === undefined) return;
 
-    Promocode.activePromo.push(obj);
-    this.buildPromo(promo);
-  }
-
-  deletePromo(promo: string) {
-    const obj = promocodes.find((el) => el.key === promo);
-    if (obj === undefined) return;
-
-    const i = Promocode.activePromo.indexOf(obj);
-    Promocode.activePromo.splice(i, 1);
-
-    const list = document.querySelectorAll('.promo-list__item');
-    list.forEach((el) => {
-      if (el.id === promo) {
-        el.remove();
-        return;
-      }
-    });
-  }
-
-  checkPromo(promo: string) {
-    const promoArr = promocodes.map((el) => el.key);
-    if (promoArr.includes(promo)) {
-      this.addPromo(promo);
+        Promocode.activePromo.push(obj);
+        this.buildPromo(promo);
     }
-  }
 
-  sumDiscount() {
-    return Promocode.activePromo.reduce((acc, el) => acc + el.discount, 0);
-  }
+    deletePromo(promo: string) {
+        const obj = promocodes.find((el) => el.key === promo);
+        if (obj === undefined) return;
 
-  newPrice(currPrice: number, discount: number) {
-    return currPrice * (1 - discount / 100);
-  }
+        const i = Promocode.activePromo.indexOf(obj);
+        Promocode.activePromo.splice(i, 1);
 
-  private buildPromo(promo: string) {
-    const promoList = document.querySelector('.promo-list');
-    if (promoList === null) return;
+        const list = document.querySelectorAll('.promo-list__item');
+        list.forEach((el) => {
+            if (el.id === promo) {
+                el.remove();
+                return;
+            }
+        })
+    }
 
-    const promoArr = promocodes.map((el) => el.key);
-    const i = promoArr.indexOf(promo);
-    const promocode = promocodes[i];
-    const li = document.createElement('li');
-    const text = document.createElement('span');
-    const discount = document.createElement('span');
-    const remove = document.createElement('button');
+    checkPromo(promo: string) {
+        const promoArr = promocodes.map((el) => el.key);
+        if (promoArr.includes(promo)) {
+            this.addPromo(promo);
+        }
+    }
 
-    li.id = `${promocode.key}`;
-    li.classList.add('promo-list__item');
-    text.classList.add('promo-list__text');
-    discount.classList.add('promo-list__discount');
-    remove.classList.add('promo-list__remove');
+    sumDiscount() {
+        return Promocode.activePromo.reduce((acc, el) => acc + el.discount, 0);
+    }
 
-    remove.textContent = 'Remove';
-    text.textContent = `Promo: ${promocode.key}, `;
-    discount.textContent = `-${promocode.discount}%`;
+    newPrice(currPrice: number, discount: number) {
+        const num = currPrice * (1 - (discount / 100));
+        return Math.floor(num * 10) / 10;
+    }
 
-    li.appendChild(text);
-    li.appendChild(discount);
-    li.append(remove);
-    promoList.appendChild(li);
-  }
+    private buildPromo(promo: string) {
+        const promoList = document.querySelector('.promo-list');
+        if (promoList === null) return;
+
+        const promoArr = promocodes.map((el) => el.key);
+        const i = promoArr.indexOf(promo);
+        const promocode = promocodes[i];
+        const li = document.createElement('li');
+        const text = document.createElement('span');
+        const discount = document.createElement('span');
+        const remove = document.createElement('button');
+
+        li.id = `${promocode.key}`;
+        li.classList.add('promo-list__item');
+        text.classList.add('promo-list__text');
+        discount.classList.add('promo-list__discount');
+        remove.classList.add('promo-list__remove');
+
+        remove.textContent = 'Remove';
+        text.textContent = `Promo: ${promocode.key},`;
+        discount.textContent = `-${promocode.discount}%`;
+
+        li.appendChild(text);
+        li.appendChild(discount);
+        li.append(remove);
+        promoList.appendChild(li);
+    }
 }
