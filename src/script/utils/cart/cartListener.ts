@@ -1,7 +1,6 @@
 import data from '../../data/data';
 import promocodes from '../../data/promocodes';
 import { createCart, createItemPage, createMain, createPay } from '../pagesCreator';
-import { paymentListeners } from '../Payment/payment';
 import cart from './cart';
 import { Promocode } from './promocode';
 
@@ -50,7 +49,6 @@ export function cartListener() {
 
   payButton.addEventListener('click', () => {
     createPay();
-    paymentListeners();
   });
 
   linkList.forEach((link) => {

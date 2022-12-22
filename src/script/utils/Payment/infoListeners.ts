@@ -1,6 +1,6 @@
-import { validateAdress, validateEMail, validateName, validateTel } from './validation';
+import { validateAdress, validateEMail, validateName, validateTel } from './infoValidation';
 
-export function paymentListeners() {
+export function infoListeners() {
   const name = document.getElementById('form__name');
   const tel = document.getElementById('form__tel');
   const adress = document.getElementById('form__adress');
@@ -37,7 +37,6 @@ export function paymentListeners() {
       classRemover(name);
       name.classList.add('valid');
     } else {
-      console.log('Bruh')
       valid.name = false;
       classRemover(name);
       name.classList.add('invalid');
@@ -104,7 +103,7 @@ export function paymentListeners() {
   });
 }
 
-function classRemover(el: Element) {
+export function classRemover(el: Element) {
   el.classList.remove('onfocus');
   el.classList.remove('valid');
   el.classList.remove('invalid');
