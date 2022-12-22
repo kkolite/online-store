@@ -1,10 +1,12 @@
 import cart from '../cart/cart';
 import { listener } from '../filter/listener';
+import { createCart } from '../pagesCreator';
 import { router } from '../router';
 
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
   const buttonList = document.querySelectorAll('.button__add');
+  const buyNow = document.querySelectorAll('.button__buy-now');
   const minusList = document.querySelectorAll('.item__minus');
   const plusList = document.querySelectorAll('.item__plus');
   const itemsCountersList = document.querySelectorAll('.item__value');
@@ -109,9 +111,8 @@ export function showPopup() {
 
   buttonList.forEach((button) => {
     const goods = button.closest('.item');
-    if (goods === null) {
-      return;
-    }
+    if (goods === null) return;
+
     button.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
       const counter = goods.querySelector('.item__value');
@@ -132,6 +133,23 @@ export function showPopup() {
       count = cart.cartLength();
       countOfGoods.innerHTML = count.toString();
       moneyInCart.textContent = cart.moneySum();
+      e.stopPropagation();
+    });
+  });
+
+  buyNow.forEach((button) => {
+    const goods = button.closest('.item');
+    if (goods === null) return;
+
+    button.addEventListener('click', (e) => {
+      const key = goods.getAttribute('title');
+      if (key === null) return;
+
+      if (cart.itemsInCart(key) < 1) {
+        cart.pushInCart(key);
+      }
+
+      createCart(cart.cartArr);
       e.stopPropagation();
     });
   });

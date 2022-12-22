@@ -1,9 +1,10 @@
 import { IGoods } from '../../data/types';
 import cart from '../cart/cart';
-import { createMain } from '../pagesCreator';
+import { createCart, createMain } from '../pagesCreator';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');
+  const buyNow = document.querySelector('.button__buy-now');
   const minus = document.querySelector('.item__minus');
   const plus = document.querySelector('.item__plus');
   const itemCounter = document.querySelector('.item__value');
@@ -21,6 +22,7 @@ export function itemListener(item: IGoods) {
     button == null ||
     itemCounter == null ||
     infoCont === null ||
+    buyNow === null ||
     imgBox === null
   ) {
     return;
@@ -87,6 +89,14 @@ export function itemListener(item: IGoods) {
     countOfGoods.innerHTML = count.toString();
     moneyInCart.textContent = cart.moneySum();
     //e.stopPropagation();
+  });
+
+  buyNow.addEventListener('click', () => {
+    if (cart.itemsInCart(key) < 1) {
+      cart.pushInCart(key);
+    }
+
+    createCart(cart.cartArr);
   });
 
   imgBox.addEventListener('click', (e) => {

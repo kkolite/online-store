@@ -46,7 +46,7 @@ export function createItemPage(item: IGoods) {
       <p class="item-page__desc">${item.description}</p>
       <div class="item-page__buttons-box">
         <button class="button__add item-page__button" title="${item.title}">Add to Cart</button>
-        <button class="item-page__button" title="${item.title}">Buy Now!</button>
+        <button class="item-page__button button__buy-now" title="${item.title}">Buy Now!</button>
       </div>
     </div>`;
   main?.appendChild(page);
