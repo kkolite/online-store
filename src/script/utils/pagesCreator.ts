@@ -159,10 +159,10 @@ export function createMain() {
       </div>
       <div class="sort_select">
         <select name="sorting" id="sortBy">
-          <option value="sortByNameUp"><button class="button name_up">от а до я</button></option>
-          <option value="sortByNameDown"><button class="button name_down">от я до а</button></option>
-          <option value="sortByPriceUp"><button class="button price_up">сначала дешевые</button></option>
-          <option value="sortByPriceDown"><button class="button price_down">сначала дорогие</button></option>
+          <option value="sortByNameUp"><button class="button name_up">By Name (A-Z)</button></option>
+          <option value="sortByNameDown"><button class="button name_down">By Name (Z-A)</button></option>
+          <option value="sortByPriceUp"><button class="button price_up">By Price (lower)</button></option>
+          <option value="sortByPriceDown"><button class="button price_down">By Price (higher)</button></option>
         </select>
       </div>
     </div>
