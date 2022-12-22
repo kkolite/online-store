@@ -10,6 +10,7 @@ import { Promocode } from './cart/promocode';
 import { payListeners } from './Payment/payListeners';
 import { infoListeners } from './Payment/infoListeners';
 import { pay } from './Payment/payAction';
+import { hideSearch, visibleSearch } from './header';
 
 export function createItemPage(item: IGoods) {
   const main = <Element>document.querySelector('.main__content');
@@ -49,6 +50,7 @@ export function createItemPage(item: IGoods) {
     </div>`;
   main?.appendChild(page);
   itemListener(item);
+  hideSearch();
 }
 
 export function createCart(cart: IGoods[], pageNumber = 1) {
@@ -123,6 +125,7 @@ export function createCart(cart: IGoods[], pageNumber = 1) {
   main?.appendChild(page);
   Promocode.activePromo = [];
   cartListener();
+  hideSearch();
 }
 
 export function createMain() {
@@ -175,6 +178,7 @@ export function createMain() {
   goods.createGoods(Goods.currentItems);*/
   const filter = new FilterData();
   filter.filterGoods(data);
+  visibleSearch();
   showPopup();
 }
 
@@ -182,6 +186,7 @@ export function createError() {
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = `<p>Page not found</p>
   <button>Back to Main</button>`;
+  hideSearch();
 }
 
 export function createPay() {
@@ -242,6 +247,7 @@ div.innerHTML = `<button class="form__button">Pay</button>
 main.appendChild(page);
 main.appendChild(div);
 
+hideSearch();
 payListeners();
 infoListeners();
 pay();

@@ -24,6 +24,8 @@
     &__search {
         position: relative;
         padding-top: 5px;
+        transition: all .2s;
+        opacity: 1;
     }
 
     &__cart {

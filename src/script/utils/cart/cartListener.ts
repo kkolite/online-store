@@ -6,16 +6,6 @@ import { Promocode } from './promocode';
 
 const promocode = new Promocode();
 
-export function headerListener() {
-  const headerCart = document.querySelector('.header__cart');
-  if (headerCart === null) return;
-  headerCart.addEventListener('click', () => {
-    const currentCart = cart.cartArr;
-    createCart(currentCart);
-    history.pushState({}, 'newUrl', 'cart');
-  });
-}
-
 export function cartListener() {
   const minusList = document.querySelectorAll('.item__minus');
   const plusList = document.querySelectorAll('.item__plus');
