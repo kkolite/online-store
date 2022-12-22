@@ -66,6 +66,7 @@ export function createCart(cart: IGoods[], pageNumber = 1) {
     page.classList.add('cart_empty');
     main.appendChild(page);
     emptyCartListener();
+    hideSearch();
     return;
   }
   if (set.size > CART_LIMIT) {
