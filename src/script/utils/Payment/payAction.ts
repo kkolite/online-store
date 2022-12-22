@@ -65,4 +65,6 @@ function newStore() {
     count.textContent = '0';
     cart.cartArr = [];
     createMain();
+    localStorage.clear();
+    history.pushState({}, 'newUrl', '/');
 }
