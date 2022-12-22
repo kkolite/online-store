@@ -11,6 +11,7 @@ import { payListeners } from './Payment/payListeners';
 import { infoListeners } from './Payment/infoListeners';
 import { pay } from './Payment/payAction';
 import { hideSearch, visibleSearch } from './header';
+import { errorListener } from './errors/error';
 
 export function createItemPage(item: IGoods) {
   const main = <Element>document.querySelector('.main__content');
@@ -131,6 +132,9 @@ export function createCart(cart: IGoods[], pageNumber = 1) {
 
 export function createMain() {
   const main = <Element>document.querySelector('.main__content');
+  const page = <Element>document.querySelector('.main');
+  page.classList.remove('error__background');
+  main.classList.remove('error__main');
   main.innerHTML = `<aside class="filter">
     <h4 class="filter__title">Produce</h4>
     <ul class="filter__list produce"></ul>
@@ -185,9 +189,13 @@ export function createMain() {
 
 export function createError() {
   const main = <Element>document.querySelector('.main__content');
-  main.innerHTML = `<p>Page not found</p>
-  <button>Back to Main</button>`;
+  const page = <Element>document.querySelector('.main');
+  main.innerHTML = `<p class="error__text">Page not found</p>
+  <button class="error__button">Back to Main</button>`;
   hideSearch();
+  page.classList.add('error__background');
+  main.classList.add('error__main');
+  errorListener();
 }
 
 export function createPay() {
