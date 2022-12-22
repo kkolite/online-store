@@ -180,3 +180,17 @@ export function createError() {
   main.innerHTML = `<p>Page not found</p>
   <button>Back to Main</button>`;
 }
+
+export function createPay() {
+  const main = <Element>document.querySelector('.main__content');
+  main.innerHTML = `<form action="">
+  <input type="text" name="" id="form__name">
+  <label for="form__name">Name</label>
+  <input type="tel" name="" id="form__tel">
+  <label for="form__tel">Phone</label>
+  <input type="text" name="" id="form__adress">
+  <label for="form__adress">Adress</label>
+  <input type="email" name="" id="form__email">
+  <label for="form__email">E-Mail</label>
+</form>`;
+}
