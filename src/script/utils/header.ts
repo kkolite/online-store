@@ -30,3 +30,13 @@ export function visibleSearch() {
 
   search.classList.remove('hide');
 }
+
+export function headerInfo() {
+  const moneyInCart = document.querySelector('.money');
+  const countOfGoods = document.querySelector('.count');
+  if (moneyInCart === null || countOfGoods === null) return;
+
+  const count = cart.cartLength();
+  countOfGoods.innerHTML = count.toString();
+  moneyInCart.textContent = cart.moneySum();
+}

@@ -10,7 +10,7 @@ import { Promocode } from './cart/promocode';
 import { payListeners } from './Payment/payListeners';
 import { infoListeners } from './Payment/infoListeners';
 import { pay } from './Payment/payAction';
-import { headerListener, hideSearch, visibleSearch } from './header';
+import { headerInfo, headerListener, hideSearch, visibleSearch } from './header';
 import { errorListener } from './errors/error';
 
 export function createItemPage(item: IGoods) {
@@ -216,10 +216,12 @@ export function createError() {
 }
 
 export function createPay() {
-  const main = <Element>document.querySelector('.main__content');
+  //const main = <Element>document.querySelector('.main__content');
   const page = document.createElement('form');
+  const body = <Element>document.querySelector('.page');
+
   page.classList.add('form');
-  main.innerHTML = '';
+  //main.innerHTML = '';
   page.innerHTML = `<div class="form__info">
     <div class="form__input-container">
       <label for="form__name" class="form__label">Name</label>
@@ -270,8 +272,14 @@ export function createPay() {
   div.innerHTML = `<button class="form__button">Pay</button>
   <p class="form__afterpay"></p>`;
 
-  main.appendChild(page);
-  main.appendChild(div);
+  const background = document.createElement('div');
+  background.classList.add('form__background');
+  const container = document.createElement('div');
+  container.classList.add('form__container');
+  container.appendChild(page);
+  container.appendChild(div);
+  body.appendChild(container);
+  body.appendChild(background);
 
   hideSearch();
   payListeners();
@@ -301,6 +309,7 @@ function createHeader() {
       </div>
     </div>`;
   headerListener();
+  headerInfo();
 }
 
 function createFooter() {

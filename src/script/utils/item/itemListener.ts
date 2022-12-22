@@ -1,6 +1,6 @@
 import { IGoods } from '../../data/types';
 import cart from '../cart/cart';
-import { createCart, createMain } from '../pagesCreator';
+import { createCart, createMain, createPay } from '../pagesCreator';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');
@@ -97,6 +97,7 @@ export function itemListener(item: IGoods) {
     }
 
     createCart(cart.cartArr);
+    createPay();
   });
 
   imgBox.addEventListener('click', (e) => {

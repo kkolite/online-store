@@ -67,6 +67,17 @@ function newStore() {
 
   count.textContent = '0';
   cart.cartArr = [];
+  removePayment();
   createMain();
   localStorage.clear();
+}
+
+export function removePayment() {
+  const background = document.querySelector('.form__background');
+  const container = document.querySelector('.form__container');
+
+  if (background === null || container === null) return;
+
+  background.remove();
+  container.remove();
 }

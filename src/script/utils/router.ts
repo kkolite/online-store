@@ -1,6 +1,7 @@
 import { createMain, createItemPage, createCart, createError } from './pagesCreator';
 import data from '../data/data';
 import cart from './cart/cart';
+import { removePayment } from './Payment/payAction';
 
 export function router(event: Event) {
   event.preventDefault();
@@ -24,7 +25,7 @@ export function router(event: Event) {
 window.addEventListener('popstate', function () {
   const route = window.location.pathname.split('/');
   const page = route[route.length - 1];
-  console.log(page);
+  removePayment();
   if (page === 'index.html' || page === '') {
     createMain();
   } else if (page === 'cart') {

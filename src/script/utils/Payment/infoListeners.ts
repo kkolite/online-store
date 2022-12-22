@@ -1,25 +1,25 @@
 import { validateAdress, validateEMail, validateName, validateTel } from './infoValidation';
+import { removePayment } from './payAction';
 
 export function infoListeners() {
   const name = document.getElementById('form__name');
   const tel = document.getElementById('form__tel');
   const adress = document.getElementById('form__adress');
   const email = document.getElementById('form__email');
-  const valid = {
-    name: false,
-    tel: false,
-    adress: false,
-    email: false,
-  };
+  const background = document.querySelector('.form__background');
 
   if (
     !(name instanceof HTMLInputElement) ||
     !(tel instanceof HTMLInputElement) ||
     !(adress instanceof HTMLInputElement) ||
-    !(email instanceof HTMLInputElement)
+    !(email instanceof HTMLInputElement) ||
+    background === null
   )
     return;
 
+  background.addEventListener('click', () => {
+    removePayment();
+  });
   name.addEventListener('focus', () => {
     classRemover(name);
     name.classList.add('onfocus');
@@ -33,11 +33,9 @@ export function infoListeners() {
   name.addEventListener('blur', () => {
     const result = validateName(name.value);
     if (result === true) {
-      valid.name = true;
       classRemover(name);
       name.classList.add('valid');
     } else {
-      valid.name = false;
       classRemover(name);
       name.classList.add('invalid');
     }
@@ -56,11 +54,9 @@ export function infoListeners() {
   tel.addEventListener('blur', () => {
     const result = validateTel(tel.value);
     if (result === true) {
-      valid.tel = true;
       classRemover(tel);
       tel.classList.add('valid');
     } else {
-      valid.tel = false;
       classRemover(tel);
       tel.classList.add('invalid');
     }
@@ -74,11 +70,9 @@ export function infoListeners() {
   adress.addEventListener('blur', () => {
     const result = validateAdress(adress.value);
     if (result === true) {
-      valid.adress = true;
       classRemover(adress);
       adress.classList.add('valid');
     } else {
-      valid.adress = false;
       classRemover(adress);
       adress.classList.add('invalid');
     }
@@ -92,11 +86,9 @@ export function infoListeners() {
   email.addEventListener('blur', () => {
     const result = validateEMail(email.value);
     if (result === true) {
-      valid.email = true;
       classRemover(email);
       email.classList.add('valid');
     } else {
-      valid.email = false;
       classRemover(email);
       email.classList.add('invalid');
     }

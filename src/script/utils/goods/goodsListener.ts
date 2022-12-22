@@ -1,6 +1,6 @@
 import cart from '../cart/cart';
 import { listener } from '../filter/listener';
-import { createCart } from '../pagesCreator';
+import { createCart, createPay } from '../pagesCreator';
 import { router } from '../router';
 
 export function showPopup() {
@@ -150,6 +150,7 @@ export function showPopup() {
       }
 
       createCart(cart.cartArr);
+      createPay();
       e.stopPropagation();
     });
   });
