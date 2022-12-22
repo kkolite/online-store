@@ -10,10 +10,13 @@ import { Promocode } from './cart/promocode';
 import { payListeners } from './Payment/payListeners';
 import { infoListeners } from './Payment/infoListeners';
 import { pay } from './Payment/payAction';
-import { hideSearch, visibleSearch } from './header';
+import { headerListener, hideSearch, visibleSearch } from './header';
 import { errorListener } from './errors/error';
 
 export function createItemPage(item: IGoods) {
+  //createHeader();
+  //createFooter();
+
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
   const page = document.createElement('div');
@@ -55,6 +58,9 @@ export function createItemPage(item: IGoods) {
 }
 
 export function createCart(cart: IGoods[], pageNumber = 1) {
+  //createHeader();
+  //createFooter();
+
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
   const page = document.createElement('div');
@@ -131,6 +137,8 @@ export function createCart(cart: IGoods[], pageNumber = 1) {
 }
 
 export function createMain() {
+  //createHeader();
+  //createFooter();
   const main = <Element>document.querySelector('.main__content');
   const page = <Element>document.querySelector('.main');
   page.classList.remove('error__background');
@@ -199,6 +207,9 @@ export function createError() {
 }
 
 export function createPay() {
+  //createHeader();
+  //createFooter();
+
   const main = <Element>document.querySelector('.main__content');
   const page = document.createElement('form');
   page.classList.add('form');
@@ -249,15 +260,65 @@ export function createPay() {
     </div>
   </div>`;
 
-const div = document.createElement('div');
-div.innerHTML = `<button class="form__button">Pay</button>
-<p class="form__afterpay"></p>`;
+  const div = document.createElement('div');
+  div.innerHTML = `<button class="form__button">Pay</button>
+  <p class="form__afterpay"></p>`;
 
-main.appendChild(page);
-main.appendChild(div);
+  main.appendChild(page);
+  main.appendChild(div);
 
-hideSearch();
-payListeners();
-infoListeners();
-pay();
+  hideSearch();
+  payListeners();
+  infoListeners();
+  pay();
+}
+
+function createHeader() {
+  const header = <Element>document.querySelector('.header');
+  header.innerHTML = `<div class="wrapper">
+      <div class="header__content">
+        <div class="header__logo">
+          <h1 class="header__title">Online-store</h1>
+        </div>
+        <div class="header__search">
+          <form action="" class="header__form">
+            <input type="text" placeholder="Search..." id="search" name="searchPhone" value="" autofocus autocomplete="off">
+            <img src="./assets/svg/cancel.svg" alt="cancel" class="cancel">
+          </form>
+        </div>
+        <p class="header__money">In Cart: $<span class="money">0</span></p>
+        <div class="header__cart">
+          <img src="./assets/svg/cart-arrow-down-solid.svg" alt="cart" class="header__cart-img">
+          <div class="count">0</div>
+        </div>
+      </div>
+    </div>`;
+  headerListener();
+}
+
+function createFooter() {
+  const footer = <Element>document.querySelector('.footer');
+  footer.innerHTML = `<div class="wrapper">
+      <div class="footer__content">
+        <div class="github">
+          <a href="https://github.com/Shama8nchez" class="gh__link">
+            <img src="./assets/svg/github.svg" alt="github" class="gh">
+            <span>Shama8nchez</span>
+          </a>
+          <span>, </span>
+          <a href="https://github.com/kkolite" class="gh__link">
+            <img src="./assets/svg/github.svg" alt="github" class="gh">
+            <span>kkolite</span>
+          </a>
+        </div>
+        <div class="year">
+          2022
+        </div>
+        <div class="rss">
+          <a href="https://rs.school/js/">
+            <img src="https://rs.school/images/rs_school_js.svg" alt="rss" class="rsschool">
+          </a>
+        </div>
+      </div>
+    </div>`;
 }
