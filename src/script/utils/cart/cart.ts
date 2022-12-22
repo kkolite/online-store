@@ -73,7 +73,7 @@ class Cart {
     if (cart === null || count === null) return;
 
     this.cartArr = JSON.parse(cart);
-    count.textContent = `${this.cartLength()}`
+    count.textContent = `${this.cartLength()}`;
   }
 }
 

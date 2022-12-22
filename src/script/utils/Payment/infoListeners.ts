@@ -28,7 +28,7 @@ export function infoListeners() {
   name.addEventListener('input', () => {
     const regex = /[0-9]|[!,&,@,#,$,%,^,(,),+,-,/,*,=,_]/i;
     name.value = name.value.replace(regex, '');
-  })
+  });
 
   name.addEventListener('blur', () => {
     const result = validateName(name.value);
@@ -51,7 +51,7 @@ export function infoListeners() {
   tel.addEventListener('input', () => {
     const regex = /[a-z]|[а-я]/i;
     tel.value = tel.value.replace(regex, '');
-  })
+  });
 
   tel.addEventListener('blur', () => {
     const result = validateTel(tel.value);
@@ -99,7 +99,7 @@ export function infoListeners() {
       valid.email = false;
       classRemover(email);
       email.classList.add('invalid');
-    }      
+    }
   });
 }
 

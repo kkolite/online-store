@@ -14,9 +14,6 @@ import { headerListener, hideSearch, visibleSearch } from './header';
 import { errorListener } from './errors/error';
 
 export function createItemPage(item: IGoods) {
-  //createHeader();
-  //createFooter();
-
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
   const page = document.createElement('div');
@@ -58,9 +55,6 @@ export function createItemPage(item: IGoods) {
 }
 
 export function createCart(cart: IGoods[], pageNumber = 1) {
-  //createHeader();
-  //createFooter();
-
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
   const page = document.createElement('div');
@@ -137,10 +131,14 @@ export function createCart(cart: IGoods[], pageNumber = 1) {
 }
 
 export function createMain() {
-  //createHeader();
-  //createFooter();
+  createHeader();
+  createFooter();
+
   const main = <Element>document.querySelector('.main__content');
+  const body = <Element>document.querySelector('.page');
   const page = <Element>document.querySelector('.main');
+
+  body.classList.remove('no-scroll');
   page.classList.remove('error__background');
   main.classList.remove('error__main');
   main.innerHTML = `<aside class="filter">
@@ -198,6 +196,16 @@ export function createMain() {
 export function createError() {
   const main = <Element>document.querySelector('.main__content');
   const page = <Element>document.querySelector('.main');
+  const header = <Element>document.querySelector('.header');
+  const footer = <Element>document.querySelector('.footer');
+  const body = <Element>document.querySelector('.page');
+
+  header.classList.add('no-display');
+  footer.classList.add('no-display');
+  body.classList.add('no-scroll');
+
+  header.innerHTML = '';
+  footer.innerHTML = '';
   main.innerHTML = `<p class="error__text">Page not found</p>
   <button class="error__button">Back to Main</button>`;
   hideSearch();
@@ -207,9 +215,6 @@ export function createError() {
 }
 
 export function createPay() {
-  //createHeader();
-  //createFooter();
-
   const main = <Element>document.querySelector('.main__content');
   const page = document.createElement('form');
   page.classList.add('form');
@@ -275,6 +280,7 @@ export function createPay() {
 
 function createHeader() {
   const header = <Element>document.querySelector('.header');
+  header.classList.remove('no-display');
   header.innerHTML = `<div class="wrapper">
       <div class="header__content">
         <div class="header__logo">
@@ -298,6 +304,7 @@ function createHeader() {
 
 function createFooter() {
   const footer = <Element>document.querySelector('.footer');
+  footer.classList.remove('no-display');
   footer.innerHTML = `<div class="wrapper">
       <div class="footer__content">
         <div class="github">

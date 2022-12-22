@@ -7,7 +7,7 @@ export function validateName(val: string) {
     error.textContent = '';
     return true;
   }
-  
+
   error.textContent = 'Error! Invalid string';
   return false;
 }
