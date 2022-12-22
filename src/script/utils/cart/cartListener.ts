@@ -49,7 +49,6 @@ export function cartListener() {
       if (item === undefined) return;
 
       createItemPage(item);
-      history.pushState({}, 'newUrl', `${item.title.replace(' ', '_')}`);
     });
   });
 
@@ -184,7 +183,6 @@ export function emptyCartListener() {
   if (button === null) return;
 
   button.addEventListener('click', () => {
-    history.pushState({}, 'newUrl', 'index.html');
     createMain();
   });
 }

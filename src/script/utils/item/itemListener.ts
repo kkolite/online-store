@@ -106,7 +106,6 @@ export function itemListener(item: IGoods) {
   });
 
   breadMain.addEventListener('click', () => {
-    history.pushState({}, 'newUrl', 'index.html');
     createMain();
   });
 }

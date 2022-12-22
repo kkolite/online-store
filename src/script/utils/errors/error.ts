@@ -6,6 +6,5 @@ export function errorListener() {
 
   button.addEventListener('click', () => {
     createMain();
-    history.pushState({}, 'newUrl', '/');
   });
 }

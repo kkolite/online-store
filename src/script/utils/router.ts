@@ -15,7 +15,6 @@ export function router(event: Event) {
     key = parent.getAttribute('title');
   }
 
-  history.pushState({}, 'newUrl', key?.replace(' ', '_'));
   const item = data.find((el) => el.title === key);
   if (item === undefined) return;
 

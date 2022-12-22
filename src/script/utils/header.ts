@@ -10,12 +10,10 @@ export function headerListener() {
   headerCart.addEventListener('click', () => {
     const currentCart = cart.cartArr;
     createCart(currentCart);
-    history.pushState({}, 'newUrl', 'cart');
   });
 
   headerLink.addEventListener('click', () => {
     createMain();
-    history.pushState({}, 'newUrl', '/');
   });
 }
 

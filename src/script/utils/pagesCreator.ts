@@ -49,6 +49,7 @@ export function createItemPage(item: IGoods) {
         <button class="item-page__button button__buy-now" title="${item.title}">Buy Now!</button>
       </div>
     </div>`;
+  history.pushState({}, 'newUrl', `${item.title.replace(' ', '_')}`);
   main?.appendChild(page);
   itemListener(item);
   hideSearch();
@@ -61,6 +62,7 @@ export function createCart(cart: IGoods[], pageNumber = 1) {
   const list = document.createElement('ul');
   page.classList.add('cart');
   const set = new Set(cart);
+  history.pushState({}, 'newUrl', 'cart');
   if (set.size === 0) {
     page.innerHTML = `<p>Cart is Empty</p>
     <button class="cart__close-empty">Back to List</button>`;
@@ -184,9 +186,8 @@ export function createMain() {
       
     </div>
   </section>`;
+  history.pushState({}, 'newUrl', '/');
   createFilters();
-  /*const goods = new Goods();
-  goods.createGoods(Goods.currentItems);*/
   const filter = new FilterData();
   filter.filterGoods(data);
   visibleSearch();
