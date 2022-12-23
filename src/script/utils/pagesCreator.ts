@@ -144,27 +144,34 @@ export function createMain() {
   page.classList.remove('error__background');
   main.classList.remove('error__main');
   main.innerHTML = `<aside class="filter">
-    <h4 class="filter__title">Produce</h4>
-    <ul class="filter__list produce"></ul>
-    <h4 class="filter__title">Category</h4>
-    <ul class="filter__list category"></ul>
-    <h4 class="filter__title">Price</h4>
-    <div class="price__control">
-        <input id="fromPrice" type="range" value="1" min="1" max="500"/>
-        <input id="toPrice" type="range" value="500" min="1" max="500"/>
+    <div>
+      <h4 class="filter__title">Produce</h4>
+      <ul class="filter__list produce"></ul>
     </div>
-    <div class="price__view">
-      <div id="minPrice">1</div>
-      <div id="maxPrice">500</div>
+    <div>
+      <h4 class="filter__title">Category</h4>
+      <ul class="filter__list category"></ul>
     </div>
-    <h4 class="filter__title">Capacity</h4>
-    <div class="capacity__control">
-        <input id="fromCapacity" type="range" value="1" min="1" max="550"/>
-        <input id="toCapacity" type="range" value="550" min="1" max="550"/>
-    </div>
-    <div class="capacity__view">
-      <div id="minCapacity">1</div>
-      <div id="maxCapacity">550</div>
+    <div class="filter__double-range">
+      <h4 class="filter__title">Price</h4>
+      <div class="price__control">
+          <input id="fromPrice" type="range" value="1" min="1" max="500"/>
+          <input id="toPrice" type="range" value="500" min="1" max="500"/>
+      </div>
+      <div class="price__view">
+        <div id="minPrice">1</div>
+        <div id="maxPrice">500</div>
+      </div>
+    
+      <h4 class="filter__title">Capacity</h4>
+      <div class="capacity__control">
+          <input id="fromCapacity" type="range" value="1" min="1" max="550"/>
+          <input id="toCapacity" type="range" value="550" min="1" max="550"/>
+      </div>
+      <div class="capacity__view">
+        <div id="minCapacity">1</div>
+        <div id="maxCapacity">550</div>
+      </div>
     </div>
   </aside>
   <section class="goods">
@@ -318,6 +325,9 @@ function createFooter() {
   footer.classList.remove('no-display');
   footer.innerHTML = `<div class="wrapper">
       <div class="footer__content">
+        <div class="year">
+          2022
+        </div>
         <div class="github">
           <a href="https://github.com/Shama8nchez" class="gh__link">
             <img src="./assets/svg/github.svg" alt="github" class="gh">
@@ -328,9 +338,6 @@ function createFooter() {
             <img src="./assets/svg/github.svg" alt="github" class="gh">
             <span>kkolite</span>
           </a>
-        </div>
-        <div class="year">
-          2022
         </div>
         <div class="rss">
           <a href="https://rs.school/js/">

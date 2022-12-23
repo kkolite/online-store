@@ -4,7 +4,7 @@
   }
   
   .header {
-    //padding: 15px 0;
+    padding: 0 20px;
     //border-bottom: 3px solid #14294b;
     background-color: rgb(156, 209, 255);
     &__content {
@@ -88,4 +88,22 @@
     font-style: normal;
     font-size: 16px;
     text-align: center;
+  }
+
+  @media screen and (max-width: 920px) {
+    .header__search {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .header {
+      &__money {
+        display: none;
+      }
+
+      &__title {
+        font-size: 28px;
+      }
+    }
   }
