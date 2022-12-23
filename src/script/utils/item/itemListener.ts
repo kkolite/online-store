@@ -114,5 +114,5 @@ export function itemListener(item: IGoods) {
 
   imgMain.addEventListener('click', () => {
     createGallery(imgMain.src);
-  })
+  });
 }

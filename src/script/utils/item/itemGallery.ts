@@ -1,23 +1,23 @@
 export function createGallery(src: string) {
-    const background = document.createElement('div');
-    const img = document.createElement('img');
-    const body = <Element>document.querySelector('.page');
-  
-    background.classList.add('gallery');
-    img.classList.add('gallery__img');
-    img.src = src;
-    img.alt = 'aircraft image';
-    background.appendChild(img);
-    body.appendChild(background);
+  const background = document.createElement('div');
+  const img = document.createElement('img');
+  const body = <Element>document.querySelector('.page');
 
-    background.addEventListener('click', () => {
-        removeGallery();
-    })
-  }
+  background.classList.add('gallery');
+  img.classList.add('gallery__img');
+  img.src = src;
+  img.alt = 'aircraft image';
+  background.appendChild(img);
+  body.appendChild(background);
 
-  export function removeGallery() {
-    const background = document.querySelector('.gallery');
-    if (background === null) return;
+  background.addEventListener('click', () => {
+    removeGallery();
+  });
+}
 
-    background.remove();
-  }
+export function removeGallery() {
+  const background = document.querySelector('.gallery');
+  if (background === null) return;
+
+  background.remove();
+}

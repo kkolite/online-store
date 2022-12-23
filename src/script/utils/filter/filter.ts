@@ -1,6 +1,6 @@
 import SortData from './sort';
 import { IGoods, IFilter } from '../../data/types';
-import { addProperty, fltr, produceArr, categoryArr/*, search*/ } from './multifilter';
+import { addProperty, fltr, produceArr, categoryArr /*, search*/ } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
 
