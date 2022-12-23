@@ -1,5 +1,5 @@
   .main {
-    border-bottom: 3px solid #14294b;
+    //border-bottom: 3px solid #14294b;
     flex: 1 1 auto;
 
     &__content {
@@ -110,7 +110,7 @@
   .sort__options{
     cursor: pointer;
   }  
-  
+
   .active {
     opacity: 1;
     color:#14294b;
