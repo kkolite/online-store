@@ -2,7 +2,7 @@ import { Callback, IGoods, IFilter } from '../../data/types';
 
 export const produceArr: string[] = [];
 export const categoryArr: string[] = [];
-export const search = <HTMLInputElement>document.querySelector('#search');
+//export const search = <HTMLInputElement>document.querySelector('#search');
 
 export function sortByalphabet(data: IGoods[]) {
   data.sort((a, b) => {
@@ -56,6 +56,7 @@ function inclMaxCapacity(goods: IGoods) {
 }
 
 function inclTitle(goods: IGoods) {
+  const search = <HTMLInputElement>document.querySelector('#search');
   return goods.title.toLowerCase().includes(search.value.toLowerCase());
 }
 

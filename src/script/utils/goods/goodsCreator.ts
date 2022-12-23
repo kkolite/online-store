@@ -7,7 +7,10 @@ class Goods {
   createGoods(data: IGoods[]): void {
     console.log(data.length);
     const goodsCollection = document.querySelector('.items');
-    if (goodsCollection === null) return;
+    const counter = document.querySelector('.sort__found');
+
+    if (goodsCollection === null || counter === null) return;
+    counter.textContent = `${data.length}`;
 
     if (data.length === 0) {
       goodsCollection.innerHTML = 'No products were found matching your request';

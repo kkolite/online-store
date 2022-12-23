@@ -173,6 +173,7 @@ export function createMain() {
         <img src="./assets/png/2099192.png" alt="list-view" class="goods__view_list">
         <img src="./assets/png/3603178.png" alt="grid-view" class="goods__view_grid">
       </div>
+      <div class="sort__items">Items found: <span class="sort__found"></span></div>
       <div class="sort_select">
         <select name="sorting" id="sortBy" class="sort__options">
           <option value="sortByNameUp"><button class="button name_up">By Name (A-Z)</button></option>
