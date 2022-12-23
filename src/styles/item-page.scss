@@ -1,9 +1,11 @@
 .item-page {
     display: flex;
     align-items: flex-start;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     min-height: 70vh;
     max-height: 650px;
+    width: 100%;
 
     &__img-box {
         display: flex;
@@ -17,7 +19,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin-left: 100px;
+        margin-left: 90px;
         width: 680px;
     }
 
@@ -63,6 +65,7 @@
         width: 430px;
         margin: 0px 20px 20px 0px;
         border-radius: 30px;
+        cursor: pointer;
     }
 
     &__desc {
@@ -106,4 +109,103 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 1200px) {
+    .item-page {
+        &__info {
+            font-size: 16px;
+            height: 200px;
+        }
+        
+        &__container {
+            margin-left: 40px;
+            width: 530px;
+        }
+
+        &__desc {
+            width: 500px;
+        }
+
+        &__main-img {
+            max-height: 200px;
+            width: 308px;
+            margin: 0px 15px 20px 0px;
+            border-radius: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .item-page {
+        flex-direction: column;
+        align-items: center;
+
+        &__img-box {
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 375px;
+            height: 155px;
+            justify-content: space-around;
+        }
+
+        &__container {
+            margin-top: 10px;
+            justify-content: flex-start;
+        }
+
+        &__info-container {
+            height: 250px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .item-page {
+        max-height: none;
+        &__info-container {
+            flex-direction: column;
+            min-height: 440px;
+        }
+        
+        &__container {
+            width: 310px;
+            margin-left: 0px;
+        }
+
+        &__main-img {
+            max-height: 200px;
+            width: 308px;
+            margin: 0px 0px 20px 0px;
+        }
+
+        &__desc {
+            width: 300px;
+        }
+
+        &__buttons-box {
+            margin-top: 10px;
+            width: 150px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .item-page {
+        &__route {
+            font-size: 12px;
+        }
+        &__img-box {
+            width: 310px;
+        }
+    
+        &__img {
+            max-height: 80px;
+            max-width: 145px;
+        }
+    }
 }
