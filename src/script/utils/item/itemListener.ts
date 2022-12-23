@@ -1,6 +1,7 @@
 import { IGoods } from '../../data/types';
 import cart from '../cart/cart';
 import { createCart, createMain, createPay } from '../pagesCreator';
+import { createGallery } from './itemGallery';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');
@@ -23,6 +24,7 @@ export function itemListener(item: IGoods) {
     itemCounter == null ||
     infoCont === null ||
     buyNow === null ||
+    !(imgMain instanceof Image) ||
     imgBox === null
   ) {
     return;
@@ -109,4 +111,8 @@ export function itemListener(item: IGoods) {
   breadMain.addEventListener('click', () => {
     createMain();
   });
+
+  imgMain.addEventListener('click', () => {
+    createGallery(imgMain.src);
+  })
 }

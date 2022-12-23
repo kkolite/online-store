@@ -2,6 +2,7 @@ import { createMain, createItemPage, createCart, createError } from './pagesCrea
 import data from '../data/data';
 import cart from './cart/cart';
 import { removePayment } from './Payment/payAction';
+import { removeGallery } from './item/itemGallery';
 
 export function router(event: Event) {
   event.preventDefault();
@@ -26,6 +27,7 @@ window.addEventListener('popstate', function () {
   const route = window.location.pathname.split('/');
   const page = route[route.length - 1];
   removePayment();
+  removeGallery();
   if (page === 'index.html' || page === '') {
     createMain();
   } else if (page === 'cart') {
@@ -37,11 +39,6 @@ window.addEventListener('popstate', function () {
     createItemPage(item);
   }
 });
-
-/*window.addEventListener('DOMContentLoaded', function() {
-  let route = data.find(item => item.path == window.location.pathname);
-  root.innerHTML = route.data;
-})*/
 
 export function location() {
   const route = window.location.pathname.replace('_', ' ').slice(1);
