@@ -19,6 +19,7 @@
         font-style: normal;
         font-size: 35px;
         color: #14294b;
+        cursor: pointer;
     }
 
     &__search {
@@ -31,6 +32,7 @@
     &__cart {
         position: relative;
         height: 35px;
+        cursor: pointer;
     }
 
     &__money {
