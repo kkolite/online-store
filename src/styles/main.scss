@@ -52,7 +52,7 @@
   .sort {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
   }
 
   .goods__view_list,
@@ -77,34 +77,11 @@
         height: 26px;
         border-radius: 13px;
     }
-    
-    &_black {
-        border: black 1px solid;
-        background: black;
-        opacity: 0.7;
-    }
-
-    &_blue {
-        border: blue 1px solid;
-        background: blue;
-        opacity: 0.7;
-    }
-
-    &_red {
-        border: red 1px solid;
-        background: red;
-        opacity: 0.7;
-    }
-
-    &_white {
-        background: white;
-        opacity: 0.7;
-    }
   }
 
   .sort_select {
     width: 150px;
-    margin: 20px 0 10px auto;
+    //margin: 20px 0 10px auto;
   }
 
   .sort__options{
