@@ -67,9 +67,9 @@ function newStore() {
 
   count.textContent = '0';
   cart.cartArr = [];
+  localStorage.clear();
   removePayment();
   createMain();
-  localStorage.clear();
 }
 
 export function removePayment() {
