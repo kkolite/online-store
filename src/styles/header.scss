@@ -4,6 +4,9 @@
   }
   
   .header {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
     padding: 0 20px;
     //border-bottom: 3px solid #14294b;
     background-color: rgb(156, 209, 255);
