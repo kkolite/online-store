@@ -1,8 +1,11 @@
 import data from '../../data/data';
 import promocodes from '../../data/promocodes';
-import { createCart, createItemPage, createMain, createPay } from '../pagesCreator';
+import { createPay } from '../Payment/paymentCreator';
+import { createMain } from '../body/mainCreator';
 import cart from './cart';
 import { Promocode } from './promocode';
+import { createItemPage } from '../item/itemPageCreator';
+import { createCart } from './cartCreator';
 
 const promocode = new Promocode();
 

@@ -1,4 +1,4 @@
-import { createMain } from '../pagesCreator';
+import { createMain } from '../body/mainCreator';
 
 export function errorListener() {
   const button = document.querySelector('.error__button');

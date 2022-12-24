@@ -1,5 +1,6 @@
-import cart from './cart/cart';
-import { createCart, createMain } from './pagesCreator';
+import cart from '../cart/cart';
+import { createMain } from './mainCreator';
+import { createCart } from '../cart/cartCreator';
 
 export function headerListener() {
   const headerCart = document.querySelector('.header__cart');

@@ -1,8 +1,11 @@
-import { createMain, createItemPage, createCart, createError } from './pagesCreator';
+import { createError } from './errors/errorCreator';
 import data from '../data/data';
 import cart from './cart/cart';
 import { removePayment } from './Payment/payAction';
 import { removeGallery } from './item/itemGallery';
+import { createItemPage } from './item/itemPageCreator';
+import { createCart } from './cart/cartCreator';
+import { createMain } from './body/mainCreator';
 
 export function router(event: Event) {
   event.preventDefault();

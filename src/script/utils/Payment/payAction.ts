@@ -1,6 +1,6 @@
 import { ERROR_PAYMENT_TEXT, SUCSESS_PAYMENT_TEXT } from '../../data/constants';
 import cart from '../cart/cart';
-import { createMain } from '../pagesCreator';
+import { createMain } from '../body/mainCreator';
 import { validateAdress, validateEMail, validateName, validateTel } from './infoValidation';
 import { validateCard, validateCVC, validateDate } from './payValidation';
 

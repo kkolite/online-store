@@ -1,6 +1,7 @@
 import cart from '../cart/cart';
 import { listener } from '../filter/listener';
-import { createCart, createPay } from '../pagesCreator';
+import { createPay } from '../Payment/paymentCreator';
+import { createCart } from '../cart/cartCreator';
 import { router } from '../router';
 
 export function showPopup() {
