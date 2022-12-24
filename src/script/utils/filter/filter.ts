@@ -30,7 +30,7 @@ class FilterData {
       !(toPrice instanceof HTMLInputElement) ||
       !(toCapacity instanceof HTMLInputElement) ||
       !(search instanceof HTMLInputElement) ||
-      cancel === null
+      !cancel
     ) {
       return;
     }

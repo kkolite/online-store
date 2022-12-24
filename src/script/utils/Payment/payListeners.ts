@@ -25,13 +25,9 @@ export function payListeners() {
 
   card.addEventListener('blur', () => {
     const result = validateCard(card.value);
-    if (result === true) {
-      classRemover(card);
-      card.classList.add('valid');
-    } else {
-      classRemover(card);
-      card.classList.add('invalid');
-    }
+    const className = result ? 'valid' : 'invalid';
+    classRemover(card);
+    card.classList.add(className);
   });
 
   card.addEventListener('input', () => {
@@ -58,7 +54,7 @@ export function payListeners() {
         cardImage.src = './assets/png/credit-card.png';
     }
 
-    if (last.match(/[0-9]| /) === null) {
+    if (!last.match(/[0-9]| /)) {
       card.value = value.slice(0, -1);
     }
 
@@ -81,13 +77,9 @@ export function payListeners() {
 
   date.addEventListener('blur', () => {
     const result = validateDate(date.value);
-    if (result === true) {
-      classRemover(date);
-      date.classList.add('valid');
-    } else {
-      classRemover(date);
-      date.classList.add('invalid');
-    }
+    const className = result ? 'valid' : 'invalid';
+    classRemover(date);
+    date.classList.add(className);
   });
 
   date.addEventListener('input', () => {
@@ -95,12 +87,12 @@ export function payListeners() {
     const length = value.length;
     const last = value[length - 1];
 
-    if (last.match(/[0-9]| |\//) === null) {
+    if (!last.match(/[0-9]| |\//)) {
       date.value = value.slice(0, -1);
     }
 
     if (length === 3 && length > prevDateIndex) {
-      date.value = value.slice(0, 2) + ' / ' + last;
+      date.value = `${value.slice(0, 2)} / ${last}`;
     }
 
     if (length > 2 && length < 6 && length < prevDateIndex) {
@@ -118,13 +110,9 @@ export function payListeners() {
 
   CVC.addEventListener('blur', () => {
     const result = validateCVC(CVC.value);
-    if (result === true) {
-      classRemover(CVC);
-      CVC.classList.add('valid');
-    } else {
-      classRemover(CVC);
-      CVC.classList.add('invalid');
-    }
+    const className = result ? 'valid' : 'invalid';
+    classRemover(CVC);
+    CVC.classList.add(className);
   });
 
   CVC.addEventListener('input', () => {
@@ -132,7 +120,7 @@ export function payListeners() {
     const length = value.length;
     const last = value[length - 1];
 
-    if (last.match(/[0-9]/) === null) {
+    if (!last.match(/[0-9]/)) {
       CVC.value = value.slice(0, -1);
     }
   });

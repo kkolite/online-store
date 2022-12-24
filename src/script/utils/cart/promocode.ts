@@ -6,7 +6,7 @@ export class Promocode {
 
   private addPromo(promo: string) {
     const obj = promocodes.find((el) => el.key === promo);
-    if (obj === undefined) return;
+    if (!obj) return;
 
     Promocode.activePromo.push(obj);
     this.buildPromo(promo);
@@ -14,7 +14,7 @@ export class Promocode {
 
   deletePromo(promo: string) {
     const obj = promocodes.find((el) => el.key === promo);
-    if (obj === undefined) return;
+    if (!obj) return;
 
     const i = Promocode.activePromo.indexOf(obj);
     Promocode.activePromo.splice(i, 1);
@@ -49,7 +49,7 @@ export class Promocode {
 
   private buildPromo(promo: string) {
     const promoList = document.querySelector('.promo-list');
-    if (promoList === null) return;
+    if (!promoList) return;
 
     const promoArr = promocodes.map((el) => el.key);
     const i = promoArr.indexOf(promo);

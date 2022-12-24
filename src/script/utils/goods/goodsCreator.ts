@@ -9,7 +9,7 @@ class Goods {
     const goodsCollection = document.querySelector('.items');
     const counter = document.querySelector('.sort__found');
 
-    if (goodsCollection === null || counter === null) return;
+    if (!goodsCollection || !counter) return;
     counter.textContent = `${data.length}`;
 
     if (data.length === 0) {

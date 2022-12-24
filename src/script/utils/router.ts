@@ -7,18 +7,18 @@ import { removeGallery } from './item/itemGallery';
 export function router(event: Event) {
   event.preventDefault();
   const target = event.target;
-  if (target === null || !(target instanceof Element)) return;
+  if (!(target instanceof Element)) return;
 
   let key = target.getAttribute('title');
-  if (key === null) {
+  if (!key) {
     const parent = target.closest('.item');
-    if (parent === null) return;
+    if (!parent) return;
 
     key = parent.getAttribute('title');
   }
 
   const item = data.find((el) => el.title === key);
-  if (item === undefined) return;
+  if (!item) return;
 
   createItemPage(item);
 }
@@ -35,7 +35,7 @@ window.addEventListener('popstate', function () {
   } else {
     const key = page.replace('_', ' ');
     const item = data.find((el) => el.title === key);
-    if (item === undefined) return;
+    if (!item) return;
     createItemPage(item);
   }
 });
@@ -47,7 +47,7 @@ export function location() {
 
   if (arr.includes(route)) {
     const item = data.find((el) => el.title === route);
-    if (item === undefined) return;
+    if (!item) return;
     createItemPage(item);
     return;
   }

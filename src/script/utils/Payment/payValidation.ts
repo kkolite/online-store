@@ -1,39 +1,41 @@
+import { ERROR_TEXT } from '../../data/constants';
+
 export function validateCard(val: string) {
-  const error = document.querySelector('.form__card_error');
-  if (error === null) return;
+  const errorLabel = document.querySelector('.form__card_error');
+  if (!errorLabel) return;
 
   if (val.length === 19) {
-    error.textContent = '';
+    errorLabel.textContent = '';
     return true;
   }
 
-  error.textContent = 'Error!';
+  errorLabel.textContent = ERROR_TEXT;
   return false;
 }
 
 export function validateDate(val: string) {
-  const error = document.querySelector('.form__date_error');
-  if (error === null) return;
+  const errorLabel = document.querySelector('.form__date_error');
+  if (!errorLabel) return;
 
   const checkArr = val.split(' / ');
   if (checkArr.length === 2 && Number(checkArr[0]) < 13 && Number(checkArr[1]) > 22 && Number(checkArr[1]) < 100) {
-    error.textContent = '';
+    errorLabel.textContent = '';
     return true;
   }
 
-  error.textContent = 'Error!';
+  errorLabel.textContent = ERROR_TEXT;
   return false;
 }
 
 export function validateCVC(val: string) {
-  const error = document.querySelector('.form__cvc_error');
-  if (error === null) return;
+  const errorLabel = document.querySelector('.form__cvc_error');
+  if (!errorLabel) return;
 
   if (val.length === 3) {
-    error.textContent = '';
+    errorLabel.textContent = '';
     return true;
   }
 
-  error.textContent = 'Error!';
+  errorLabel.textContent = ERROR_TEXT;
   return false;
 }

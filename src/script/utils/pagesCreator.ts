@@ -178,7 +178,6 @@ export function createMain() {
         <div id="minPrice">1</div>
         <div id="maxPrice">500</div>
       </div>
-    
       <h4 class="filter__title">Capacity</h4>
       <div class="capacity__control">
           <input id="fromCapacity" type="range" value="1" min="1" max="550"/>
@@ -207,7 +206,6 @@ export function createMain() {
       </div>
     </div>
     <div class="items">
-      
     </div>
   </section>`;
   history.pushState({}, 'newUrl', '/');
@@ -253,19 +251,16 @@ export function createPay() {
       <input type="text" name="" id="form__name" class="form__input">
       <label for="form__name" class="form__label form__name_error label_error"></label>
     </div>
-
     <div class="form__input-container">
       <label for="form__tel" class="form__label">Phone</label>
       <input type="tel" name="" id="form__tel" class="form__input">
       <label for="form__tel" class="form__label form__tel_error label_error"></label>
     </div>
-
     <div class="form__input-container">
       <label for="form__adress" class="form__label">Adress</label>
       <input type="text" name="" id="form__adress" class="form__input">
       <label for="form__adress" class="form__label form__adress_error label_error"></label>
     </div>
-
     <div class="form__input-container">
       <label for="form__email" class="form__label">E-Mail</label>
       <input type="email" name="" id="form__email" class="form__input">
@@ -279,13 +274,11 @@ export function createPay() {
       <input type="text" name="" id="form__card" maxlength="19" class="form__input">
       <label for="form__card" class="form__label form__card_error label_error"></label>
     </div>
-
     <div class="form__input-container">
       <label for="form__date" class="form__label">Date</label>
       <input type="text" name="" id="form__date" maxlength="7" class="form__input form__input-date">
       <label for="form__date" class="form__label form__date_error label_error"></label>
     </div>
-
     <div class="form__input-container">
       <label for="form__cvc" class="form__label">CVC</label>
       <input type="password" name="" id="form__cvc" maxlength="3" class="form__input form__input-cvc">

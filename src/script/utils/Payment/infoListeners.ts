@@ -13,7 +13,7 @@ export function infoListeners() {
     !(tel instanceof HTMLInputElement) ||
     !(adress instanceof HTMLInputElement) ||
     !(email instanceof HTMLInputElement) ||
-    background === null
+    !background
   )
     return;
 
@@ -32,13 +32,9 @@ export function infoListeners() {
 
   name.addEventListener('blur', () => {
     const result = validateName(name.value);
-    if (result === true) {
-      classRemover(name);
-      name.classList.add('valid');
-    } else {
-      classRemover(name);
-      name.classList.add('invalid');
-    }
+    const className = result ? 'valid' : 'invalid';
+    classRemover(name);
+    name.classList.add(className);
   });
 
   tel.addEventListener('focus', () => {
@@ -53,13 +49,9 @@ export function infoListeners() {
 
   tel.addEventListener('blur', () => {
     const result = validateTel(tel.value);
-    if (result === true) {
-      classRemover(tel);
-      tel.classList.add('valid');
-    } else {
-      classRemover(tel);
-      tel.classList.add('invalid');
-    }
+    const className = result ? 'valid' : 'invalid';
+    classRemover(tel);
+    tel.classList.add(className);
   });
 
   adress.addEventListener('focus', () => {
@@ -69,13 +61,9 @@ export function infoListeners() {
 
   adress.addEventListener('blur', () => {
     const result = validateAdress(adress.value);
-    if (result === true) {
-      classRemover(adress);
-      adress.classList.add('valid');
-    } else {
-      classRemover(adress);
-      adress.classList.add('invalid');
-    }
+    const className = result ? 'valid' : 'invalid';
+    classRemover(adress);
+    adress.classList.add(className);
   });
 
   email.addEventListener('focus', () => {
@@ -85,13 +73,9 @@ export function infoListeners() {
 
   email.addEventListener('blur', () => {
     const result = validateEMail(email.value);
-    if (result === true) {
-      classRemover(email);
-      email.classList.add('valid');
-    } else {
-      classRemover(email);
-      email.classList.add('invalid');
-    }
+    const className = result ? 'valid' : 'invalid';
+    classRemover(email);
+    email.classList.add(className);
   });
 }
 

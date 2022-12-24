@@ -14,16 +14,16 @@ export function listener() {
   const maxCapacity = document.querySelector('#maxCapacity');
 
   if (
-    listView === null ||
-    gridView === null ||
+    !listView ||
+    !gridView ||
     !(fromPrice instanceof HTMLInputElement) ||
     !(toPrice instanceof HTMLInputElement) ||
     !(fromCapacity instanceof HTMLInputElement) ||
     !(toCapacity instanceof HTMLInputElement) ||
-    minCapacity === null ||
-    maxCapacity === null ||
-    minPrice === null ||
-    maxPrice === null
+    !minCapacity ||
+    !maxCapacity ||
+    !minPrice ||
+    !maxPrice
   ) {
     return;
   }

@@ -70,7 +70,7 @@ class Cart {
   setFromLocalStorage() {
     const cart = localStorage.getItem('cart');
     const count = document.querySelector('.count');
-    if (cart === null || count === null) return;
+    if (!cart || !count) return;
 
     this.cartArr = JSON.parse(cart);
     count.textContent = `${this.cartLength()}`;

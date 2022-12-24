@@ -17,15 +17,15 @@ export function itemListener(item: IGoods) {
   const infoCont = document.querySelector('.item-page__info-container');
 
   if (
-    plus == null ||
-    breadMain === null ||
-    minus == null ||
-    button == null ||
-    itemCounter == null ||
-    infoCont === null ||
-    buyNow === null ||
+    !plus ||
+    !breadMain ||
+    !minus ||
+    !button ||
+    !itemCounter ||
+    !infoCont ||
+    !buyNow ||
     !(imgMain instanceof Image) ||
-    imgBox === null
+    !imgBox
   ) {
     return;
   }

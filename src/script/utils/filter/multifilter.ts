@@ -29,28 +29,28 @@ function inclProduce(goods: IGoods) {
 
 function inclMinPrice(goods: IGoods) {
   const minPrice = document.querySelector('#minPrice');
-  if (minPrice === null) return;
+  if (!minPrice) return;
 
   return goods.price >= +minPrice.innerHTML * 1000000;
 }
 
 function inclMaxPrice(goods: IGoods) {
   const maxPrice = document.querySelector('#maxPrice');
-  if (maxPrice === null) return;
+  if (!maxPrice) return;
 
   return goods.price <= +maxPrice.innerHTML * 1000000;
 }
 
 function inclMinCapacity(goods: IGoods) {
   const minCapacity = document.querySelector('#minCapacity');
-  if (minCapacity === null) return;
+  if (!minCapacity) return;
 
   return goods.capacity >= +minCapacity.innerHTML;
 }
 
 function inclMaxCapacity(goods: IGoods) {
   const maxCapacity = document.querySelector('#maxCapacity');
-  if (maxCapacity === null) return;
+  if (!maxCapacity) return;
 
   return goods.capacity <= +maxCapacity.innerHTML;
 }
@@ -78,7 +78,7 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
 export function addProperty(property: Array<string>, e: Event) {
   //(<HTMLElement>e.target).classList.toggle('active');
   const key = (<HTMLElement>e.target).getAttribute('title');
-  if (key === null) return;
+  if (!key) return;
   if (property.includes(key)) {
     property.splice(property.indexOf(key), 1);
   } else {

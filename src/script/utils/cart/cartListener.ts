@@ -17,7 +17,7 @@ export function cartListener() {
   const linkList = document.querySelectorAll('.cart__item-link');
   const payButton = document.querySelector('.cart__controls-pay');
 
-  if (!(promo instanceof HTMLInputElement) || promoList === null || payButton === null) return;
+  if (!(promo instanceof HTMLInputElement) || !promoList || !payButton) return;
 
   if (paginationPage) {
     paginationPage.forEach((item) => {
@@ -29,7 +29,7 @@ export function cartListener() {
   itemList.forEach((el) => {
     const key = el.getAttribute('title');
     const value = el.querySelector('.item__value');
-    if (key === null || value === null) return;
+    if (!key || !value) return;
 
     value.textContent = `${cart.itemsInCart(key)}`;
     checkPrice(el, key);
@@ -46,7 +46,7 @@ export function cartListener() {
       e.preventDefault();
       const key = link.parentElement?.getAttribute('title');
       const item = data.find((el) => el.title === key);
-      if (item === undefined) return;
+      if (!item) return;
 
       createItemPage(item);
     });
@@ -54,18 +54,18 @@ export function cartListener() {
 
   minusList.forEach((minus) => {
     const good = minus.closest('.cart__item');
-    if (good === null) return;
+    if (!good) return;
 
     minus.addEventListener('click', (e) => {
       const key = good.getAttribute('title');
       const counter = good.querySelector('.item__value');
-      if (key === null || counter === null) return;
+      if (!key || !counter) return;
 
       if (cart.itemsInCart(key) > 0) {
         cart.deleteFromCart(key);
         checkPrice(good, key);
         const counter = good.querySelector('.item__value');
-        if (counter === null) return;
+        if (!counter) return;
 
         counter.textContent = `${cart.itemsInCart(key)}`;
 
@@ -80,12 +80,12 @@ export function cartListener() {
 
   plusList.forEach((plus) => {
     const good = plus.closest('.cart__item');
-    if (good === null) return;
+    if (!good) return;
 
     plus.addEventListener('click', (e) => {
       const key = good.getAttribute('title');
       const counter = good.querySelector('.item__value');
-      if (key === null || counter === null) return;
+      if (!key || !counter) return;
 
       if (!cart.isEnough(key)) {
         cart.pushInCart(key);
@@ -100,11 +100,11 @@ export function cartListener() {
 
   removeList.forEach((button) => {
     const good = button.closest('.cart__item');
-    if (good === null) return;
+    if (!good) return;
 
     button.addEventListener('click', (e) => {
       const key = good.getAttribute('title');
-      if (key === null) return;
+      if (!key) return;
 
       cart.deleteAllFromCart(key);
       good.remove();
@@ -129,7 +129,7 @@ export function cartListener() {
 
     if (target.classList.contains('promo-list__remove')) {
       const key = target.parentElement?.id;
-      if (key === undefined) return;
+      if (!key) return;
 
       promocode.deletePromo(key);
       priceWithPromo();
@@ -142,8 +142,7 @@ export function cartListener() {
     const countOfGoods = document.querySelector('.count');
     const totalSum = document.querySelector('.cart__controls-sum');
     const products = document.querySelector('.cart__controls-products');
-    if (moneyInCart === null || countOfGoods === null || price === null || products === null || totalSum === null)
-      return;
+    if (!moneyInCart || !countOfGoods || !price || !products || !totalSum) return;
 
     price.textContent = `$${cart.itemPriceSum(key) / 1000000} m.`;
     const count = cart.cartLength();
@@ -164,7 +163,7 @@ export function cartListener() {
     const totalSum = document.querySelector('.cart__controls-sum');
     const withPromoSum = document.querySelector('.cart__new-price');
 
-    if (totalSum === null || withPromoSum === null) return;
+    if (!totalSum || !withPromoSum) return;
 
     if (Promocode.activePromo.length > 0) {
       totalSum.classList.add('cart__controls-sum_none');
@@ -180,7 +179,7 @@ export function cartListener() {
 
 export function emptyCartListener() {
   const button = document.querySelector('.cart__close-empty');
-  if (button === null) return;
+  if (!button) return;
 
   button.addEventListener('click', () => {
     createMain();

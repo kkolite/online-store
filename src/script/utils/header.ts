@@ -5,7 +5,7 @@ export function headerListener() {
   const headerCart = document.querySelector('.header__cart');
   const headerLink = document.querySelector('.header__title');
 
-  if (headerCart === null || headerLink === null) return;
+  if (!headerCart || !headerLink) return;
 
   headerCart.addEventListener('click', () => {
     const currentCart = cart.cartArr;
@@ -19,14 +19,14 @@ export function headerListener() {
 
 export function hideSearch() {
   const search = document.querySelector('.header__search');
-  if (search === null) return;
+  if (!search) return;
 
   search.classList.add('hide');
 }
 
 export function visibleSearch() {
   const search = document.querySelector('.header__search');
-  if (search === null) return;
+  if (!search) return;
 
   search.classList.remove('hide');
 }
@@ -34,7 +34,7 @@ export function visibleSearch() {
 export function headerInfo() {
   const moneyInCart = document.querySelector('.money');
   const countOfGoods = document.querySelector('.count');
-  if (moneyInCart === null || countOfGoods === null) return;
+  if (!moneyInCart || !countOfGoods) return;
 
   const count = cart.cartLength();
   countOfGoods.innerHTML = count.toString();

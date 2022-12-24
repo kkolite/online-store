@@ -17,7 +17,7 @@ export function createGallery(src: string) {
 
 export function removeGallery() {
   const background = document.querySelector('.gallery');
-  if (background === null) return;
+  if (!background) return;
 
   background.remove();
 }

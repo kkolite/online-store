@@ -1,3 +1,4 @@
+import { ERROR_PAYMENT_TEXT, SUCSESS_PAYMENT_TEXT } from '../../data/constants';
 import cart from '../cart/cart';
 import { createMain } from '../pagesCreator';
 import { validateAdress, validateEMail, validateName, validateTel } from './infoValidation';
@@ -7,16 +8,17 @@ export function pay() {
   const button = document.querySelector('.form__button');
   const message = document.querySelector('.form__afterpay');
 
-  if (button === null || message === null) return;
+  if (!button || !message) return;
 
   button.addEventListener('click', (e) => {
     e.preventDefault();
-    if (globalValidate() === true) {
-      message.textContent = 'Success! You will be redirected to main page in 5 seconds.';
+    if (globalValidate()) {
+      message.textContent = SUCSESS_PAYMENT_TEXT;
+      message.classList.remove('error-payment');
       message.classList.add('success-payment');
       setTimeout(newStore, 5000);
     } else {
-      message.textContent = 'Error! Please, check input fields';
+      message.textContent = ERROR_PAYMENT_TEXT;
       message.classList.add('error-payment');
     }
   });
@@ -42,28 +44,20 @@ function globalValidate() {
   )
     return;
 
-  validateAdress(adress.value);
-  validateName(name.value);
-  validateTel(tel.value);
-  validateEMail(email.value);
-  validateCard(card.value);
-  validateCVC(CVC.value);
-  validateDate(date.value);
-
-  return (
-    validateAdress(adress.value) &&
-    validateName(name.value) &&
-    validateTel(tel.value) &&
-    validateEMail(email.value) &&
-    validateCard(card.value) &&
-    validateCVC(CVC.value) &&
-    validateDate(date.value)
-  );
+  return [
+    validateAdress(adress.value),
+    validateName(name.value),
+    validateTel(tel.value),
+    validateEMail(email.value),
+    validateCard(card.value),
+    validateCVC(CVC.value),
+    validateDate(date.value),
+  ].every((validate) => validate);
 }
 
 function newStore() {
   const count = document.querySelector('.count');
-  if (count === null) return;
+  if (!count) return;
 
   count.textContent = '0';
   cart.cartArr = [];
@@ -76,7 +70,7 @@ export function removePayment() {
   const background = document.querySelector('.form__background');
   const container = document.querySelector('.form__container');
 
-  if (background === null || container === null) return;
+  if (!background || !container) return;
 
   background.remove();
   container.remove();

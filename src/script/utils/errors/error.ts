@@ -2,7 +2,7 @@ import { createMain } from '../pagesCreator';
 
 export function errorListener() {
   const button = document.querySelector('.error__button');
-  if (button === null) return;
+  if (!button) return;
 
   button.addEventListener('click', () => {
     createMain();
