@@ -12,8 +12,11 @@ import { infoListeners } from './Payment/infoListeners';
 import { pay } from './Payment/payAction';
 import { headerInfo, headerListener, hideSearch, visibleSearch } from './header';
 import { errorListener } from './errors/error';
+import cart from './cart/cart';
 
 export function createItemPage(item: IGoods) {
+  createFooter();
+  createHeader();
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
   const page = document.createElement('div');
@@ -51,17 +54,29 @@ export function createItemPage(item: IGoods) {
     </div>`;
   history.pushState({}, 'newUrl', `${item.title.replace(' ', '_')}`);
   main?.appendChild(page);
+  cart.setFromLocalStorage();
   itemListener(item);
   hideSearch();
 }
 
-export function createCart(cart: IGoods[], pageNumber = 1) {
+export function createCart(Cart: IGoods[], pageNumber = 1) {
+  createFooter();
+  createHeader();
+
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
   const page = document.createElement('div');
   const list = document.createElement('ul');
   page.classList.add('cart');
-  const set = new Set(cart);
+  let set: Set<IGoods>;
+
+  if (Cart.length === 0) {
+    cart.setFromLocalStorage();
+    set = new Set(cart.cartArr);
+  } else {
+    set = new Set(Cart);
+  }
+
   history.pushState({}, 'newUrl', 'cart');
   if (set.size === 0) {
     page.innerHTML = `<p>Cart is Empty</p>
@@ -72,6 +87,7 @@ export function createCart(cart: IGoods[], pageNumber = 1) {
     hideSearch();
     return;
   }
+
   if (set.size > CART_LIMIT) {
     const countPages = Math.ceil(set.size / CART_LIMIT);
     const pagination = document.createElement('div');
@@ -199,6 +215,7 @@ export function createMain() {
   const filter = new FilterData();
   filter.filterGoods(data);
   visibleSearch();
+  cart.setFromLocalStorage();
   showPopup();
 }
 
