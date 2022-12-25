@@ -3,155 +3,91 @@ import { listener } from '../filter/listener';
 import { createPay } from '../Payment/paymentCreator';
 import { createCart } from '../cart/cartCreator';
 import { router } from '../router';
+import { headerInfo } from '../body/header';
 
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
-  const buttonList = document.querySelectorAll('.button__add');
-  const buyNow = document.querySelectorAll('.button__buy-now');
-  const minusList = document.querySelectorAll('.item__minus');
-  const plusList = document.querySelectorAll('.item__plus');
-  const itemsCountersList = document.querySelectorAll('.item__value');
-  const moneyInCart = document.querySelector('.money');
-  const countOfGoods = document.querySelector('.count');
-
-  if (!moneyInCart || !countOfGoods) return;
-
-  let count = Number(countOfGoods.textContent);
-
-  moneyInCart.textContent = cart.moneySum();
-
-  goodsList.forEach((el) => {
-    el.addEventListener('click', (e) => {
+  goodsList.forEach((good) => {
+    good.addEventListener('click', (e) => {
       router(e);
       e.stopPropagation();
     });
-  });
 
-  goodsList.forEach((goods) => {
-    const key = goods.getAttribute('title');
-    const button = goods.querySelector('.button__add');
-    if (!key || !button) return;
+    const key = good.getAttribute('title');
+    const counter = good.querySelector('.item__value');
+    const button = good.querySelector('.button__add');
+    const buyNow = good.querySelector('.button__buy-now');
+    const minus = good.querySelector('.item__minus');
+    const plus = good.querySelector('.item__plus');
+    const itemsCounter = good.querySelector('.item__value');
 
+    if (!button || !buyNow || !key || !counter || !plus || !minus || !itemsCounter) return;
+    
     cart.cartArr.forEach((el) => {
       if (key === el.title) {
-        goods.classList.add('incart');
+        good.classList.add('incart');
         button.textContent = 'Remove';
       } else {
         button.textContent = 'Add to Cart';
       }
     });
-  });
 
-  itemsCountersList.forEach((el) => {
-    const goods = el.closest('.item');
-    if (!goods) {
-      return;
-    }
-
-    const key = goods.getAttribute('title');
-    if (!key) return;
-
-    el.textContent = `${cart.itemsInCart(key)}`;
-  });
-
-  // Listners
-
-  minusList.forEach((minus) => {
-    const goods = minus.closest('.item');
-    if (!goods) return;
-
-    minus.addEventListener('click', (e) => {
-      const key = goods.getAttribute('title');
-      const button = goods.querySelector('.button__add');
-      if (!key || !button) return;
-      if (goods.classList.contains('incart')) {
-        cart.deleteFromCart(key);
-
-        if (cart.itemsInCart(key) < 1) {
-          goods.classList.remove('incart');
-          button.textContent = 'Add to Cart';
-        }
-
-        count = cart.cartLength();
-        countOfGoods.innerHTML = `${count}`;
-        moneyInCart.textContent = cart.moneySum();
-        const counter = goods.querySelector('.item__value');
-        if (!counter) return;
-
-        counter.textContent = `${cart.itemsInCart(key)}`;
-      }
-      e.stopPropagation();
-    });
-  });
-
-  plusList.forEach((plus) => {
-    const goods = plus.closest('.item');
-    if (!goods) {
-      return;
-    }
-    plus.addEventListener('click', (e) => {
-      const key = goods.getAttribute('title');
-      const counter = goods.querySelector('.item__value');
-      const button = goods.querySelector('.button__add');
-      if (!key || !counter || !button) return;
-
-      if (!cart.isEnough(key)) {
-        cart.pushInCart(key);
-        count = cart.cartLength();
-        countOfGoods.innerHTML = count.toString();
-        moneyInCart.textContent = cart.moneySum();
-        counter.textContent = `${cart.itemsInCart(key)}`;
-        goods.classList.add('incart');
-        button.textContent = 'Remove';
-      } else {
-        alert(`We haven't so many ${key} onstock!`);
-      }
-      e.stopPropagation();
-    });
-  });
-
-  buttonList.forEach((button) => {
-    const goods = button.closest('.item');
-    if (!goods) return;
+    itemsCounter.textContent = `${cart.itemsInCart(key)}`;
 
     button.addEventListener('click', (e) => {
-      const key = goods.getAttribute('title');
-      const counter = goods.querySelector('.item__value');
-      if (!key || !counter) return;
-
-      if (goods.classList.contains('incart')) {
-        goods.classList.remove('incart');
+      if (good.classList.contains('incart')) {
+        good.classList.remove('incart');
         button.textContent = 'Add to Cart';
         cart.deleteAllFromCart(key);
         counter.textContent = '0';
       } else {
-        goods.classList.add('incart');
+        good.classList.add('incart');
         button.textContent = 'Remove';
         cart.pushInCart(key);
         counter.textContent = '1';
       }
-
-      count = cart.cartLength();
-      countOfGoods.innerHTML = count.toString();
-      moneyInCart.textContent = cart.moneySum();
+      headerInfo();
       e.stopPropagation();
     });
-  });
 
-  buyNow.forEach((button) => {
-    const goods = button.closest('.item');
-    if (!goods) return;
-
-    button.addEventListener('click', (e) => {
-      const key = goods.getAttribute('title');
-      if (!key) return;
-
+    buyNow.addEventListener('click', (e) => {
       if (cart.itemsInCart(key) < 1) {
         cart.pushInCart(key);
       }
 
       createCart(cart.cartArr);
       createPay();
+      e.stopPropagation();
+    });
+
+    plus.addEventListener('click', (e) => {
+      if (!cart.isEnough(key)) {
+        cart.pushInCart(key);
+        headerInfo();
+        counter.textContent = `${cart.itemsInCart(key)}`;
+        good.classList.add('incart');
+        button.textContent = 'Remove';
+      } else {
+        alert(`We haven't so many ${key} onstock!`);
+      }
+      e.stopPropagation();
+    });
+
+    minus.addEventListener('click', (e) => {
+      if (good.classList.contains('incart')) {
+        cart.deleteFromCart(key);
+
+        if (cart.itemsInCart(key) < 1) {
+          good.classList.remove('incart');
+          button.textContent = 'Add to Cart';
+        }
+
+        headerInfo();
+        const counter = good.querySelector('.item__value');
+        if (!counter) return;
+
+        counter.textContent = `${cart.itemsInCart(key)}`;
+      }
       e.stopPropagation();
     });
   });
