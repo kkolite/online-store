@@ -4,6 +4,7 @@ import { createPay } from '../Payment/paymentCreator';
 import { createCart } from '../cart/cartCreator';
 import { router } from '../router';
 import { headerInfo } from '../body/header';
+import { REMOVE_FROM_CART, ADD_TO_CART } from '../../data/constants';
 
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
@@ -26,9 +27,9 @@ export function showPopup() {
     cart.cartArr.forEach((el) => {
       if (key === el.title) {
         good.classList.add('incart');
-        button.textContent = 'Remove';
+        button.textContent = REMOVE_FROM_CART;
       } else {
-        button.textContent = 'Add to Cart';
+        button.textContent = ADD_TO_CART;
       }
     });
 
@@ -37,12 +38,12 @@ export function showPopup() {
     button.addEventListener('click', (e) => {
       if (good.classList.contains('incart')) {
         good.classList.remove('incart');
-        button.textContent = 'Add to Cart';
+        button.textContent = ADD_TO_CART;
         cart.deleteAllFromCart(key);
         counter.textContent = '0';
       } else {
         good.classList.add('incart');
-        button.textContent = 'Remove';
+        button.textContent = REMOVE_FROM_CART;
         cart.pushInCart(key);
         counter.textContent = '1';
       }
@@ -66,7 +67,7 @@ export function showPopup() {
         headerInfo();
         counter.textContent = `${cart.itemsInCart(key)}`;
         good.classList.add('incart');
-        button.textContent = 'Remove';
+        button.textContent = REMOVE_FROM_CART;
       } else {
         alert(`We haven't so many ${key} onstock!`);
       }
@@ -79,7 +80,7 @@ export function showPopup() {
 
         if (cart.itemsInCart(key) < 1) {
           good.classList.remove('incart');
-          button.textContent = 'Add to Cart';
+          button.textContent = ADD_TO_CART;
         }
 
         headerInfo();
