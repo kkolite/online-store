@@ -1,5 +1,5 @@
   .footer {
-    padding: 15px 0 5px 0;
+    padding: 15px 20px 5px 20px;
     background-color: rgb(156, 209, 255);
 
     &__content {
@@ -18,10 +18,10 @@
     color: #14294b;
   }
 
-  .year {
+  /*.year {
     margin-right: 300px;
     margin-left: 110px;
-  }
+  }*/
    
   .gh {
     &__link {
@@ -35,4 +35,20 @@
   
   .rsschool {
     height: 24px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .footer__content {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .gh__link {
+      font-size: 15px;
+    }
+
+    .github {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
   }

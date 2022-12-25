@@ -1,9 +1,13 @@
 import { IGoods } from '../../data/types';
 import cart from '../cart/cart';
-import { createMain } from '../pagesCreator';
+import { createPay } from '../Payment/paymentCreator';
+import { createMain } from '../body/mainCreator';
+import { createCart } from '../cart/cartCreator';
+import { createGallery } from './itemGallery';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');
+  const buyNow = document.querySelector('.button__buy-now');
   const minus = document.querySelector('.item__minus');
   const plus = document.querySelector('.item__plus');
   const itemCounter = document.querySelector('.item__value');
@@ -15,13 +19,15 @@ export function itemListener(item: IGoods) {
   const infoCont = document.querySelector('.item-page__info-container');
 
   if (
-    plus == null ||
-    breadMain === null ||
-    minus == null ||
-    button == null ||
-    itemCounter == null ||
-    infoCont === null ||
-    imgBox === null
+    !plus ||
+    !breadMain ||
+    !minus ||
+    !button ||
+    !itemCounter ||
+    !infoCont ||
+    !buyNow ||
+    !(imgMain instanceof Image) ||
+    !imgBox
   ) {
     return;
   }
@@ -89,6 +95,15 @@ export function itemListener(item: IGoods) {
     //e.stopPropagation();
   });
 
+  buyNow.addEventListener('click', () => {
+    if (cart.itemsInCart(key) < 1) {
+      cart.pushInCart(key);
+    }
+
+    createCart(cart.cartArr);
+    createPay();
+  });
+
   imgBox.addEventListener('click', (e) => {
     const target = e.target;
     if (!(target instanceof Image) || !(imgMain instanceof Image)) return;
@@ -96,7 +111,10 @@ export function itemListener(item: IGoods) {
   });
 
   breadMain.addEventListener('click', () => {
-    history.pushState({}, 'newUrl', 'index.html');
     createMain();
+  });
+
+  imgMain.addEventListener('click', () => {
+    createGallery(imgMain.src);
   });
 }

@@ -1,23 +1,27 @@
-import { createMain, createItemPage, createCart, createError } from './pagesCreator';
+import { createError } from './errors/errorCreator';
 import data from '../data/data';
 import cart from './cart/cart';
+import { removePayment } from './Payment/payAction';
+import { removeGallery } from './item/itemGallery';
+import { createItemPage } from './item/itemPageCreator';
+import { createCart } from './cart/cartCreator';
+import { createMain } from './body/mainCreator';
 
 export function router(event: Event) {
   event.preventDefault();
   const target = event.target;
-  if (target === null || !(target instanceof Element)) return;
+  if (!(target instanceof Element)) return;
 
   let key = target.getAttribute('title');
-  if (key === null) {
+  if (!key) {
     const parent = target.closest('.item');
-    if (parent === null) return;
+    if (!parent) return;
 
     key = parent.getAttribute('title');
   }
 
-  history.pushState({}, 'newUrl', key?.replace(' ', '_'));
   const item = data.find((el) => el.title === key);
-  if (item === undefined) return;
+  if (!item) return;
 
   createItemPage(item);
 }
@@ -25,7 +29,8 @@ export function router(event: Event) {
 window.addEventListener('popstate', function () {
   const route = window.location.pathname.split('/');
   const page = route[route.length - 1];
-  console.log(page);
+  removePayment();
+  removeGallery();
   if (page === 'index.html' || page === '') {
     createMain();
   } else if (page === 'cart') {
@@ -33,15 +38,10 @@ window.addEventListener('popstate', function () {
   } else {
     const key = page.replace('_', ' ');
     const item = data.find((el) => el.title === key);
-    if (item === undefined) return;
+    if (!item) return;
     createItemPage(item);
   }
 });
-
-/*window.addEventListener('DOMContentLoaded', function() {
-  let route = data.find(item => item.path == window.location.pathname);
-  root.innerHTML = route.data;
-})*/
 
 export function location() {
   const route = window.location.pathname.replace('_', ' ').slice(1);
@@ -50,7 +50,7 @@ export function location() {
 
   if (arr.includes(route)) {
     const item = data.find((el) => el.title === route);
-    if (item === undefined) return;
+    if (!item) return;
     createItemPage(item);
     return;
   }

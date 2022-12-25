@@ -2,7 +2,7 @@ import { Callback, IGoods, IFilter } from '../../data/types';
 
 export const produceArr: string[] = [];
 export const categoryArr: string[] = [];
-export const search = <HTMLInputElement>document.querySelector('#search');
+//export const search = <HTMLInputElement>document.querySelector('#search');
 
 export function sortByalphabet(data: IGoods[]) {
   data.sort((a, b) => {
@@ -29,33 +29,34 @@ function inclProduce(goods: IGoods) {
 
 function inclMinPrice(goods: IGoods) {
   const minPrice = document.querySelector('#minPrice');
-  if (minPrice === null) return;
+  if (!minPrice) return;
 
   return goods.price >= +minPrice.innerHTML * 1000000;
 }
 
 function inclMaxPrice(goods: IGoods) {
   const maxPrice = document.querySelector('#maxPrice');
-  if (maxPrice === null) return;
+  if (!maxPrice) return;
 
   return goods.price <= +maxPrice.innerHTML * 1000000;
 }
 
 function inclMinCapacity(goods: IGoods) {
   const minCapacity = document.querySelector('#minCapacity');
-  if (minCapacity === null) return;
+  if (!minCapacity) return;
 
   return goods.capacity >= +minCapacity.innerHTML;
 }
 
 function inclMaxCapacity(goods: IGoods) {
   const maxCapacity = document.querySelector('#maxCapacity');
-  if (maxCapacity === null) return;
+  if (!maxCapacity) return;
 
   return goods.capacity <= +maxCapacity.innerHTML;
 }
 
 function inclTitle(goods: IGoods) {
+  const search = <HTMLInputElement>document.querySelector('#search');
   return goods.title.toLowerCase().includes(search.value.toLowerCase());
 }
 
@@ -77,7 +78,7 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
 export function addProperty(property: Array<string>, e: Event) {
   //(<HTMLElement>e.target).classList.toggle('active');
   const key = (<HTMLElement>e.target).getAttribute('title');
-  if (key === null) return;
+  if (!key) return;
   if (property.includes(key)) {
     property.splice(property.indexOf(key), 1);
   } else {

@@ -21,8 +21,18 @@
 @import 'item-page';
 @import 'cart';
 @import 'promocode';
+@import 'payment';
+@import 'error';
 
 .hide {
   visibility: hidden;
   opacity: 0;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.no-display {
+  display: none;
 }

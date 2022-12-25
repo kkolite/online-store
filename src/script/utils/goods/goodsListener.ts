@@ -1,17 +1,20 @@
 import cart from '../cart/cart';
 import { listener } from '../filter/listener';
+import { createPay } from '../Payment/paymentCreator';
+import { createCart } from '../cart/cartCreator';
 import { router } from '../router';
 
 export function showPopup() {
   const goodsList = document.querySelectorAll('.item');
   const buttonList = document.querySelectorAll('.button__add');
+  const buyNow = document.querySelectorAll('.button__buy-now');
   const minusList = document.querySelectorAll('.item__minus');
   const plusList = document.querySelectorAll('.item__plus');
   const itemsCountersList = document.querySelectorAll('.item__value');
   const moneyInCart = document.querySelector('.money');
   const countOfGoods = document.querySelector('.count');
 
-  if (moneyInCart === null || countOfGoods === null) return;
+  if (!moneyInCart || !countOfGoods) return;
 
   let count = Number(countOfGoods.textContent);
 
@@ -27,7 +30,7 @@ export function showPopup() {
   goodsList.forEach((goods) => {
     const key = goods.getAttribute('title');
     const button = goods.querySelector('.button__add');
-    if (key === null || button === null) return;
+    if (!key || !button) return;
 
     cart.cartArr.forEach((el) => {
       if (key === el.title) {
@@ -41,12 +44,12 @@ export function showPopup() {
 
   itemsCountersList.forEach((el) => {
     const goods = el.closest('.item');
-    if (goods === null) {
+    if (!goods) {
       return;
     }
 
     const key = goods.getAttribute('title');
-    if (key === null) return;
+    if (!key) return;
 
     el.textContent = `${cart.itemsInCart(key)}`;
   });
@@ -55,12 +58,12 @@ export function showPopup() {
 
   minusList.forEach((minus) => {
     const goods = minus.closest('.item');
-    if (goods === null) return;
+    if (!goods) return;
 
     minus.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
       const button = goods.querySelector('.button__add');
-      if (key === null || button === null) return;
+      if (!key || !button) return;
       if (goods.classList.contains('incart')) {
         cart.deleteFromCart(key);
 
@@ -73,7 +76,7 @@ export function showPopup() {
         countOfGoods.innerHTML = `${count}`;
         moneyInCart.textContent = cart.moneySum();
         const counter = goods.querySelector('.item__value');
-        if (counter === null) return;
+        if (!counter) return;
 
         counter.textContent = `${cart.itemsInCart(key)}`;
       }
@@ -83,14 +86,14 @@ export function showPopup() {
 
   plusList.forEach((plus) => {
     const goods = plus.closest('.item');
-    if (goods === null) {
+    if (!goods) {
       return;
     }
     plus.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
       const counter = goods.querySelector('.item__value');
       const button = goods.querySelector('.button__add');
-      if (key === null || counter === null || button === null) return;
+      if (!key || !counter || !button) return;
 
       if (!cart.isEnough(key)) {
         cart.pushInCart(key);
@@ -109,13 +112,12 @@ export function showPopup() {
 
   buttonList.forEach((button) => {
     const goods = button.closest('.item');
-    if (goods === null) {
-      return;
-    }
+    if (!goods) return;
+
     button.addEventListener('click', (e) => {
       const key = goods.getAttribute('title');
       const counter = goods.querySelector('.item__value');
-      if (key === null || counter === null) return;
+      if (!key || !counter) return;
 
       if (goods.classList.contains('incart')) {
         goods.classList.remove('incart');
@@ -132,6 +134,24 @@ export function showPopup() {
       count = cart.cartLength();
       countOfGoods.innerHTML = count.toString();
       moneyInCart.textContent = cart.moneySum();
+      e.stopPropagation();
+    });
+  });
+
+  buyNow.forEach((button) => {
+    const goods = button.closest('.item');
+    if (!goods) return;
+
+    button.addEventListener('click', (e) => {
+      const key = goods.getAttribute('title');
+      if (!key) return;
+
+      if (cart.itemsInCart(key) < 1) {
+        cart.pushInCart(key);
+      }
+
+      createCart(cart.cartArr);
+      createPay();
       e.stopPropagation();
     });
   });

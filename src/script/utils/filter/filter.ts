@@ -1,6 +1,6 @@
 import SortData from './sort';
 import { IGoods, IFilter } from '../../data/types';
-import { addProperty, fltr, produceArr, categoryArr, search } from './multifilter';
+import { addProperty, fltr, produceArr, categoryArr /*, search*/ } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
 
@@ -19,6 +19,7 @@ class FilterData {
     const toPrice = document.querySelector('#toPrice');
     const fromCapacity = document.querySelector('#fromCapacity');
     const toCapacity = document.querySelector('#toCapacity');
+    const search = document.querySelector('#search');
     const dataSort = this.sortGood;
 
     if (
@@ -28,12 +29,13 @@ class FilterData {
       !(fromCapacity instanceof HTMLInputElement) ||
       !(toPrice instanceof HTMLInputElement) ||
       !(toCapacity instanceof HTMLInputElement) ||
-      cancel === null
+      !(search instanceof HTMLInputElement) ||
+      !cancel
     ) {
       return;
     }
 
-    if (Goods.currentItems.length === 0) {
+    if (!Goods.currentItems.length) {
       dataSort.sortGoods(data);
     } else {
       dataSort.sortGoods(Goods.currentItems);

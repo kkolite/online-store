@@ -29,7 +29,7 @@ function createProduceFilter() {
 function createPriceFilter() {
   const priceControls = document.querySelector('.price__control');
   const priceView = document.querySelector('.price__view');
-  if (priceControls === null || priceView === null) return;
+  if (!priceControls || !priceView) return;
 
   priceControls.innerHTML = '';
   priceView.innerHTML = '';
@@ -66,7 +66,7 @@ function createPriceFilter() {
 function createCapacityFilter() {
   const capacityControls = document.querySelector('.capacity__control');
   const capacityView = document.querySelector('.capacity__view');
-  if (capacityControls === null || capacityView === null) return;
+  if (!capacityControls || !capacityView) return;
 
   capacityControls.innerHTML = '';
   capacityView.innerHTML = '';

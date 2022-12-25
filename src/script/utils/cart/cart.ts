@@ -11,6 +11,7 @@ class Cart {
     data.forEach((good) => {
       if (good.title === str) {
         this.cartArr.push(good);
+        this.saveLocalStorage();
       }
     });
   }
@@ -19,11 +20,13 @@ class Cart {
     const temp = this.cartArr.map((el) => el.title);
     if (temp.includes(str)) {
       this.cartArr.splice(temp.indexOf(str), 1);
+      this.saveLocalStorage();
     }
   }
 
   deleteAllFromCart(str: string) {
     this.cartArr = this.cartArr.filter((el) => el.title !== str);
+    this.saveLocalStorage();
   }
 
   cartLength() {
@@ -56,6 +59,21 @@ class Cart {
   itemPriceSum(key: string) {
     const arr = this.cartArr.filter((el) => el.title === key);
     return arr.reduce((acc, el) => acc + el.price, 0);
+  }
+
+  saveLocalStorage() {
+    localStorage.clear();
+    const cart = JSON.stringify(this.cartArr);
+    localStorage.setItem('cart', cart);
+  }
+
+  setFromLocalStorage() {
+    const cart = localStorage.getItem('cart');
+    const count = document.querySelector('.count');
+    if (!cart || !count) return;
+
+    this.cartArr = JSON.parse(cart);
+    count.textContent = `${this.cartLength()}`;
   }
 }
 

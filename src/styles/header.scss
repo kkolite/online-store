@@ -4,8 +4,11 @@
   }
   
   .header {
-    padding: 15px 0;
-    border-bottom: 3px solid #14294b;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    padding: 0 20px;
+    //border-bottom: 3px solid #14294b;
     background-color: rgb(156, 209, 255);
     &__content {
         display: flex;
@@ -14,21 +17,25 @@
     }
 
     &__title {
-        font-family: 'Roboto';
+        font-family: 'Sriracha', cursive;
         font-weight: 400;
         font-style: normal;
         font-size: 35px;
         color: #14294b;
+        cursor: pointer;
     }
 
     &__search {
         position: relative;
         padding-top: 5px;
+        transition: all .2s;
+        opacity: 1;
     }
 
     &__cart {
         position: relative;
         height: 35px;
+        cursor: pointer;
     }
 
     &__money {
@@ -84,4 +91,22 @@
     font-style: normal;
     font-size: 16px;
     text-align: center;
+  }
+
+  @media screen and (max-width: 920px) {
+    .header__search {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .header {
+      &__money {
+        display: none;
+      }
+
+      &__title {
+        font-size: 28px;
+      }
+    }
   }
