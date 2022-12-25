@@ -40,7 +40,6 @@ window.addEventListener('popstate', function () {
     if (pageNum > 0 && pageNum <= data.length) {
       createCart(cart.cartArr, CART_LIMIT, pageNum);
     }
-
   } else {
     const key = page.replace('_', ' ');
     const item = data.find((el) => el.title === key);

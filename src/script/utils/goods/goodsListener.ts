@@ -27,9 +27,7 @@ export function showPopup() {
     cart.cartArr.forEach((el) => {
       if (key === el.title) {
         good.classList.add('incart');
-        button.textContent = REMOVE_FROM_CART;
-      } else {
-        button.textContent = ADD_TO_CART;
+        button.textContent = 'Remove';
       }
     });
 
