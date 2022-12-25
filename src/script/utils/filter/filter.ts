@@ -35,7 +35,7 @@ class FilterData {
       return;
     }
 
-    if (Goods.currentItems.length === 0) {
+    if (!Goods.currentItems.length) {
       dataSort.sortGoods(data);
     } else {
       dataSort.sortGoods(Goods.currentItems);

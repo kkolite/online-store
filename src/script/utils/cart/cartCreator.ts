@@ -18,7 +18,7 @@ export function createCart(Cart: IGoods[], pageNumber = 1) {
   page.classList.add('cart');
   let set: Set<IGoods>;
 
-  if (Cart.length === 0) {
+  if (!Cart.length) {
     cart.setFromLocalStorage();
     set = new Set(cart.cartArr);
   } else {

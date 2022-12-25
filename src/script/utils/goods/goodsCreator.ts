@@ -12,7 +12,7 @@ class Goods {
     if (!goodsCollection || !counter) return;
     counter.textContent = `${data.length}`;
 
-    if (data.length === 0) {
+    if (!data.length) {
       goodsCollection.innerHTML = 'No products were found matching your request';
       return;
     }
