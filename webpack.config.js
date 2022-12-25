@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const { NetlifyPlugin } = require('netlify-webpack-plugin');
+//const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
@@ -44,7 +44,7 @@ module.exports = {
         { from: 'src/assets', to: 'assets'},
       ],
     }),
-    new NetlifyPlugin({redirects: [
+    /* new NetlifyPlugin({redirects: [
         {
           from: "/*",
           to: "/index.html",
@@ -52,6 +52,6 @@ module.exports = {
           force: false,
         }
       ]
-    })
+    }) */
   ]
 }
