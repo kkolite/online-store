@@ -4,6 +4,7 @@ import { createPay } from '../Payment/paymentCreator';
 import { createMain } from '../body/mainCreator';
 import { createCart } from '../cart/cartCreator';
 import { createGallery } from './itemGallery';
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../../data/constants';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');
@@ -40,7 +41,7 @@ export function itemListener(item: IGoods) {
   cart.cartArr.forEach((el) => {
     if (key === el.title) {
       infoCont.classList.add('item-page__info-container_active');
-      button.textContent = 'Remove';
+      button.textContent = REMOVE_FROM_CART;
     }
   });
 
@@ -50,7 +51,7 @@ export function itemListener(item: IGoods) {
 
       if (cart.itemsInCart(key) < 1) {
         infoCont.classList.remove('item-page__info-container_active');
-        button.textContent = 'Add to Cart';
+        button.textContent = ADD_TO_CART;
       }
 
       count = cart.cartLength();
@@ -69,7 +70,7 @@ export function itemListener(item: IGoods) {
       moneyInCart.textContent = cart.moneySum();
       itemCounter.textContent = `${cart.itemsInCart(key)}`;
       infoCont.classList.add('item-page__info-container_active');
-      button.textContent = 'Remove';
+      button.textContent = REMOVE_FROM_CART;
     } else {
       alert(`We haven't so many ${key} onstock!`);
     }
@@ -79,12 +80,12 @@ export function itemListener(item: IGoods) {
   button.addEventListener('click', (/* e */) => {
     if (infoCont.classList.contains('item-page__info-container_active')) {
       infoCont.classList.remove('item-page__info-container_active');
-      button.textContent = 'Add to Cart';
+      button.textContent = ADD_TO_CART;
       cart.deleteAllFromCart(key);
       itemCounter.textContent = '0';
     } else {
       infoCont.classList.add('item-page__info-container_active');
-      button.textContent = 'Remove';
+      button.textContent = REMOVE_FROM_CART;
       cart.pushInCart(key);
       itemCounter.textContent = '1';
     }
