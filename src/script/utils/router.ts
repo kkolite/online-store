@@ -6,6 +6,7 @@ import { removeGallery } from './item/itemGallery';
 import { createItemPage } from './item/itemPageCreator';
 import { createCart } from './cart/cartCreator';
 import { createMain } from './body/mainCreator';
+import { CART_LIMIT } from '../data/constants';
 
 export function router(event: Event) {
   event.preventDefault();
@@ -33,8 +34,13 @@ window.addEventListener('popstate', function () {
   removeGallery();
   if (page === 'index.html' || page === '') {
     createMain();
-  } else if (page === 'cart') {
-    createCart(cart.cartArr);
+  } else if (page.startsWith('cart?page=')) {
+    const routeArr = page.split('=');
+    const pageNum = +routeArr[1];
+    if (pageNum > 0 && pageNum <= data.length) {
+      createCart(cart.cartArr, CART_LIMIT, pageNum);
+    }
+
   } else {
     const key = page.replace('_', ' ');
     const item = data.find((el) => el.title === key);
@@ -46,7 +52,10 @@ window.addEventListener('popstate', function () {
 export function location() {
   const route = window.location.pathname.replace('_', ' ').slice(1);
   const arr = data.map((el) => el.title);
-  console.log(route);
+  const pageArr: string[] = [];
+  for (let i = 0; i < data.length; i++) {
+    pageArr.push(`cart?page=${i + 1}`);
+  }
 
   if (arr.includes(route)) {
     const item = data.find((el) => el.title === route);
@@ -55,10 +64,17 @@ export function location() {
     return;
   }
 
-  if (route === 'cart') {
-    createCart(cart.cartArr);
+  if (pageArr.includes(route)) {
+    const routeArr = route.split('=');
+    const pageNum = +routeArr[routeArr.length - 1];
+    createCart(cart.cartArr, CART_LIMIT, pageNum);
     return;
   }
+
+  /* if (route === 'cart') {
+    createCart(cart.cartArr);
+    return;
+  } */
 
   if (route === '') {
     createMain();

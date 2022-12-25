@@ -1,5 +1,5 @@
 import { IGoods } from '../../data/types';
-import { CART_LIMIT } from '../../data/constants';
+import { CART_LIMIT, MAX_ITEMS_PER_PAGE } from '../../data/constants';
 import { cartListener, emptyCartListener } from './cartListener';
 import { Promocode } from './promocode';
 import { hideSearch } from '../body/header';
@@ -7,7 +7,7 @@ import cart from './cart';
 import { createHeader } from '../body/headerCreator';
 import { createFooter } from '../body/footerCreator';
 
-export function createCart(Cart: IGoods[], pageNumber = 1) {
+export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber = 1) {
   createFooter();
   createHeader();
 
@@ -25,7 +25,7 @@ export function createCart(Cart: IGoods[], pageNumber = 1) {
     set = new Set(Cart);
   }
 
-  history.pushState({}, 'newUrl', 'cart');
+  history.pushState({}, 'newUrl', `cart?page=${pageNumber}`);
   if (set.size === 0) {
     page.innerHTML = `<p>Cart is Empty</p>
       <button class="cart__close-empty">Back to List</button>`;
@@ -36,8 +36,14 @@ export function createCart(Cart: IGoods[], pageNumber = 1) {
     return;
   }
 
-  if (set.size > CART_LIMIT) {
-    const countPages = Math.ceil(set.size / CART_LIMIT);
+  const itemsCount = document.createElement('div');
+  itemsCount.innerHTML = `<label for="items_show">Show items:</label>
+  <input type="number" id="items_show" value="${itemsPerPage}" min="0" max="${MAX_ITEMS_PER_PAGE}">
+  `;
+  main.appendChild(itemsCount);
+
+  if (set.size > itemsPerPage) {
+    const countPages = Math.ceil(set.size / itemsPerPage);
     const pagination = document.createElement('div');
     pagination.classList.add('pagination');
     const pageSpan = document.createElement('span');
@@ -54,9 +60,10 @@ export function createCart(Cart: IGoods[], pageNumber = 1) {
     }
     main.appendChild(pagination);
   }
+
   const uniqGoods: Array<IGoods> = [];
   set.forEach((item) => uniqGoods.push(item));
-  const goodsPerPage = uniqGoods.slice((pageNumber - 1) * CART_LIMIT, CART_LIMIT * pageNumber);
+  const goodsPerPage = uniqGoods.slice((pageNumber - 1) * itemsPerPage, itemsPerPage * pageNumber);
   goodsPerPage.forEach((item) => {
     const listItem = document.createElement('li');
     listItem.classList.add('cart__item');

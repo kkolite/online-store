@@ -13,6 +13,18 @@
     font-weight: 700;
 }
 
+#items_show {
+    width: 25px;
+    text-align: center;
+}
+
+#items_show::-webkit-inner-spin-button,
+#items_show::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 .cart {
     display: flex;
     margin-top: 20px;

@@ -23,7 +23,7 @@ export function showPopup() {
     const itemsCounter = good.querySelector('.item__value');
 
     if (!button || !buyNow || !key || !counter || !plus || !minus || !itemsCounter) return;
-    
+
     cart.cartArr.forEach((el) => {
       if (key === el.title) {
         good.classList.add('incart');

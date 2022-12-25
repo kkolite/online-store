@@ -6,6 +6,7 @@ import cart from './cart';
 import { Promocode } from './promocode';
 import { createItemPage } from '../item/itemPageCreator';
 import { createCart } from './cartCreator';
+import { MAX_ITEMS_PER_PAGE } from '../../data/constants';
 
 const promocode = new Promocode();
 
@@ -19,13 +20,24 @@ export function cartListener() {
   const paginationPage = document.querySelectorAll('.pagination-page');
   const linkList = document.querySelectorAll('.cart__item-link');
   const payButton = document.querySelector('.cart__controls-pay');
+  const itemsShow = <HTMLInputElement>document.querySelector('#items_show');
 
-  if (!(promo instanceof HTMLInputElement) || !promoList || !payButton) return;
+  if (!(promo instanceof HTMLInputElement) || !promoList || !payButton || !itemsShow) return;
 
   if (paginationPage) {
     paginationPage.forEach((item) => {
       const pageNumber = +item.innerHTML;
-      item.addEventListener('click', () => createCart(cart.cartArr, pageNumber));
+      item.addEventListener('click', () => createCart(cart.cartArr, +itemsShow.value, pageNumber));
+    });
+  }
+
+  if (itemsShow) {
+    itemsShow.addEventListener('change', () => {
+      const value = +itemsShow.value;
+      if (value <= 0 || value > MAX_ITEMS_PER_PAGE) {
+        return;
+      }
+      createCart(cart.cartArr, value);
     });
   }
 
@@ -64,6 +76,8 @@ export function cartListener() {
       const counter = good.querySelector('.item__value');
       if (!key || !counter) return;
 
+      const currentPage = document.querySelector('.pagination-page_active');
+
       if (cart.itemsInCart(key) > 0) {
         cart.deleteFromCart(key);
         checkPrice(good, key);
@@ -77,6 +91,20 @@ export function cartListener() {
           checkEmpty();
         }
       }
+
+      if (!currentPage) {
+        const value = +itemsShow.value;
+        createCart(cart.cartArr, value);
+      } else {
+        const value = +itemsShow.value;
+        const currentPageNum = +currentPage.innerHTML;
+        if (Math.ceil(cart.cartLength() / value) < currentPageNum) {
+          createCart(cart.cartArr, value, currentPageNum - 1);
+        } else {
+          createCart(cart.cartArr, value, currentPageNum);
+        }
+      }
+
       e.stopPropagation();
     });
   });
