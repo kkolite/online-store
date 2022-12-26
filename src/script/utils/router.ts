@@ -6,7 +6,6 @@ import { removeGallery } from './item/itemGallery';
 import { createItemPage } from './item/itemPageCreator';
 import { createCart } from './cart/cartCreator';
 import { createMain } from './body/mainCreator';
-import { CART_LIMIT } from '../data/constants';
 
 export function router(event: Event) {
   event.preventDefault();
@@ -34,12 +33,11 @@ window.addEventListener('popstate', function () {
   removeGallery();
   if (page === 'index.html' || page === '') {
     createMain();
-  } else if (page.startsWith('cart?page=')) {
-    const routeArr = page.split('=');
-    const pageNum = +routeArr[1];
-    if (pageNum > 0 && pageNum <= data.length) {
-      createCart(cart.cartArr, CART_LIMIT, pageNum);
-    }
+  } else if (page === 'cart') {
+    const pg = +getQueryString('page');
+    const items = +getQueryString('items');
+    if (!pg || !items) return;
+    createCart(cart.cartArr, items, pg);
   } else {
     const key = page.replace('_', ' ');
     const item = data.find((el) => el.title === key);
@@ -51,10 +49,6 @@ window.addEventListener('popstate', function () {
 export function location() {
   const route = window.location.pathname.replace('_', ' ').slice(1);
   const arr = data.map((el) => el.title);
-  const pageArr: string[] = [];
-  for (let i = 0; i < data.length; i++) {
-    pageArr.push(`cart?page=${i + 1}`);
-  }
 
   if (arr.includes(route)) {
     const item = data.find((el) => el.title === route);
@@ -63,17 +57,14 @@ export function location() {
     return;
   }
 
-  if (pageArr.includes(route)) {
-    const routeArr = route.split('=');
-    const pageNum = +routeArr[routeArr.length - 1];
-    createCart(cart.cartArr, CART_LIMIT, pageNum);
-    return;
+  if (route === 'cart') {
+    const page = +getQueryString('page');
+    const items = +getQueryString('items');
+    if (page && items) {
+      createCart(cart.cartArr, items, page);
+      return;
+    }
   }
-
-  /* if (route === 'cart') {
-    createCart(cart.cartArr);
-    return;
-  } */
 
   if (route === '') {
     createMain();
@@ -81,4 +72,16 @@ export function location() {
   }
 
   createError();
+}
+
+function getQueryString(value: string) {
+  const query = window.location.search.substring(1);
+  const serchArr = query.split('&');
+
+  for (let i = 0; i < serchArr.length; i++) {
+    const pair = serchArr[i].split('=');
+    if (pair[0] === value) return pair[1];
+  }
+
+  return false;
 }

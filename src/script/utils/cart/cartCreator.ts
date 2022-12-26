@@ -25,7 +25,7 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
     set = new Set(Cart);
   }
 
-  history.pushState({}, 'newUrl', `cart?page=${pageNumber}`);
+  history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
   if (set.size === 0) {
     page.innerHTML = `<p>Cart is Empty</p>
       <button class="cart__close-empty">Back to List</button>`;
