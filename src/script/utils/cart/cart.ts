@@ -11,6 +11,12 @@ class Cart {
     data.forEach((good) => {
       if (good.title === str) {
         this.cartArr.push(good);
+        this.cartArr.sort((a: IGoods, b: IGoods) => {
+          if (a.title > b.title) {
+            return 1;
+          }
+          return -1;
+        });
         this.saveLocalStorage();
       }
     });
