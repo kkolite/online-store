@@ -16,7 +16,7 @@ class Cart {
             return 1;
           }
           return -1;
-        })
+        });
         this.saveLocalStorage();
       }
     });
