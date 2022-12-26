@@ -62,7 +62,11 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
   }
 
   const uniqGoods: Array<IGoods> = [];
-  set.forEach((item) => uniqGoods.push(item));
+  cart.cartArr.forEach((el) => {
+    if (!uniqGoods.map((el) => el.title).includes(el.title)) {
+      uniqGoods.push(el);
+    }
+  });
   const goodsPerPage = uniqGoods.slice((pageNumber - 1) * itemsPerPage, itemsPerPage * pageNumber);
   goodsPerPage.forEach((item) => {
     const listItem = document.createElement('li');
