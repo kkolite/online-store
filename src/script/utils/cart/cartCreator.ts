@@ -16,17 +16,16 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
   const page = document.createElement('div');
   const list = document.createElement('ul');
   page.classList.add('cart');
-  let set: Set<IGoods>;
 
-  if (!Cart.length) {
-    cart.setFromLocalStorage();
-    set = new Set(cart.cartArr);
-  } else {
-    set = new Set(Cart);
-  }
+  const uniqGoods: Array<IGoods> = [];
+  cart.cartArr.forEach((el) => {
+    if (!uniqGoods.map((el) => el.title).includes(el.title)) {
+      uniqGoods.push(el);
+    }
+  });
 
   history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
-  if (set.size === 0) {
+  if (uniqGoods.length === 0) {
     page.innerHTML = `<p>Cart is Empty</p>
       <button class="cart__close-empty">Back to List</button>`;
     page.classList.add('cart_empty');
@@ -42,8 +41,8 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
   `;
   main.appendChild(itemsCount);
 
-  if (set.size > itemsPerPage) {
-    const countPages = Math.ceil(set.size / itemsPerPage);
+  if (uniqGoods.length > itemsPerPage) {
+    const countPages = Math.ceil(uniqGoods.length / itemsPerPage);
     const pagination = document.createElement('div');
     pagination.classList.add('pagination');
     const pageSpan = document.createElement('span');
@@ -61,8 +60,6 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
     main.appendChild(pagination);
   }
 
-  const uniqGoods: Array<IGoods> = [];
-  set.forEach((item) => uniqGoods.push(item));
   const goodsPerPage = uniqGoods.slice((pageNumber - 1) * itemsPerPage, itemsPerPage * pageNumber);
   goodsPerPage.forEach((item) => {
     const listItem = document.createElement('li');
