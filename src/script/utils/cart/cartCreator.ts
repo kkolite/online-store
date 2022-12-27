@@ -24,8 +24,8 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
     }
   });
 
-  history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
   if (uniqGoods.length === 0) {
+    history.pushState({}, 'newUrl', `cart`);
     page.innerHTML = `<p>Cart is Empty</p>
       <button class="cart__close-empty">Back to List</button>`;
     page.classList.add('cart_empty');
@@ -34,6 +34,8 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
     hideSearch();
     return;
   }
+  
+  history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
 
   const itemsCount = document.createElement('div');
   itemsCount.innerHTML = `<label for="items_show">Show items:</label>
