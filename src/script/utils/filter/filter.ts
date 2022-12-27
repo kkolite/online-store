@@ -3,6 +3,9 @@ import { IGoods, IFilter } from '../../data/types';
 import { addProperty, fltr, produceArr, categoryArr /*, search*/ } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
+import { sortType } from '../filter/sort';
+import { createMain } from '../body/mainCreator';
+import { doc } from 'prettier';
 
 class FilterData {
   sortGood: IFilter;
@@ -20,6 +23,8 @@ class FilterData {
     const fromCapacity = document.querySelector('#fromCapacity');
     const toCapacity = document.querySelector('#toCapacity');
     const search = document.querySelector('#search');
+    const reset = document.querySelector('.filter__reset');
+    const copy = document.querySelector('.filter__copy');
     const dataSort = this.sortGood;
 
     if (
@@ -30,7 +35,9 @@ class FilterData {
       !(toPrice instanceof HTMLInputElement) ||
       !(toCapacity instanceof HTMLInputElement) ||
       !(search instanceof HTMLInputElement) ||
-      !cancel
+      !cancel ||
+      !reset ||
+      !copy
     ) {
       return;
     }
@@ -40,6 +47,30 @@ class FilterData {
     } else {
       dataSort.sortGoods(Goods.currentItems);
     }
+
+    reset.addEventListener('click', () => {
+      search.value = '';
+      while (produceArr.length !== 0) {
+        produceArr.pop();
+      }
+      while (categoryArr.length !== 0) {
+        categoryArr.pop();
+      }
+      sessionStorage.setItem('minPrice', fromPrice.min);
+      sessionStorage.setItem('maxPrice', toPrice.max);
+      sessionStorage.setItem('minCapacity', fromCapacity.min);
+      sessionStorage.setItem('maxCapacity', toCapacity.max);
+      sortType.type = 'default';
+      createMain();
+      /* showGrid(); */
+      fltr(dataSort, data);
+      showPopup();
+    });
+
+    copy.addEventListener('click', () => {
+      const temp = window.location.href;
+      navigator.clipboard.writeText(temp);
+    });
 
     cancel.addEventListener('click', () => {
       search.value = '';

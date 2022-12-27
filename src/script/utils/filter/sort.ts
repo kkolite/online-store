@@ -4,7 +4,7 @@ import { sortByalphabet } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import { categoryCount, produceCount } from './filterCount';
 
-export let sortType = 'default';
+export const sortType = { type: 'default' };
 
 class SortData {
   goods: ISort;
@@ -23,25 +23,25 @@ class SortData {
       if (index === sortBy.alphabetUp) {
         sortByalphabet(data);
         this.goods.createGoods(data);
-        sortType = 'a';
+        sortType.type = 'a';
       }
 
       if (index === sortBy.alphabetDown) {
         sortByalphabet(data);
         this.goods.createGoods(data.reverse());
-        sortType = 'z';
+        sortType.type = 'z';
       }
 
       if (index === sortBy.priceUp) {
         data.sort((a, b) => a.price - b.price);
         this.goods.createGoods(data);
-        sortType = 'lp';
+        sortType.type = 'lp';
       }
 
       if (index === sortBy.priceDown) {
         data.sort((a, b) => b.price - a.price);
         this.goods.createGoods(data);
-        sortType = 'hp';
+        sortType.type = 'hp';
       }
       showPopup();
       produceCount(data);

@@ -1,7 +1,7 @@
 import { Callback, IGoods, IFilter } from '../../data/types';
 
-export let produceArr: string[] = [];
-export let categoryArr: string[] = [];
+export const produceArr: string[] = [];
+export const categoryArr: string[] = [];
 export let searchStr = '';
 //export const search = <HTMLInputElement>document.querySelector('#search');
 
