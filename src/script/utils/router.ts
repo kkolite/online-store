@@ -67,6 +67,12 @@ export function location() {
   }
 
   if (route === '') {
+    /*const category = getQueryString('cat');
+    const produce = getQueryString('prod');
+    const sort = getQueryString('sort');
+    const search = getQueryString('search');
+    const view = getQueryString('view');*/
+
     createMain();
     return;
   }

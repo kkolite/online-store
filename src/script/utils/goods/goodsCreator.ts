@@ -35,7 +35,7 @@ class Goods {
   ${goods.title}
   </h3>
   <div class="item__image">
-    <img src="${goods.source[0]}" alt="apple-iphone-13" class="item__img">
+    <img src="${goods.source[0]}" alt="${goods.title}" class="item__img">
   </div>
   <div class="item__properties">
   <p class="item__property">
