@@ -9,8 +9,7 @@ export function headerListener() {
   if (!headerCart || !headerLink) return;
 
   headerCart.addEventListener('click', () => {
-    const currentCart = cart.cartArr;
-    createCart(currentCart);
+    createCart();
   });
 
   headerLink.addEventListener('click', () => {

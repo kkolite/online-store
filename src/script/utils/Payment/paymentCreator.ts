@@ -13,22 +13,22 @@ export function createPay() {
   page.innerHTML = `<div class="form__info">
     <div class="form__input-container">
       <label for="form__name" class="form__label">Name</label>
-      <input type="text" name="" id="form__name" class="form__input">
+      <input type="text" name="" id="form__name" class="form__input" placeholder="Name Surname">
       <label for="form__name" class="form__label form__name_error label_error"></label>
     </div>
     <div class="form__input-container">
       <label for="form__tel" class="form__label">Phone</label>
-      <input type="tel" name="" id="form__tel" class="form__input">
+      <input type="tel" name="" id="form__tel" class="form__input" placeholder="+375291234567">
       <label for="form__tel" class="form__label form__tel_error label_error"></label>
     </div>
     <div class="form__input-container">
       <label for="form__adress" class="form__label">Adress</label>
-      <input type="text" name="" id="form__adress" class="form__input">
+      <input type="text" name="" id="form__adress" class="form__input" placeholder="Nemiga Minsk Belarus">
       <label for="form__adress" class="form__label form__adress_error label_error"></label>
     </div>
     <div class="form__input-container">
       <label for="form__email" class="form__label">E-Mail</label>
-      <input type="email" name="" id="form__email" class="form__input">
+      <input type="email" name="" id="form__email" class="form__input" placeholder="customer@email.com">
       <label for="form__email" class="form__label form__email_error label_error"></label>
     </div>
   </div>

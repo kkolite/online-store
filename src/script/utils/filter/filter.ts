@@ -5,7 +5,7 @@ import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
 import { sortType } from '../filter/sort';
 import { createMain } from '../body/mainCreator';
-import { doc } from 'prettier';
+//import { doc } from 'prettier';
 
 class FilterData {
   sortGood: IFilter;

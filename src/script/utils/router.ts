@@ -1,6 +1,5 @@
 import { createError } from './errors/errorCreator';
 import data from '../data/data';
-import cart from './cart/cart';
 import { removePayment } from './Payment/payAction';
 import { removeGallery } from './item/itemGallery';
 import { createItemPage } from './item/itemPageCreator';
@@ -37,7 +36,7 @@ window.addEventListener('popstate', function () {
     const pg = +getQueryString('page');
     const items = +getQueryString('items');
     if (!pg || !items) return;
-    createCart(cart.cartArr, items, pg);
+    createCart(items, pg);
   } else {
     const key = page.replace('_', ' ');
     const item = data.find((el) => el.title === key);
@@ -61,7 +60,7 @@ export function location() {
     const page = +getQueryString('page');
     const items = +getQueryString('items');
     if (page && items) {
-      createCart(cart.cartArr, items, page);
+      createCart(items, page);
       return;
     }
   }

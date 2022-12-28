@@ -4,7 +4,7 @@ export function validateName(val: string) {
   const errorLabel = document.querySelector('.form__name_error');
   if (!errorLabel) return;
 
-  const checkArr = val.split(' ');
+  const checkArr = val.trim().split(' ');
   if (checkArr.length > 1 && checkArr.every((el) => el.length > 2)) {
     errorLabel.textContent = '';
     return true;
@@ -18,7 +18,7 @@ export function validateAdress(val: string) {
   const errorLabel = document.querySelector('.form__adress_error');
   if (!errorLabel) return;
 
-  const checkArr = val.split(' ');
+  const checkArr = val.trim().split(' ');
   if (checkArr.length > 2 && checkArr.every((el) => el.length > 4)) {
     errorLabel.textContent = '';
     return true;

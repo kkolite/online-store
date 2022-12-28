@@ -47,6 +47,13 @@ export class Promocode {
     return Math.floor(num * 10) / 10;
   }
 
+  afterReload() {
+    const titles = Promocode.activePromo.map((el) => el.key);
+    titles.forEach((el) => {
+      this.buildPromo(el);
+    });
+  }
+
   private buildPromo(promo: string) {
     const promoList = document.querySelector('.promo-list');
     if (!promoList) return;

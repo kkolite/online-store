@@ -7,7 +7,7 @@ import cart from './cart';
 import { createHeader } from '../body/headerCreator';
 import { createFooter } from '../body/footerCreator';
 
-export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber = 1) {
+export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
   createFooter();
   createHeader();
 
@@ -34,7 +34,7 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
     hideSearch();
     return;
   }
-  
+
   history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
 
   const itemsCount = document.createElement('div');
@@ -67,7 +67,8 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
     const listItem = document.createElement('li');
     listItem.classList.add('cart__item');
     listItem.setAttribute('title', `${item.title}`);
-    listItem.innerHTML = `<img src="${item.source[0]}" alt="${item.title}" class="cart__item-img">
+    listItem.innerHTML = `<p class="cart__item-index">${uniqGoods.indexOf(item) + 1}</p>
+    <img src="${item.source[0]}" alt="${item.title}" class="cart__item-img">
       <a href="${item.title}" class="cart__item-link">
         <div class="cart__item-info">
           <p>${item.title}</p>
@@ -87,6 +88,7 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
       <p class="cart__item-price"></p>`;
     list.appendChild(listItem);
   });
+
   const controls = document.createElement('div');
   controls.classList.add('cart__controls');
   controls.innerHTML = `<p>Products: <span class="cart__controls-products"></span></p>
@@ -97,7 +99,11 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
   page.appendChild(list);
   page.appendChild(controls);
   main?.appendChild(page);
-  Promocode.activePromo = [];
+  if (Promocode.activePromo.length > 0) {
+    const promo = new Promocode();
+    promo.afterReload();
+  }
+  //Promocode.activePromo = [];
   cartListener();
   hideSearch();
 }

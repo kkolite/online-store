@@ -3,6 +3,7 @@ import cart from '../cart/cart';
 import { createMain } from '../body/mainCreator';
 import { validateAdress, validateEMail, validateName, validateTel } from './infoValidation';
 import { validateCard, validateCVC, validateDate } from './payValidation';
+import { Promocode } from '../cart/promocode';
 
 export function pay() {
   const button = document.querySelector('.form__button');
@@ -61,6 +62,7 @@ function newStore() {
 
   count.textContent = '0';
   cart.cartArr = [];
+  Promocode.activePromo = [];
   localStorage.clear();
   removePayment();
   createMain();
