@@ -154,29 +154,30 @@ export function location() {
     }
 
     const search = getQueryString('search');
+    const view = getQueryString('view');
     if (search) {
       (<HTMLInputElement>document.querySelector('#search')).value = search;
     }
-
-    const view = getQueryString('view');
-    if (view) {
-      if (view === 'grid') {
-        showGrid();
-      } else if (view === 'list') {
-        showList();
-      } /*else {
-        createError();
-        return;
-      }*/
-    } /*else {
-      createError();
-      return;
-    }*/
 
     createMain();
     const dataSort = new SortData();
     fltr(dataSort, data);
     showPopup();
+
+    console.log('IM here!!!', view);
+    //if (view) {
+    if (view === 'grid') {
+      showGrid();
+    } else if (view === 'list') {
+      showList();
+    } /*else {
+        createError();
+        return;
+      }*/
+    /*}*/ /*else {
+      createError();
+      return;
+    }*/
 
     return;
   }
