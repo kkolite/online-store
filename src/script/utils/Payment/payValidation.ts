@@ -18,7 +18,7 @@ export function validateDate(val: string) {
   if (!errorLabel) return;
 
   const checkArr = val.split(' / ');
-  if (checkArr.length === 2 && Number(checkArr[0]) < 13 && Number(checkArr[1]) > 22 && Number(checkArr[1]) < 100) {
+  if (checkArr.length === 2 && Number(checkArr[0]) < 13 && Number(checkArr[0]) > 0 && Number(checkArr[1]) > 22 && Number(checkArr[1]) < 100) {
     errorLabel.textContent = '';
     return true;
   }
