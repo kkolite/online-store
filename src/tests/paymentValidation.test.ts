@@ -15,17 +15,17 @@ describe('Card Validation', () => {
   });
   it('general check', () => {
     const cartData = [
-      {cart: '4444 4444 4444 4444', result: true},
-      {cart: '4444444444444444', result: false},
-      {cart: '44444444 44444444', result: false},
-      {cart: '', result: false},
-      {cart: '4 4 4 4', result: false},
-    ]
+      { cart: '4444 4444 4444 4444', result: true },
+      { cart: '4444444444444444', result: false },
+      { cart: '44444444 44444444', result: false },
+      { cart: '', result: false },
+      { cart: '4 4 4 4', result: false },
+    ];
 
-    cartData.forEach(({cart, result}) => {
+    cartData.forEach(({ cart, result }) => {
       const res = validateCard(cart);
       expect(res).toEqual(result);
-    })
+    });
   });
 });
 
@@ -44,18 +44,18 @@ describe('Date Validation', () => {
   });
   it('general check', () => {
     const dateData = [
-      {date: '11 / 23', result: true},
-      {date: '110 / 23', result: false},
-      {date: '110 / 2', result: false},
-      {date: ' / ', result: false},
-      {date: '10 / 0', result: false},
-      {date: '0 / 23', result: false},
-    ]
+      { date: '11 / 23', result: true },
+      { date: '110 / 23', result: false },
+      { date: '110 / 2', result: false },
+      { date: ' / ', result: false },
+      { date: '10 / 0', result: false },
+      { date: '0 / 23', result: false },
+    ];
 
-    dateData.forEach(({date, result}) => {
+    dateData.forEach(({ date, result }) => {
       const res = validateDate(date);
       expect(res).toEqual(result);
-    })
+    });
   });
 });
 

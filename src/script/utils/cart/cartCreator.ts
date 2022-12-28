@@ -34,7 +34,7 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
     hideSearch();
     return;
   }
-  
+
   history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
 
   const itemsCount = document.createElement('div');
