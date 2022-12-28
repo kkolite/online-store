@@ -67,7 +67,8 @@ export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
     const listItem = document.createElement('li');
     listItem.classList.add('cart__item');
     listItem.setAttribute('title', `${item.title}`);
-    listItem.innerHTML = `<img src="${item.source[0]}" alt="${item.title}" class="cart__item-img">
+    listItem.innerHTML = `<p class="cart__item-index">${uniqGoods.indexOf(item) + 1}</p>
+    <img src="${item.source[0]}" alt="${item.title}" class="cart__item-img">
       <a href="${item.title}" class="cart__item-link">
         <div class="cart__item-info">
           <p>${item.title}</p>

@@ -104,6 +104,10 @@
     list-style: none;
     display: flex;
     align-items: center;
+    &-index {
+        font-size: 18px;
+        margin-right: 10px;
+    }
     &-img {
         max-height: 90px;
         width: 140px;

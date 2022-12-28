@@ -76,8 +76,6 @@ export function cartListener() {
       const counter = good.querySelector('.item__value');
       if (!key || !counter) return;
 
-      const currentPage = document.querySelector('.pagination-page_active');
-
       if (cart.itemsInCart(key) > 0) {
         cart.deleteFromCart(key);
         checkPrice(good, key);
@@ -92,19 +90,7 @@ export function cartListener() {
         }
       }
 
-      if (!currentPage) {
-        const value = +itemsShow.value;
-        createCart(value);
-      } else {
-        const value = +itemsShow.value;
-        const currentPageNum = +currentPage.innerHTML;
-        if (Math.ceil(cart.cartLength() / value) < currentPageNum) {
-          createCart(value, currentPageNum - 1);
-        } else {
-          createCart(value, currentPageNum);
-        }
-      }
-
+      paginationCheck();
       e.stopPropagation();
     });
   });
@@ -141,6 +127,7 @@ export function cartListener() {
       good.remove();
       checkEmpty();
       checkPrice(good, key);
+      paginationCheck();
       e.stopPropagation();
     });
   });
@@ -204,6 +191,23 @@ export function cartListener() {
     } else {
       totalSum.classList.remove('cart__controls-sum_none');
       withPromoSum.textContent = '';
+    }
+  }
+
+  function paginationCheck() {
+    const currentPage = document.querySelector('.pagination-page_active');
+
+    if (!currentPage) {
+      const value = +itemsShow.value;
+      createCart(value);
+    } else {
+      const value = +itemsShow.value;
+      const currentPageNum = +currentPage.innerHTML;
+      if (Math.ceil(cart.cartLength() / value) < currentPageNum) {
+        createCart(value, currentPageNum - 1);
+      } else {
+        createCart(value, currentPageNum);
+      }
     }
   }
 }
