@@ -1,6 +1,6 @@
 import SortData from './sort';
 import { IGoods, IFilter } from '../../data/types';
-import { addProperty, fltr, produceArr, categoryArr /*, search*/ } from './multifilter';
+import { addProperty, fltr, produceArr, categoryArr , sortByalphabet } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
 import { sortType } from '../filter/sort';
@@ -62,6 +62,7 @@ class FilterData {
       sessionStorage.setItem('maxCapacity', toCapacity.max);
       sortType.type = 'default';
       createMain();
+      (<HTMLInputElement>document.querySelector('#search')).value = '';
       /* showGrid(); */
       fltr(dataSort, data);
       showPopup();

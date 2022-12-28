@@ -5,6 +5,9 @@ import { removeGallery } from './item/itemGallery';
 import { createItemPage } from './item/itemPageCreator';
 import { createCart } from './cart/cartCreator';
 import { createMain } from './body/mainCreator';
+import { categoryArr, produceArr } from './filter/multifilter';
+import { showGrid, showList } from './view/view';
+import { sortType } from './filter/sort';
 
 export function router(event: Event) {
   event.preventDefault();
@@ -63,16 +66,109 @@ export function location() {
       createCart(items, page);
       return;
     }
+    createError();
+    return;
   }
 
   if (route === '') {
-    /*const category = getQueryString('cat');
+    const category = getQueryString('cat');
+    while (categoryArr.length !== 0) {
+      categoryArr.pop();
+    }
+    if (category !== '') {
+      if (category) {
+        const catArr: string[] = category.split('.');
+        catArr.forEach((item) => {
+          const arr = data.map((el) => el.category.toString());
+          if (arr.includes(item)) {
+            categoryArr.push(item);
+          } else {
+            createError();
+            return;
+          }
+        });
+      } else {
+        createError();
+        return;
+      }
+    }
+
     const produce = getQueryString('prod');
-    const sort = getQueryString('sort');
-    const search = getQueryString('search');
-    const view = getQueryString('view');*/
+    while (produceArr.length !== 0) {
+      produceArr.pop();
+    }
+    if (produce !== '') {
+      if (produce) {
+        const prodArr: string[] = produce.split('.');
+        prodArr.forEach((item) => {
+          const arr = data.map((el) => el.produce);
+          if (arr.includes(item)) {
+            produceArr.push(item);
+          } else {
+            createError();
+            return;
+          }
+        });
+      } else {
+        createError();
+        return;
+      }
+    }
+
+    /* const search = getQueryString('search'); */
 
     createMain();
+
+    const sort = getQueryString('sort');
+    if (sort) {
+      if (sort === 'a') {
+        data.sort((a, b) => {
+          if (a.title > b.title) {
+            return 1;
+          }
+          return -1;
+        });
+        sortType.type = 'a';
+      } else if (sort === 'z') {
+        data.sort((a, b) => {
+          if (b.title > a.title) {
+            return 1;
+          }
+          return -1;
+        });
+        sortType.type = 'z';
+      } else if (sort === 'lp') {
+        data.sort((a, b) => a.price - b.price);
+        sortType.type = 'lp';
+      } else if (sort === 'hp') {
+        data.sort((a, b) => b.price - a.price);
+        sortType.type = 'hp';
+      } else if (sort !== 'default') {
+        createError();
+        return;
+      }
+    }
+
+    const search = getQueryString('search');
+    if (search) {
+      (<HTMLInputElement>document.querySelector('#search')).value = search;
+    }
+
+    const view = getQueryString('view');
+    if (view) {
+      if (view === 'grid') {
+        showGrid();
+      } else if (view === 'list') {
+        showList();
+      } else {
+        createError();
+        return;
+      }
+    } else {
+      createError();
+      return;
+    }
+
     return;
   }
 
