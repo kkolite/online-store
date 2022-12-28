@@ -5,9 +5,10 @@ import { removeGallery } from './item/itemGallery';
 import { createItemPage } from './item/itemPageCreator';
 import { createCart } from './cart/cartCreator';
 import { createMain } from './body/mainCreator';
-import { categoryArr, produceArr } from './filter/multifilter';
+import { categoryArr, produceArr, fltr } from './filter/multifilter';
 import { showGrid, showList } from './view/view';
-import { sortType } from './filter/sort';
+import SortData, { sortType } from './filter/sort';
+import { showPopup } from './goods/goodsListener';
 
 export function router(event: Event) {
   event.preventDefault();
@@ -64,9 +65,9 @@ export function location() {
     const items = +getQueryString('items');
     if (page && items) {
       createCart(items, page);
-      return;
+    } else {
+      createCart();
     }
-    createError();
     return;
   }
 
@@ -75,6 +76,7 @@ export function location() {
     while (categoryArr.length !== 0) {
       categoryArr.pop();
     }
+    //console.log('cat', category, ' end');
     if (category !== '') {
       if (category) {
         const catArr: string[] = category.split('.');
@@ -87,10 +89,10 @@ export function location() {
             return;
           }
         });
-      } else {
+      } /*else {
         createError();
         return;
-      }
+      }*/
     }
 
     const produce = getQueryString('prod');
@@ -109,15 +111,17 @@ export function location() {
             return;
           }
         });
-      } else {
+      } /*else {
         createError();
         return;
-      }
+      }*/
     }
 
     /* const search = getQueryString('search'); */
 
-    createMain();
+    /*createMain();
+    const dataSort = new SortData();
+    fltr(dataSort, data);*/
 
     const sort = getQueryString('sort');
     if (sort) {
@@ -143,10 +147,10 @@ export function location() {
       } else if (sort === 'hp') {
         data.sort((a, b) => b.price - a.price);
         sortType.type = 'hp';
-      } else if (sort !== 'default') {
+      } /*else if (sort !== 'default') {
         createError();
         return;
-      }
+      }*/
     }
 
     const search = getQueryString('search');
@@ -160,14 +164,19 @@ export function location() {
         showGrid();
       } else if (view === 'list') {
         showList();
-      } else {
+      } /*else {
         createError();
         return;
-      }
-    } else {
+      }*/
+    } /*else {
       createError();
       return;
-    }
+    }*/
+
+    createMain();
+    const dataSort = new SortData();
+    fltr(dataSort, data);
+    showPopup();
 
     return;
   }
