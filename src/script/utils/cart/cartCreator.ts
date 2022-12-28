@@ -10,6 +10,7 @@ import { createFooter } from '../body/footerCreator';
 export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
   createFooter();
   createHeader();
+  cart.setFromLocalStorage();
 
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
