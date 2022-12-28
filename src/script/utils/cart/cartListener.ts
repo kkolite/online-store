@@ -27,7 +27,7 @@ export function cartListener() {
   if (paginationPage) {
     paginationPage.forEach((item) => {
       const pageNumber = +item.innerHTML;
-      item.addEventListener('click', () => createCart(cart.cartArr, +itemsShow.value, pageNumber));
+      item.addEventListener('click', () => createCart(+itemsShow.value, pageNumber));
     });
   }
 
@@ -37,7 +37,7 @@ export function cartListener() {
       if (value <= 0 || value > MAX_ITEMS_PER_PAGE) {
         return;
       }
-      createCart(cart.cartArr, value);
+      createCart(value);
     });
   }
 
@@ -94,14 +94,14 @@ export function cartListener() {
 
       if (!currentPage) {
         const value = +itemsShow.value;
-        createCart(cart.cartArr, value);
+        createCart(value);
       } else {
         const value = +itemsShow.value;
         const currentPageNum = +currentPage.innerHTML;
         if (Math.ceil(cart.cartLength() / value) < currentPageNum) {
-          createCart(cart.cartArr, value, currentPageNum - 1);
+          createCart(value, currentPageNum - 1);
         } else {
-          createCart(cart.cartArr, value, currentPageNum);
+          createCart(value, currentPageNum);
         }
       }
 
@@ -186,7 +186,7 @@ export function cartListener() {
 
   function checkEmpty() {
     if (cart.cartLength() === 0) {
-      createCart(cart.cartArr);
+      createCart();
     }
   }
 

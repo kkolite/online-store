@@ -101,7 +101,7 @@ export function itemListener(item: IGoods) {
       cart.pushInCart(key);
     }
 
-    createCart(cart.cartArr);
+    createCart();
     createPay();
   });
 

@@ -56,7 +56,7 @@ export function showPopup() {
         cart.pushInCart(key);
       }
 
-      createCart(cart.cartArr);
+      createCart();
       createPay();
       e.stopPropagation();
     });

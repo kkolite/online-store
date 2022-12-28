@@ -7,7 +7,7 @@ import cart from './cart';
 import { createHeader } from '../body/headerCreator';
 import { createFooter } from '../body/footerCreator';
 
-export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber = 1) {
+export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
   createFooter();
   createHeader();
 
@@ -87,6 +87,7 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
       <p class="cart__item-price"></p>`;
     list.appendChild(listItem);
   });
+
   const controls = document.createElement('div');
   controls.classList.add('cart__controls');
   controls.innerHTML = `<p>Products: <span class="cart__controls-products"></span></p>
@@ -97,7 +98,11 @@ export function createCart(Cart: IGoods[], itemsPerPage = CART_LIMIT, pageNumber
   page.appendChild(list);
   page.appendChild(controls);
   main?.appendChild(page);
-  Promocode.activePromo = [];
+  if (Promocode.activePromo.length > 0) {
+    const promo = new Promocode();
+    promo.afterReload();
+  }
+  //Promocode.activePromo = [];
   cartListener();
   hideSearch();
 }
