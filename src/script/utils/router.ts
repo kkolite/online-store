@@ -29,25 +29,28 @@ export function router(event: Event) {
   createItemPage(item);
 }
 
-window.addEventListener('popstate', function () {
-  const route = window.location.pathname.split('/');
-  const page = route[route.length - 1];
-  removePayment();
-  removeGallery();
-  if (page === 'index.html' || page === '') {
-    createMain();
-  } else if (page === 'cart') {
-    const pg = +getQueryString('page');
-    const items = +getQueryString('items');
-    if (!pg || !items) return;
-    createCart(items, pg);
-  } else {
-    const key = page.replace('_', ' ');
-    const item = data.find((el) => el.title === key);
-    if (!item) return;
-    createItemPage(item);
-  }
-});
+export function popstate() {
+  window.addEventListener('popstate', function () {
+    const route = window.location.pathname.split('/');
+    const page = route[route.length - 1];
+    console.log(route, page);
+    removePayment();
+    removeGallery();
+    if (page === 'index.html' || page === '') {
+      createMain();
+    } else if (page === 'cart') {
+      const pg = +getQueryString('page');
+      const items = +getQueryString('items');
+      if (!pg || !items) return;
+      createCart(items, pg);
+    } else {
+      const key = page.replace('_', ' ');
+      const item = data.find((el) => el.title === key);
+      if (!item) return;
+      createItemPage(item);
+    }
+  });
+}
 
 export function location() {
   const route = window.location.pathname.replace('_', ' ').slice(1);
@@ -155,16 +158,20 @@ export function location() {
 
     const search = getQueryString('search');
     const view = getQueryString('view');
-    if (search) {
-      (<HTMLInputElement>document.querySelector('#search')).value = search;
-    }
 
     createMain();
+
+    if (search) {
+      const field = document.querySelector('#search');
+      if (!(field instanceof HTMLInputElement)) return;
+
+      field.value = search;
+    }
+
     const dataSort = new SortData();
     fltr(dataSort, data);
     showPopup();
 
-    console.log('IM here!!!', view);
     //if (view) {
     if (view === 'grid') {
       showGrid();

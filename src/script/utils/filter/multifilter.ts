@@ -59,7 +59,10 @@ function inclMaxCapacity(goods: IGoods) {
 function inclTitle(goods: IGoods) {
   const search = <HTMLInputElement>document.querySelector('#search');
   searchStr = search.value;
-  return goods.title.toLowerCase().includes(search.value.toLowerCase());
+  const title = goods.title.toLowerCase().includes(search.value.toLowerCase());
+  const category = goods.category.toLowerCase().includes(search.value.toLowerCase());
+  const prod = goods.produce.toLowerCase().includes(search.value.toLowerCase());
+  return title || category || prod;
 }
 
 export function fltr(filtersList: IFilter, data: IGoods[]) {
