@@ -9,5 +9,30 @@ export function mainQuery() {
   const querySort = `sort=${sortType.type}`;
   const querySearch = `search=${searchStr}`;
 
-  history.pushState({}, 'newURL', `?${queryCategory}&${queryProduce}&${querySort}&${queryView}&${querySearch}`);
+  const queryPmin = `pmin=${
+    sessionStorage.getItem('minPrice')
+      ? sessionStorage.getItem('minPrice')
+      : (<HTMLInputElement>document.querySelector('#fromPrice')).min
+  }`;
+  const queryPmax = `pmax=${
+    sessionStorage.getItem('maxPrice')
+      ? sessionStorage.getItem('maxPrice')
+      : (<HTMLInputElement>document.querySelector('#toPrice')).max
+  }`;
+  const queryCmin = `cmin=${
+    sessionStorage.getItem('minCapacity')
+    ? sessionStorage.getItem('minCapacity')
+    : (<HTMLInputElement>document.querySelector('#fromCapacity')).min
+  }`;
+  const queryCmax = `cmax=${
+    sessionStorage.getItem('maxCapacity')
+    ? sessionStorage.getItem('maxCapacity')
+    : (<HTMLInputElement>document.querySelector('#toCapacity')).max
+  }`;
+
+  history.pushState(
+    {},
+    'newURL',
+    `?${queryCategory}&${queryProduce}&${querySort}&${queryView}&${querySearch}&${queryPmin}&${queryPmax}&${queryCmin}&${queryCmax}`
+  );
 }
