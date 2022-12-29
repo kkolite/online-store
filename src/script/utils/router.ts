@@ -159,6 +159,26 @@ export function location() {
     const search = getQueryString('search');
     const view = getQueryString('view');
 
+    const pmin = getQueryString('pmin');
+    if (pmin) {
+      sessionStorage.setItem('minPrice', pmin);
+    }
+
+    const pmax = getQueryString('pmax');
+    if (pmax) {
+      sessionStorage.setItem('maxPrice', pmax);
+    }
+
+    const cmin = getQueryString('cmin');
+    if (cmin) {
+      sessionStorage.setItem('minCapacity', cmin);
+    }
+
+    const cmax = getQueryString('cmax');
+    if (cmax) {
+      sessionStorage.setItem('maxCapacity', cmax);
+    }
+
     createMain();
 
     if (search) {
