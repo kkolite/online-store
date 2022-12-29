@@ -71,6 +71,10 @@ class FilterData {
     copy.addEventListener('click', () => {
       const temp = window.location.href;
       navigator.clipboard.writeText(temp);
+      copy.textContent = 'Done!';
+      setTimeout(function () {
+        copy.textContent = 'Reset';
+      }, 2000);
     });
 
     cancel.addEventListener('click', () => {
