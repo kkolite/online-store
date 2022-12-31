@@ -21,13 +21,13 @@ export function mainQuery() {
   }`;
   const queryCmin = `cmin=${
     sessionStorage.getItem('minCapacity')
-    ? sessionStorage.getItem('minCapacity')
-    : (<HTMLInputElement>document.querySelector('#fromCapacity')).min
+      ? sessionStorage.getItem('minCapacity')
+      : (<HTMLInputElement>document.querySelector('#fromCapacity')).min
   }`;
   const queryCmax = `cmax=${
     sessionStorage.getItem('maxCapacity')
-    ? sessionStorage.getItem('maxCapacity')
-    : (<HTMLInputElement>document.querySelector('#toCapacity')).max
+      ? sessionStorage.getItem('maxCapacity')
+      : (<HTMLInputElement>document.querySelector('#toCapacity')).max
   }`;
 
   history.pushState(
