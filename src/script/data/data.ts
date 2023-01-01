@@ -379,6 +379,21 @@ const data: IGoods[] = [
     range: 5500,
   },
   {
+    title: 'An-32',
+    produce: 'Antonov',
+    category: aviaCategory.Military,
+    description:
+      'The Antonov An-32 (NATO reporting name: Cline) is a turboprop twin-engined military transport aircraft',
+    source: [
+      'https://arsenal-info.ru/images/img-3_5/voennie-samoleti-an-32-dvigatel-ves-istoriya.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Iraqi_Air_Force_Antonov_An-32B.jpg/800px-Iraqi_Air_Force_Antonov_An-32B.jpg',
+    ],
+    price: 15000000,
+    onstock: 8,
+    capacity: 40,
+    range: 1500,
+  },
+  {
     title: 'Bombardier Challenger 650',
     produce: 'Bombardier',
     category: aviaCategory.VIP,
@@ -405,6 +420,21 @@ const data: IGoods[] = [
     onstock: 4,
     capacity: 12,
     range: 9300,
+  },
+  {
+    title: 'Bombardier DHC-8 Q400',
+    produce: 'Bombardier',
+    category: aviaCategory.Civil,
+    description:
+      'It is a series of turboprop-powered regional airliners, introduced by de Havilland Canada (DHC) in 1984',
+    source: [
+      'https://imageio.forbes.com/specials-images/imageserve/1047462102/960x0.jpg?format=jpg&width=960',
+      'https://cdn.airlines-inform.ru/images/review_list/upload/blog/8c1/20170820_172409.jpg',
+    ],
+    price: 28000000,
+    onstock: 6,
+    capacity: 70,
+    range: 2000,
   },
 ];
 
