@@ -76,4 +76,5 @@ export function createMain() {
   visibleSearch();
   cart.setFromLocalStorage();
   showPopup();
+  document.title = 'Online-store';
 }

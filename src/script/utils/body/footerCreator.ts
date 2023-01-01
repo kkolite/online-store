@@ -4,7 +4,7 @@ export function createFooter() {
   footer.innerHTML = `<div class="wrapper">
         <div class="footer__content">
           <div class="year">
-            2022
+            2023
           </div>
           <div class="github">
             <a href="https://github.com/Shama8nchez" class="gh__link">

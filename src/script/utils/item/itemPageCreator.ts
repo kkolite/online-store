@@ -48,4 +48,5 @@ export function createItemPage(item: IGoods) {
   cart.setFromLocalStorage();
   itemListener(item);
   hideSearch();
+  document.title = `${item.title}`;
 }
