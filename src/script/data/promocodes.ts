@@ -6,7 +6,7 @@ const promocodes: IPromocode[] = [
     discount: 10,
   },
   {
-    key: '2022',
+    key: '2023',
     discount: 10,
   },
   {

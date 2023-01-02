@@ -107,4 +107,5 @@ export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
   //Promocode.activePromo = [];
   cartListener();
   hideSearch();
+  document.title = 'Cart';
 }

@@ -60,6 +60,11 @@
       transition: all .2s;
       cursor: pointer;
     }
+
+    &__copy_done {
+      background-color: aliceblue;
+      color: #387bbe;
+    }
   }
 
   .sort {

@@ -72,8 +72,10 @@ class FilterData {
       const temp = window.location.href;
       navigator.clipboard.writeText(temp);
       copy.textContent = 'Done!';
+      copy.classList.add('filter__copy_done');
       setTimeout(function () {
-        copy.textContent = 'Reset';
+        copy.textContent = 'Copy';
+        copy.classList.remove('filter__copy_done');
       }, 2000);
     });
 
