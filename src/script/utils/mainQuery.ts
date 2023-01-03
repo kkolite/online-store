@@ -33,6 +33,6 @@ export function mainQuery() {
   history.pushState(
     {},
     'newURL',
-    `?${queryCategory}&${queryProduce}&${querySort}&${queryView}&${querySearch}&${queryPmin}&${queryPmax}&${queryCmin}&${queryCmax}`
+    `/?${queryCategory}&${queryProduce}&${querySort}&${queryView}&${querySearch}&${queryPmin}&${queryPmax}&${queryCmin}&${queryCmax}`
   );
 }
