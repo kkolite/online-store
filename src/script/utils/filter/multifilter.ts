@@ -1,4 +1,5 @@
 import { Callback, IGoods, IFilter } from '../../data/types';
+import { categoryCount, produceCount } from './filterCount';
 
 export const produceArr: string[] = [];
 export const categoryArr: string[] = [];
@@ -77,7 +78,11 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
   propArr.push(inclMaxPrice);
   propArr.push(inclMinCapacity);
   propArr.push(inclMaxCapacity);
-  filtersList.sortGoods(data.filter(multifilter(propArr as Callback[])));
+
+  const arr = data.filter(multifilter(propArr as Callback[]));
+  categoryCount(arr);
+  produceCount(arr);
+  filtersList.sortGoods(arr);
 }
 
 export function addProperty(property: Array<string>, e: Event) {
