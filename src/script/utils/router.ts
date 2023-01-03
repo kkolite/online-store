@@ -127,7 +127,7 @@ export function location() {
     /*createMain();
     const dataSort = new SortData();
     fltr(dataSort, data);*/
-
+    let slctIndex: number | undefined;
     const sort = getQueryString('sort');
     if (sort) {
       if (sort === 'a') {
@@ -138,6 +138,7 @@ export function location() {
           return -1;
         });
         sortType.type = 'a';
+        slctIndex = 0;
       } else if (sort === 'z') {
         data.sort((a, b) => {
           if (b.title > a.title) {
@@ -146,12 +147,15 @@ export function location() {
           return -1;
         });
         sortType.type = 'z';
+        slctIndex = 1;
       } else if (sort === 'lp') {
         data.sort((a, b) => a.price - b.price);
         sortType.type = 'lp';
+        slctIndex = 2;
       } else if (sort === 'hp') {
         data.sort((a, b) => b.price - a.price);
         sortType.type = 'hp';
+        slctIndex = 3;
       } /*else if (sort !== 'default') {
         createError();
         return;
@@ -182,7 +186,11 @@ export function location() {
     }
 
     createMain();
-
+    const select = <HTMLSelectElement>document.getElementById('sortBy');
+    if (slctIndex) {
+      select.selectedIndex = slctIndex;
+    }
+    
     if (search) {
       const field = document.querySelector('#search');
       if (!(field instanceof HTMLInputElement)) return;
