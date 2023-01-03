@@ -5,7 +5,7 @@ import cart from '../cart/cart';
 import { createHeader } from '../body/headerCreator';
 import { createFooter } from '../body/footerCreator';
 
-export function createItemPage(item: IGoods) {
+export function createItemPageWithoutHistory(item: IGoods) {
   createFooter();
   createHeader();
   const main = <Element>document.querySelector('.main__content');
@@ -43,10 +43,15 @@ export function createItemPage(item: IGoods) {
           <button class="item-page__button button__buy-now" title="${item.title}">Buy Now!</button>
         </div>
       </div>`;
-  history.pushState({}, 'newUrl', `${item.title.replace(' ', '_')}`);
+  //history.pushState({}, 'newUrl', `${item.title.replace(' ', '_')}`);
   main?.appendChild(page);
   cart.setFromLocalStorage();
   itemListener(item);
   hideSearch();
   document.title = `${item.title}`;
+}
+
+export function createItemPage(item: IGoods) {
+  createItemPageWithoutHistory(item);
+  history.pushState({}, 'newUrl', `${item.title.replace(' ', '_')}`);
 }

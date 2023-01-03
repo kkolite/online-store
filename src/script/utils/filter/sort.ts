@@ -2,7 +2,6 @@ import Goods from '../goods/goodsCreator';
 import { IGoods, ISort, sortBy } from '../../data/types';
 import { sortByalphabet } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
-import { categoryCount, produceCount } from './filterCount';
 
 export const sortType = { type: 'default' };
 
@@ -44,8 +43,6 @@ class SortData {
         sortType.type = 'hp';
       }
       showPopup();
-      produceCount(data);
-      categoryCount(data);
     });
   }
 }

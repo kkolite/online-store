@@ -69,7 +69,7 @@ export function createMain() {
       <div class="items">
       </div>
     </section>`;
-  history.pushState({}, 'newUrl', '/');
+  //history.pushState({}, 'newUrl', '/');
   createFilters();
   const filter = new FilterData();
   filter.filterGoods(data);

@@ -2,8 +2,8 @@ import { createError } from './errors/errorCreator';
 import data from '../data/data';
 import { removePayment } from './Payment/payAction';
 import { removeGallery } from './item/itemGallery';
-import { createItemPage } from './item/itemPageCreator';
-import { createCart } from './cart/cartCreator';
+import { createItemPage, createItemPageWithoutHistory } from './item/itemPageCreator';
+import { createCart, createCartWithoutHistory } from './cart/cartCreator';
 import { createMain } from './body/mainCreator';
 import { categoryArr, produceArr, fltr } from './filter/multifilter';
 import { showGrid, showList } from './view/view';
@@ -33,7 +33,7 @@ export function popstate() {
   window.addEventListener('popstate', function () {
     const route = window.location.pathname.split('/');
     const page = route[route.length - 1];
-    console.log(route, page);
+    console.log('Route:', route, page, window.history.state);
     removePayment();
     removeGallery();
     if (page === 'index.html' || page === '') {
@@ -42,12 +42,14 @@ export function popstate() {
       const pg = +getQueryString('page');
       const items = +getQueryString('items');
       if (!pg || !items) return;
-      createCart(items, pg);
+      //createCart(items, pg);
+      createCartWithoutHistory(items, pg);
     } else {
       const key = page.replace('_', ' ');
       const item = data.find((el) => el.title === key);
       if (!item) return;
-      createItemPage(item);
+      //createItemPage(item);
+      createItemPageWithoutHistory(item);
     }
   });
 }

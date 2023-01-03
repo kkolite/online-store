@@ -7,7 +7,7 @@ import cart from './cart';
 import { createHeader } from '../body/headerCreator';
 import { createFooter } from '../body/footerCreator';
 
-export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
+export function createCartWithoutHistory(itemsPerPage = CART_LIMIT, pageNumber = 1) {
   createFooter();
   createHeader();
   cart.setFromLocalStorage();
@@ -26,7 +26,7 @@ export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
   });
 
   if (uniqGoods.length === 0) {
-    history.pushState({}, 'newUrl', `cart`);
+    //history.pushState({}, 'newUrl', `cart`);
     page.innerHTML = `<p>Cart is Empty</p>
       <button class="cart__close-empty">Back to List</button>`;
     page.classList.add('cart_empty');
@@ -36,7 +36,7 @@ export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
     return;
   }
 
-  history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
+  //history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
 
   const itemsCount = document.createElement('div');
   itemsCount.innerHTML = `<label for="items_show">Show items:</label>
@@ -108,4 +108,9 @@ export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
   cartListener();
   hideSearch();
   document.title = 'Cart';
+}
+
+export function createCart(itemsPerPage = CART_LIMIT, pageNumber = 1) {
+  createCartWithoutHistory(itemsPerPage, pageNumber);
+  history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
 }
