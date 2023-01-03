@@ -6,7 +6,6 @@ import { visibleSearch } from './header';
 import cart from '../cart/cart';
 import { createHeader } from './headerCreator';
 import { createFooter } from './footerCreator';
-import { mainQuery } from '../mainQuery';
 
 export function createMain() {
   createHeader();

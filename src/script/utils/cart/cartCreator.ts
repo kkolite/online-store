@@ -26,7 +26,7 @@ export function createCartWithoutHistory(itemsPerPage = CART_LIMIT, pageNumber =
   });
 
   if (uniqGoods.length === 0) {
-    history.pushState({}, 'newUrl', `cart`);
+    //history.pushState({}, 'newUrl', `cart`);
     page.innerHTML = `<p>Cart is Empty</p>
       <button class="cart__close-empty">Back to List</button>`;
     page.classList.add('cart_empty');
