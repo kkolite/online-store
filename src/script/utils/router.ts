@@ -42,13 +42,11 @@ export function popstate() {
       const pg = +getQueryString('page');
       const items = +getQueryString('items');
       if (!pg || !items) return;
-      //createCart(items, pg);
       createCartWithoutHistory(items, pg);
     } else {
       const key = page.replace('_', ' ');
       const item = data.find((el) => el.title === key);
       if (!item) return;
-      //createItemPage(item);
       createItemPageWithoutHistory(item);
     }
   });
@@ -81,7 +79,6 @@ export function location() {
     while (categoryArr.length !== 0) {
       categoryArr.pop();
     }
-    //console.log('cat', category, ' end');
     if (category !== '') {
       if (category) {
         const catArr: string[] = category.split('.');
@@ -94,10 +91,7 @@ export function location() {
             return;
           }
         });
-      } /*else {
-        createError();
-        return;
-      }*/
+      }
     }
 
     const produce = getQueryString('prod');
@@ -116,17 +110,9 @@ export function location() {
             return;
           }
         });
-      } /*else {
-        createError();
-        return;
-      }*/
+      }
     }
 
-    /* const search = getQueryString('search'); */
-
-    /*createMain();
-    const dataSort = new SortData();
-    fltr(dataSort, data);*/
     let slctIndex: number | undefined;
     const sort = getQueryString('sort');
     if (sort) {
@@ -156,10 +142,7 @@ export function location() {
         data.sort((a, b) => b.price - a.price);
         sortType.type = 'hp';
         slctIndex = 3;
-      } /*else if (sort !== 'default') {
-        createError();
-        return;
-      }*/
+      }
     }
 
     const search = getQueryString('search');
@@ -190,7 +173,7 @@ export function location() {
     if (slctIndex) {
       select.selectedIndex = slctIndex;
     }
-    
+
     if (search) {
       const field = document.querySelector('#search');
       if (!(field instanceof HTMLInputElement)) return;
@@ -207,14 +190,7 @@ export function location() {
       showGrid();
     } else if (view === 'list') {
       showList();
-    } /*else {
-        createError();
-        return;
-      }*/
-    /*}*/ /*else {
-      createError();
-      return;
-    }*/
+    }
 
     return;
   }

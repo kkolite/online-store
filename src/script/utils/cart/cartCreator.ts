@@ -95,6 +95,7 @@ export function createCartWithoutHistory(itemsPerPage = CART_LIMIT, pageNumber =
   controls.innerHTML = `<p>Products: <span class="cart__controls-products"></span></p>
       <p>Total: $<span class="cart__controls-sum"></span><span class="cart__new-price"></span></p>
       <input type="text" placeholder="Have a promocode?" id="promo" name="promo" value="" autofocus autocomplete="off" maxlength="11" class="cart__controls-promo">
+      <label class="cart__controls-promo-helper">2023, rsschool and our githubs</label>
       <ul class="promo-list"></ul>
       <button class="cart__controls-pay">Pay</button>`;
   page.appendChild(list);
