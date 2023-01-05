@@ -36,7 +36,7 @@ export function createPay() {
     <img src="./assets/png/credit-card.png" alt="card" height="40px" class="form__cart-img">
     <div class="form__input-container">
       <label for="form__card" class="form__label">Card</label>
-      <input type="text" name="" id="form__card" maxlength="19" class="form__input">
+      <input type="text" name="" id="form__card" maxlength="19" class="form__input" placeholder="4 - Visa, 5 - MC, 6 - UP">
       <label for="form__card" class="form__label form__card_error label_error"></label>
     </div>
     <div class="form__input-container">
