@@ -113,6 +113,7 @@ export function itemListener(item: IGoods) {
   });
 
   breadMain.addEventListener('click', () => {
+    history.pushState({}, 'newUrl', '/');
     createMain();
     mainQuery();
   });

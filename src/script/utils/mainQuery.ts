@@ -30,7 +30,7 @@ export function mainQuery() {
       : (<HTMLInputElement>document.querySelector('#toCapacity')).max
   }`;
 
-  history.pushState(
+  history.replaceState(
     {},
     'newURL',
     `/?${queryCategory}&${queryProduce}&${querySort}&${queryView}&${querySearch}&${queryPmin}&${queryPmax}&${queryCmin}&${queryCmax}`

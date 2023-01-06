@@ -14,6 +14,7 @@ export function headerListener() {
   });
 
   headerLink.addEventListener('click', () => {
+    history.pushState({}, 'newUrl', '/');
     createMain();
     mainQuery();
   });
