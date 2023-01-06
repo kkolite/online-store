@@ -7,6 +7,7 @@ import { Promocode } from './promocode';
 import { createItemPage } from '../item/itemPageCreator';
 import { createCart } from './cartCreator';
 import { MAX_ITEMS_PER_PAGE } from '../../data/constants';
+import { mainQuery } from '../mainQuery';
 
 const promocode = new Promocode();
 
@@ -218,5 +219,6 @@ export function emptyCartListener() {
 
   button.addEventListener('click', () => {
     createMain();
+    mainQuery();
   });
 }

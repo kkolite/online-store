@@ -5,10 +5,10 @@ import { createCart } from '../cart/cartCreator';
 import { router } from '../router';
 import { headerInfo } from '../body/header';
 import { REMOVE_FROM_CART, ADD_TO_CART } from '../../data/constants';
-import { mainQuery } from '../mainQuery';
+//import { mainQuery } from '../mainQuery';
 
 export function showPopup() {
-  mainQuery();
+  //mainQuery();
   const goodsList = document.querySelectorAll('.item');
   goodsList.forEach((good) => {
     good.addEventListener('click', (e) => {

@@ -6,6 +6,7 @@ import { visibleSearch } from './header';
 import cart from '../cart/cart';
 import { createHeader } from './headerCreator';
 import { createFooter } from './footerCreator';
+import { showGrid, showList, view } from '../view/view';
 
 export function createMain() {
   createHeader();
@@ -77,4 +78,19 @@ export function createMain() {
   cart.setFromLocalStorage();
   showPopup();
   document.title = 'Online-store';
+
+  const gridView = main.querySelector('.goods__view_grid');
+  const listView = main.querySelector('.goods__view_list');
+
+  if (!gridView || !listView) return;
+
+  if (view === 'grid') {
+    listView.classList.remove('goods__view_active');
+    gridView.classList.add('goods__view_active');
+    showGrid();
+  } else {
+    gridView.classList.remove('goods__view_active');
+    listView.classList.add('goods__view_active');
+    showList();
+  }
 }

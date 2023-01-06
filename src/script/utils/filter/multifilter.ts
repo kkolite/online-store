@@ -60,10 +60,15 @@ function inclMaxCapacity(goods: IGoods) {
 function inclTitle(goods: IGoods) {
   const search = <HTMLInputElement>document.querySelector('#search');
   searchStr = search.value;
+
   const title = goods.title.toLowerCase().includes(search.value.toLowerCase());
   const category = goods.category.toLowerCase().includes(search.value.toLowerCase());
   const prod = goods.produce.toLowerCase().includes(search.value.toLowerCase());
-  return title || category || prod;
+  const price = goods.price.toString().includes(search.value);
+  const capacity = goods.capacity.toString().includes(search.value);
+  const onstock = goods.onstock.toString().includes(search.value);
+
+  return title || category || prod || price || capacity || onstock;
 }
 
 export function fltr(filtersList: IFilter, data: IGoods[]) {

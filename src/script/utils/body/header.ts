@@ -1,6 +1,7 @@
 import cart from '../cart/cart';
 import { createMain } from './mainCreator';
 import { createCart } from '../cart/cartCreator';
+import { mainQuery } from '../mainQuery';
 
 export function headerListener() {
   const headerCart = document.querySelector('.header__cart');
@@ -14,6 +15,7 @@ export function headerListener() {
 
   headerLink.addEventListener('click', () => {
     createMain();
+    mainQuery();
   });
 }
 
