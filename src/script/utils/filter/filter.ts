@@ -5,6 +5,8 @@ import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
 import { sortType } from '../filter/sort';
 import { createMain } from '../body/mainCreator';
+import { showGrid, showList, view } from '../view/view';
+import { mainQuery } from '../mainQuery';
 //import { doc } from 'prettier';
 
 class FilterData {
@@ -70,9 +72,14 @@ class FilterData {
       createMain();
       const dataSort = new SortData();
       (<HTMLInputElement>document.querySelector('#search')).value = '';
-      /* showGrid(); */
+      if (view === 'grid') {
+        showGrid();
+      } else {
+        showList();
+      }
       fltr(dataSort, data);
       showPopup();
+      mainQuery();
     });
 
     copy.addEventListener('click', () => {
@@ -91,6 +98,7 @@ class FilterData {
       search.focus();
       fltr(dataSort, data);
       showPopup();
+      mainQuery();
     });
 
     if (produce) {
@@ -98,6 +106,7 @@ class FilterData {
         addProperty(produceArr, e);
         fltr(dataSort, data);
         showPopup();
+        mainQuery();
       };
     }
 
@@ -106,6 +115,7 @@ class FilterData {
         addProperty(categoryArr, e);
         fltr(dataSort, data);
         showPopup();
+        mainQuery();
       };
     }
 
@@ -113,6 +123,7 @@ class FilterData {
       search.oninput = function () {
         fltr(dataSort, data);
         showPopup();
+        mainQuery();
       };
     }
 
@@ -120,6 +131,7 @@ class FilterData {
       fromPrice.onchange = function () {
         fltr(dataSort, data);
         showPopup();
+        mainQuery();
       };
     }
 
@@ -127,6 +139,7 @@ class FilterData {
       toPrice.onchange = function () {
         fltr(dataSort, data);
         showPopup();
+        mainQuery();
       };
     }
 
@@ -134,6 +147,7 @@ class FilterData {
       fromCapacity.onchange = function () {
         fltr(dataSort, data);
         showPopup();
+        mainQuery();
       };
     }
 
@@ -141,6 +155,7 @@ class FilterData {
       toCapacity.onchange = function () {
         fltr(dataSort, data);
         showPopup();
+        mainQuery();
       };
     }
   }

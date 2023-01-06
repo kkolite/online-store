@@ -1,3 +1,4 @@
+import { mainQuery } from '../mainQuery';
 import { showList, showGrid } from '../view/view';
 import { controlFromSlider, controlToSlider, setToggleAccessible } from './fromtofilter';
 
@@ -31,9 +32,15 @@ export function listener() {
   document.body.addEventListener('click', (e) => {
     if (e.target === listView) {
       showList();
+      mainQuery();
+      gridView.classList.remove('goods__view_active');
+      listView.classList.add('goods__view_active');
     }
     if (e.target === gridView) {
       showGrid();
+      mainQuery();
+      listView.classList.remove('goods__view_active');
+      gridView.classList.add('goods__view_active');
     }
   });
 

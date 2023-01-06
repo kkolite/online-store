@@ -5,6 +5,7 @@ import { createMain } from '../body/mainCreator';
 import { createCart } from '../cart/cartCreator';
 import { createGallery } from './itemGallery';
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../../data/constants';
+import { mainQuery } from '../mainQuery';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');
@@ -113,6 +114,7 @@ export function itemListener(item: IGoods) {
 
   breadMain.addEventListener('click', () => {
     createMain();
+    mainQuery();
   });
 
   imgMain.addEventListener('click', () => {

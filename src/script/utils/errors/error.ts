@@ -1,4 +1,5 @@
 import { createMain } from '../body/mainCreator';
+import { mainQuery } from '../mainQuery';
 
 export function errorListener() {
   const button = document.querySelector('.error__button');
@@ -6,5 +7,6 @@ export function errorListener() {
 
   button.addEventListener('click', () => {
     createMain();
+    mainQuery();
   });
 }

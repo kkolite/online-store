@@ -1,4 +1,4 @@
-import { mainQuery } from '../mainQuery';
+//import { mainQuery } from '../mainQuery';
 
 export let view = 'grid';
 
@@ -14,7 +14,7 @@ export function showList() {
     });
     view = 'list';
   }
-  mainQuery();
+  //mainQuery();
 }
 
 export function showGrid() {
@@ -30,5 +30,5 @@ export function showGrid() {
     });
     view = 'grid';
   }
-  mainQuery();
+  //mainQuery();
 }

@@ -4,6 +4,7 @@ import { createMain } from '../body/mainCreator';
 import { validateAdress, validateEMail, validateName, validateTel } from './infoValidation';
 import { validateCard, validateCVC, validateDate } from './payValidation';
 import { Promocode } from '../cart/promocode';
+import { mainQuery } from '../mainQuery';
 
 export function pay() {
   const button = document.querySelector('.form__button');
@@ -66,6 +67,7 @@ function newStore() {
   localStorage.clear();
   removePayment();
   createMain();
+  mainQuery();
 }
 
 export function removePayment() {
