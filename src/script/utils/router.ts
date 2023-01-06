@@ -9,7 +9,7 @@ import { categoryArr, produceArr, fltr } from './filter/multifilter';
 import { showGrid, showList } from './view/view';
 import SortData, { sortType } from './filter/sort';
 import { showPopup } from './goods/goodsListener';
-import { mainQuery } from './mainQuery';
+//import { mainQuery } from './mainQuery';
 
 export function router(event: Event) {
   event.preventDefault();
@@ -169,6 +169,7 @@ export function location() {
       sessionStorage.setItem('maxCapacity', cmax);
     }
 
+    history.pushState({}, 'newUrl', '/');
     createMain();
     const select = <HTMLSelectElement>document.getElementById('sortBy');
     if (slctIndex) {
@@ -185,7 +186,7 @@ export function location() {
     const dataSort = new SortData();
     fltr(dataSort, data);
     showPopup();
-    mainQuery();
+    //mainQuery();
 
     //if (view) {
     if (view === 'grid') {

@@ -66,6 +66,7 @@ function newStore() {
   Promocode.activePromo = [];
   localStorage.clear();
   removePayment();
+  history.pushState({}, 'newUrl', '/');
   createMain();
   mainQuery();
 }
