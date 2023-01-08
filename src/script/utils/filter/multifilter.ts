@@ -1,10 +1,9 @@
 import { Callback, IGoods, IFilter } from '../../data/types';
-import { categoryCount, produceCount } from './filterCount';
+import { categoryCount, priceCount, produceCount, capacityCount } from './filterCount';
 
 export const produceArr: string[] = [];
 export const categoryArr: string[] = [];
 export let searchStr = '';
-//export const search = <HTMLInputElement>document.querySelector('#search');
 
 export function sortByalphabet(data: IGoods[]) {
   data.sort((a, b) => {
@@ -30,31 +29,31 @@ function inclProduce(goods: IGoods) {
 }
 
 function inclMinPrice(goods: IGoods) {
-  const minPrice = document.querySelector('#minPrice');
+  const minPrice = sessionStorage.getItem('minPrice');
   if (!minPrice) return;
 
-  return goods.price >= +minPrice.innerHTML * 1000000;
+  return goods.price >= +minPrice * 1000000;
 }
 
 function inclMaxPrice(goods: IGoods) {
-  const maxPrice = document.querySelector('#maxPrice');
+  const maxPrice = sessionStorage.getItem('maxPrice');
   if (!maxPrice) return;
 
-  return goods.price <= +maxPrice.innerHTML * 1000000;
+  return goods.price <= +maxPrice * 1000000;
 }
 
 function inclMinCapacity(goods: IGoods) {
-  const minCapacity = document.querySelector('#minCapacity');
+  const minCapacity = sessionStorage.getItem('minCapacity');
   if (!minCapacity) return;
 
-  return goods.capacity >= +minCapacity.innerHTML;
+  return goods.capacity >= +minCapacity;
 }
 
 function inclMaxCapacity(goods: IGoods) {
-  const maxCapacity = document.querySelector('#maxCapacity');
+  const maxCapacity = sessionStorage.getItem('maxCapacity');
   if (!maxCapacity) return;
 
-  return goods.capacity <= +maxCapacity.innerHTML;
+  return goods.capacity <= +maxCapacity;
 }
 
 function inclTitle(goods: IGoods) {
@@ -75,7 +74,6 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
   const propArr = [];
 
   if (categoryArr.length !== 0) propArr.push(inclColor);
-  //if (memoryArr.length !== 0) propArr.push(inclMemory);
   if (produceArr.length !== 0) propArr.push(inclProduce);
 
   propArr.push(inclTitle);
@@ -87,11 +85,12 @@ export function fltr(filtersList: IFilter, data: IGoods[]) {
   const arr = data.filter(multifilter(propArr as Callback[]));
   categoryCount(arr);
   produceCount(arr);
+  priceCount(arr);
+  capacityCount(arr);
   filtersList.sortGoods(arr);
 }
 
 export function addProperty(property: Array<string>, e: Event) {
-  //(<HTMLElement>e.target).classList.toggle('active');
   const key = (<HTMLElement>e.target).getAttribute('title');
   if (!key) return;
   if (property.includes(key)) {

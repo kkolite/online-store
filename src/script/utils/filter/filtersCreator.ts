@@ -48,6 +48,7 @@ function createPriceFilter() {
       input.setAttribute('value', `${el[3]}`);
     } else {
       input.setAttribute('value', `${el[0]}`);
+      sessionStorage.setItem(`${el[2]}`, `${el[0]}`)
     }
     input.id = `${el[1]}`;
     priceControls?.appendChild(input);
@@ -85,6 +86,7 @@ function createCapacityFilter() {
       input.setAttribute('value', `${el[3]}`);
     } else {
       input.setAttribute('value', `${el[0]}`);
+      sessionStorage.setItem(`${el[2]}`, `${el[0]}`)
     }
     input.id = `${el[1]}`;
     capacityControls?.appendChild(input);
