@@ -7,7 +7,6 @@ import { sortType } from '../filter/sort';
 import { createMain } from '../body/mainCreator';
 import { showGrid, showList, view } from '../view/view';
 import { mainQuery } from '../mainQuery';
-//import { doc } from 'prettier';
 
 class FilterData {
   sortGood: IFilter;
@@ -94,6 +93,7 @@ class FilterData {
     });
 
     cancel.addEventListener('click', () => {
+      const dataSort = new SortData();
       search.value = '';
       search.focus();
       fltr(dataSort, data);
@@ -104,6 +104,7 @@ class FilterData {
     if (produce) {
       produce.onclick = function (e) {
         addProperty(produceArr, e);
+        const dataSort = new SortData();
         fltr(dataSort, data);
         showPopup();
         mainQuery();
@@ -113,6 +114,7 @@ class FilterData {
     if (color) {
       color.onclick = function (e) {
         addProperty(categoryArr, e);
+        const dataSort = new SortData();
         fltr(dataSort, data);
         showPopup();
         mainQuery();
@@ -121,6 +123,7 @@ class FilterData {
 
     if (search) {
       search.oninput = function () {
+        const dataSort = new SortData();
         fltr(dataSort, data);
         showPopup();
         mainQuery();
@@ -129,7 +132,16 @@ class FilterData {
 
     if (fromPrice) {
       fromPrice.onchange = function () {
+        const dataSort = new SortData();
         fltr(dataSort, data);
+        const valueMin = sessionStorage.getItem('minPrice');
+        if (valueMin) {
+          fromPrice.value = valueMin;
+          const minPrice = document.getElementById('minPrice');
+          if (minPrice) {
+            minPrice.innerHTML = valueMin;
+          }
+        }
         showPopup();
         mainQuery();
       };
@@ -137,7 +149,16 @@ class FilterData {
 
     if (toPrice) {
       toPrice.onchange = function () {
+        const dataSort = new SortData();
         fltr(dataSort, data);
+        const valueMax = sessionStorage.getItem('maxPrice');
+        if (valueMax) {
+          toPrice.value = valueMax;
+          const maxPrice = document.getElementById('maxPrice');
+          if (maxPrice) {
+            maxPrice.innerHTML = valueMax;
+          }
+        }
         showPopup();
         mainQuery();
       };
@@ -145,7 +166,16 @@ class FilterData {
 
     if (fromCapacity) {
       fromCapacity.onchange = function () {
+        const dataSort = new SortData();
         fltr(dataSort, data);
+        const valueMin = sessionStorage.getItem('minCapacity');
+        if (valueMin) {
+          fromCapacity.value = valueMin;
+          const minCapacity = document.getElementById('minCapacity');
+          if (minCapacity) {
+            minCapacity.innerHTML = valueMin;
+          }
+        }
         showPopup();
         mainQuery();
       };
@@ -153,7 +183,16 @@ class FilterData {
 
     if (toCapacity) {
       toCapacity.onchange = function () {
+        const dataSort = new SortData();
         fltr(dataSort, data);
+        const valueMax = sessionStorage.getItem('maxCapacity');
+        if (valueMax) {
+          toCapacity.value = valueMax;
+          const maxCapacity = document.getElementById('maxCapacity');
+          if (maxCapacity) {
+            maxCapacity.innerHTML = valueMax;
+          }
+        }
         showPopup();
         mainQuery();
       };

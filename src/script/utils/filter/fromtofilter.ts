@@ -11,7 +11,7 @@ export function controlFromSlider(
   } else {
     minValue.innerHTML = from.toString();
   }
-  sessionStorage.setItem(key, from.toString());
+  sessionStorage.setItem(key, minValue.innerHTML);
 }
 
 export function controlToSlider(
@@ -31,7 +31,7 @@ export function controlToSlider(
     maxValue.innerHTML = from.toString();
     toProperty.value = from.toString();
   }
-  sessionStorage.setItem(key, to.toString());
+  sessionStorage.setItem(key, maxValue.innerHTML);
 }
 
 function getParsed(currentFrom: HTMLInputElement, currentTo: HTMLInputElement) {

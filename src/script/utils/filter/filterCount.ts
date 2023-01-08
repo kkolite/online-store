@@ -28,3 +28,43 @@ export function categoryCount(arr: IGoods[]) {
     el.textContent = `${key} (${count}/${all})`;
   });
 }
+
+export function priceCount(arr: IGoods[]) {
+  const fromPrice = document.getElementById('fromPrice');
+  const toPrice = document.getElementById('toPrice');
+  const minPrice = document.getElementById('minPrice');
+  const maxPrice = document.getElementById('maxPrice');
+  const priceArr = arr.map((el) => el.price / 1000000);
+  if (priceArr.length !== 0) {
+    const min = Math.min(...priceArr);
+    const max = Math.max(...priceArr);
+  
+    if (fromPrice && toPrice && minPrice && maxPrice) {
+      (<HTMLInputElement>fromPrice).value = min.toString();
+      (<HTMLInputElement>toPrice).value = max.toString();
+      minPrice.innerHTML = min.toString();
+      maxPrice.innerHTML = max.toString();
+    }
+  }
+  
+}
+
+export function capacityCount(arr: IGoods[]) {
+  const fromCapacity = document.getElementById('fromCapacity');
+  const toCapacity = document.getElementById('toCapacity');
+  const minCapacity = document.getElementById('minCapacity');
+  const maxCapacity = document.getElementById('maxCapacity');
+  const capacityArr = arr.map((el) => el.capacity);
+
+  if (capacityArr.length !== 0) {
+    const min = Math.min(...capacityArr);
+    const max = Math.max(...capacityArr);
+  
+    if (fromCapacity && toCapacity && minCapacity && maxCapacity) {
+      (<HTMLInputElement>fromCapacity).value = `${min}`;
+      (<HTMLInputElement>toCapacity).value = max.toString();
+      minCapacity.innerHTML = min.toString();
+      maxCapacity.innerHTML = max.toString();
+    }
+  }
+}
