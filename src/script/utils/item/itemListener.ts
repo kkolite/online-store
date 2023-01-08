@@ -5,7 +5,11 @@ import { createMain } from '../body/mainCreator';
 import { createCart } from '../cart/cartCreator';
 import { createGallery } from './itemGallery';
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../../data/constants';
-import { mainQuery } from '../mainQuery';
+//import { mainQuery } from '../mainQuery';
+import { fltr } from '../filter/multifilter';
+import { showPopup } from '../goods/goodsListener';
+import data from '../../data/data';
+import SortData from '../filter/sort';
 
 export function itemListener(item: IGoods) {
   const button = document.querySelector('.button__add');
@@ -115,7 +119,10 @@ export function itemListener(item: IGoods) {
   breadMain.addEventListener('click', () => {
     history.pushState({}, 'newUrl', '/');
     createMain();
-    mainQuery();
+    const dataSort = new SortData();
+    fltr(dataSort, data);
+    showPopup();
+    //mainQuery();
   });
 
   imgMain.addEventListener('click', () => {

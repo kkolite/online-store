@@ -39,6 +39,9 @@ export function popstate() {
     removeGallery();
     if (page === 'index.html' || page === '') {
       createMain();
+      const dataSort = new SortData();
+      fltr(dataSort, data);
+      showPopup();
     } else if (page === 'cart') {
       const pg = +getQueryString('page');
       const items = +getQueryString('items');
