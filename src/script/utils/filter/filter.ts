@@ -3,7 +3,7 @@ import { IGoods, IFilter } from '../../data/types';
 import { addProperty, fltr, produceArr, categoryArr /*sortByalphabet*/ } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
-import { sortType } from '../filter/sort';
+//import { sortType } from '../filter/sort';
 import { createMain } from '../body/mainCreator';
 import { showGrid, showList, view } from '../view/view';
 import { mainQuery } from '../mainQuery';
@@ -50,6 +50,7 @@ class FilterData {
     }
 
     reset.addEventListener('click', () => {
+      //const temp = (<HTMLSelectElement>document.getElementById('sortBy')).selectedIndex;
       search.value = '';
       while (produceArr.length !== 0) {
         produceArr.pop();
@@ -61,13 +62,13 @@ class FilterData {
       sessionStorage.setItem('maxPrice', toPrice.max);
       sessionStorage.setItem('minCapacity', fromCapacity.min);
       sessionStorage.setItem('maxCapacity', toCapacity.max);
-      /*data.sort((a, b) => {
+      data.sort((a, b) => {
         if (a.title > b.title) {
           return 1;
         }
         return -1;
       });
-      sortType.type = 'default';*/
+      //sortType.type = 'default';
       createMain();
       const dataSort = new SortData();
       (<HTMLInputElement>document.querySelector('#search')).value = '';
@@ -78,7 +79,8 @@ class FilterData {
       }
       fltr(dataSort, data);
       showPopup();
-      mainQuery();
+      //mainQuery();
+      //(<HTMLSelectElement>document.getElementById('sortBy')).selectedIndex = temp;
     });
 
     copy.addEventListener('click', () => {
