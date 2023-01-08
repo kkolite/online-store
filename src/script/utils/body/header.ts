@@ -1,7 +1,11 @@
 import cart from '../cart/cart';
 import { createMain } from './mainCreator';
 import { createCart } from '../cart/cartCreator';
-import { mainQuery } from '../mainQuery';
+//import { mainQuery } from '../mainQuery';
+import { showPopup } from '../goods/goodsListener';
+import { fltr } from '../filter/multifilter';
+import data from '../../data/data';
+import SortData from '../filter/sort';
 
 export function headerListener() {
   const headerCart = document.querySelector('.header__cart');
@@ -16,7 +20,10 @@ export function headerListener() {
   headerLink.addEventListener('click', () => {
     history.pushState({}, 'newUrl', '/');
     createMain();
-    mainQuery();
+    const dataSort = new SortData();
+    fltr(dataSort, data);
+    showPopup();
+    //mainQuery();
   });
 }
 
