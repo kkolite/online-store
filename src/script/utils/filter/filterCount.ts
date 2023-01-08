@@ -38,7 +38,7 @@ export function priceCount(arr: IGoods[]) {
   if (priceArr.length !== 0) {
     const min = Math.min(...priceArr);
     const max = Math.max(...priceArr);
-  
+
     if (fromPrice && toPrice && minPrice && maxPrice) {
       (<HTMLInputElement>fromPrice).value = min.toString();
       (<HTMLInputElement>toPrice).value = max.toString();
@@ -46,7 +46,6 @@ export function priceCount(arr: IGoods[]) {
       maxPrice.innerHTML = max.toString();
     }
   }
-  
 }
 
 export function capacityCount(arr: IGoods[]) {
@@ -59,7 +58,7 @@ export function capacityCount(arr: IGoods[]) {
   if (capacityArr.length !== 0) {
     const min = Math.min(...capacityArr);
     const max = Math.max(...capacityArr);
-  
+
     if (fromCapacity && toCapacity && minCapacity && maxCapacity) {
       (<HTMLInputElement>fromCapacity).value = `${min}`;
       (<HTMLInputElement>toCapacity).value = max.toString();
