@@ -52,5 +52,5 @@ export function createItemPageWithoutHistory(item: IGoods) {
 
 export function createItemPage(item: IGoods) {
   createItemPageWithoutHistory(item);
-  history.pushState({}, 'newUrl', `${item.title.replace(' ', '_')}`);
+  history.pushState({}, 'newUrl', `${item.title.replaceAll(' ', '_')}`);
 }

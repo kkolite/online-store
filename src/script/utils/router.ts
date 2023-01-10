@@ -56,7 +56,7 @@ export function popstate() {
 }
 
 export function location() {
-  const route = window.location.pathname.replace('_', ' ').slice(1);
+  const route = window.location.pathname.replaceAll('_', ' ').slice(1);
   const arr = data.map((el) => el.title);
 
   if (arr.includes(route)) {
