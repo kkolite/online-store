@@ -5,7 +5,7 @@ import { createMain } from '../body/mainCreator';
 import { createCart } from '../cart/cartCreator';
 import { createGallery } from './itemGallery';
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../../data/constants';
-import { fltr } from '../filter/multifilter';
+import { filter } from '../filter/multifilter';
 import { showPopup } from '../goods/goodsListener';
 import data from '../../data/data';
 import SortData from '../filter/sort';
@@ -116,7 +116,7 @@ export function itemListener(item: IGoods) {
     history.pushState({}, 'newUrl', '/');
     createMain();
     const dataSort = new SortData();
-    fltr(dataSort, data);
+    filter(dataSort, data);
     showPopup();
   });
 

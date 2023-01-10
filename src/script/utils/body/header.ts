@@ -2,7 +2,7 @@ import cart from '../cart/cart';
 import { createMain } from './mainCreator';
 import { createCart } from '../cart/cartCreator';
 import { showPopup } from '../goods/goodsListener';
-import { fltr } from '../filter/multifilter';
+import { filter } from '../filter/multifilter';
 import data from '../../data/data';
 import SortData from '../filter/sort';
 
@@ -20,7 +20,7 @@ export function headerListener() {
     history.pushState({}, 'newUrl', '/');
     createMain();
     const dataSort = new SortData();
-    fltr(dataSort, data);
+    filter(dataSort, data);
     showPopup();
   });
 }

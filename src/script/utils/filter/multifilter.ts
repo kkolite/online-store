@@ -70,7 +70,7 @@ function inclTitle(goods: IGoods) {
   return title || category || prod || price || capacity || onstock;
 }
 
-export function fltr(filtersList: IFilter, data: IGoods[]) {
+export function filter(filtersList: IFilter, data: IGoods[]) {
   const propArr = [];
 
   if (categoryArr.length !== 0) propArr.push(inclColor);

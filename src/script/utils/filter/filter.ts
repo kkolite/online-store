@@ -1,6 +1,6 @@
 import SortData from './sort';
 import { IGoods, IFilter, viewType } from '../../data/types';
-import { addProperty, fltr, produceArr, categoryArr } from './multifilter';
+import { addProperty, filter, produceArr, categoryArr } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
 import { createMain } from '../body/mainCreator';
@@ -70,7 +70,7 @@ class FilterData {
       } else {
         showList();
       }
-      fltr(dataSort, data);
+      filter(dataSort, data);
       showPopup();
     });
 
@@ -89,7 +89,7 @@ class FilterData {
       const dataSort = new SortData();
       search.value = '';
       search.focus();
-      fltr(dataSort, data);
+      filter(dataSort, data);
       showPopup();
       mainQuery();
     });
@@ -98,7 +98,7 @@ class FilterData {
       produce.onclick = function (e) {
         addProperty(produceArr, e);
         const dataSort = new SortData();
-        fltr(dataSort, data);
+        filter(dataSort, data);
         showPopup();
         mainQuery();
       };
@@ -108,7 +108,7 @@ class FilterData {
       color.onclick = function (e) {
         addProperty(categoryArr, e);
         const dataSort = new SortData();
-        fltr(dataSort, data);
+        filter(dataSort, data);
         showPopup();
         mainQuery();
       };
@@ -117,73 +117,38 @@ class FilterData {
     if (search) {
       search.oninput = function () {
         const dataSort = new SortData();
-        fltr(dataSort, data);
+        filter(dataSort, data);
         showPopup();
         mainQuery();
       };
     }
 
     if (fromPrice) {
-      fromPrice.onchange = function () {
-        const dataSort = new SortData();
-        fltr(dataSort, data);
-        const valueMin = sessionStorage.getItem('minPrice');
-        if (valueMin) {
-          fromPrice.value = valueMin;
-          const minPrice = document.getElementById('minPrice');
-          if (minPrice) {
-            minPrice.innerHTML = valueMin;
-          }
-        }
-        showPopup();
-        mainQuery();
-      };
+      filterByDualSlider(fromPrice, 'minPrice');
     }
 
     if (toPrice) {
-      toPrice.onchange = function () {
-        const dataSort = new SortData();
-        fltr(dataSort, data);
-        const valueMax = sessionStorage.getItem('maxPrice');
-        if (valueMax) {
-          toPrice.value = valueMax;
-          const maxPrice = document.getElementById('maxPrice');
-          if (maxPrice) {
-            maxPrice.innerHTML = valueMax;
-          }
-        }
-        showPopup();
-        mainQuery();
-      };
+      filterByDualSlider(toPrice, 'maxPrice');
     }
 
     if (fromCapacity) {
-      fromCapacity.onchange = function () {
-        const dataSort = new SortData();
-        fltr(dataSort, data);
-        const valueMin = sessionStorage.getItem('minCapacity');
-        if (valueMin) {
-          fromCapacity.value = valueMin;
-          const minCapacity = document.getElementById('minCapacity');
-          if (minCapacity) {
-            minCapacity.innerHTML = valueMin;
-          }
-        }
-        showPopup();
-        mainQuery();
-      };
+      filterByDualSlider(fromCapacity, 'minCapacity');
     }
 
     if (toCapacity) {
-      toCapacity.onchange = function () {
+      filterByDualSlider(toCapacity, 'maxCapacity');
+    }
+
+    function filterByDualSlider(property: HTMLInputElement, propertyId: string) {
+      property.onchange = function () {
         const dataSort = new SortData();
-        fltr(dataSort, data);
-        const valueMax = sessionStorage.getItem('maxCapacity');
-        if (valueMax) {
-          toCapacity.value = valueMax;
-          const maxCapacity = document.getElementById('maxCapacity');
-          if (maxCapacity) {
-            maxCapacity.innerHTML = valueMax;
+        filter(dataSort, data);
+        const value = sessionStorage.getItem(propertyId);
+        if (value) {
+          property.value = value;
+          const propertyElement = document.getElementById(propertyId);
+          if (propertyElement) {
+            propertyElement.innerHTML = value;
           }
         }
         showPopup();

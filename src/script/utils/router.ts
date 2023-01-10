@@ -5,7 +5,7 @@ import { removeGallery } from './item/itemGallery';
 import { createItemPage, createItemPageWithoutHistory } from './item/itemPageCreator';
 import { createCart, createCartWithoutHistory } from './cart/cartCreator';
 import { createMain } from './body/mainCreator';
-import { categoryArr, produceArr, fltr } from './filter/multifilter';
+import { categoryArr, produceArr, filter } from './filter/multifilter';
 import { showGrid, showList } from './view/view';
 import SortData, { sortType } from './filter/sort';
 import { showPopup } from './goods/goodsListener';
@@ -39,7 +39,7 @@ export function popstate() {
     if (page === 'index.html' || page === '') {
       createMain();
       const dataSort = new SortData();
-      fltr(dataSort, data);
+      filter(dataSort, data);
       showPopup();
     } else if (page === 'cart') {
       const pg = +getQueryString('page');
@@ -186,7 +186,7 @@ export function location() {
     }
 
     const dataSort = new SortData();
-    fltr(dataSort, data);
+    filter(dataSort, data);
     showPopup();
 
     const gridView = document.querySelector('.goods__view_grid');
