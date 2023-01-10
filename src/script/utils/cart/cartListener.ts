@@ -8,6 +8,7 @@ import { createItemPage } from '../item/itemPageCreator';
 import { createCart } from './cartCreator';
 import { MAX_ITEMS_PER_PAGE } from '../../data/constants';
 import { mainQuery } from '../mainQuery';
+import { IGoods } from '../../data/types';
 
 const promocode = new Promocode();
 
@@ -204,7 +205,13 @@ export function cartListener() {
     } else {
       const value = +itemsShow.value;
       const currentPageNum = +currentPage.innerHTML;
-      if (Math.ceil(cart.cartLength() / value) < currentPageNum) {
+      const uniqGoods: Array<IGoods> = [];
+      cart.cartArr.forEach((el) => {
+        if (!uniqGoods.map((el) => el.title).includes(el.title)) {
+          uniqGoods.push(el);
+        }
+      });
+      if (Math.ceil(uniqGoods.length / value) < currentPageNum) {
         createCart(value, currentPageNum - 1);
       } else {
         createCart(value, currentPageNum);
