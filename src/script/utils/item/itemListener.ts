@@ -5,7 +5,6 @@ import { createMain } from '../body/mainCreator';
 import { createCart } from '../cart/cartCreator';
 import { createGallery } from './itemGallery';
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../../data/constants';
-//import { mainQuery } from '../mainQuery';
 import { fltr } from '../filter/multifilter';
 import { showPopup } from '../goods/goodsListener';
 import data from '../../data/data';
@@ -50,7 +49,7 @@ export function itemListener(item: IGoods) {
     }
   });
 
-  minus.addEventListener('click', (/* e */) => {
+  minus.addEventListener('click', () => {
     if (infoCont.classList.contains('item-page__info-container_active')) {
       cart.deleteFromCart(key);
 
@@ -64,10 +63,9 @@ export function itemListener(item: IGoods) {
       moneyInCart.textContent = cart.moneySum();
       itemCounter.textContent = `${cart.itemsInCart(key)}`;
     }
-    //e.stopPropagation();
   });
 
-  plus.addEventListener('click', (/* e */) => {
+  plus.addEventListener('click', () => {
     if (!cart.isEnough(key)) {
       cart.pushInCart(key);
       count = cart.cartLength();
@@ -79,10 +77,9 @@ export function itemListener(item: IGoods) {
     } else {
       alert(`We haven't so many ${key} onstock!`);
     }
-    //e.stopPropagation();
   });
 
-  button.addEventListener('click', (/* e */) => {
+  button.addEventListener('click', () => {
     if (infoCont.classList.contains('item-page__info-container_active')) {
       infoCont.classList.remove('item-page__info-container_active');
       button.textContent = ADD_TO_CART;
@@ -98,7 +95,6 @@ export function itemListener(item: IGoods) {
     count = cart.cartLength();
     countOfGoods.innerHTML = count.toString();
     moneyInCart.textContent = cart.moneySum();
-    //e.stopPropagation();
   });
 
   buyNow.addEventListener('click', () => {
@@ -122,7 +118,6 @@ export function itemListener(item: IGoods) {
     const dataSort = new SortData();
     fltr(dataSort, data);
     showPopup();
-    //mainQuery();
   });
 
   imgMain.addEventListener('click', () => {

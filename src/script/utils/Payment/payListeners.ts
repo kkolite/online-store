@@ -56,6 +56,7 @@ export function payListeners() {
 
     if (!last.match(/[0-9]| /)) {
       card.value = value.slice(0, -1);
+      return;
     }
 
     if ((length === 5 || length === 10 || length === 15) && length > prevCardIndex) {
@@ -87,8 +88,9 @@ export function payListeners() {
     const length = value.length;
     const last = value[length - 1];
 
-    if (!last.match(/[0-9]| |\//)) {
+    if (!last.match(/[0-9]| /)) {
       date.value = value.slice(0, -1);
+      return;
     }
 
     if (length === 3 && length > prevDateIndex) {

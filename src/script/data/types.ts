@@ -5,6 +5,11 @@ export enum aviaCategory {
   Cargo = 'Cargo',
 }
 
+export enum viewType {
+  Grid = 'grid',
+  List = 'list',
+}
+
 export interface IGoods {
   title: string;
   produce: string;

@@ -1,6 +1,7 @@
+import { viewType } from '../../data/types';
 import { mainQuery } from '../mainQuery';
 
-export let view = 'grid';
+export let view: viewType = viewType.Grid;
 
 export function showList() {
   const items = document.querySelector('.items');
@@ -12,7 +13,7 @@ export function showList() {
     item.forEach((i) => {
       i.classList.add('item__list');
     });
-    view = 'list';
+    view = viewType.List;
   }
   mainQuery();
 }
@@ -28,7 +29,7 @@ export function showGrid() {
     item.forEach((i) => {
       i.classList.remove('item__list');
     });
-    view = 'grid';
+    view = viewType.Grid;
   }
   mainQuery();
 }

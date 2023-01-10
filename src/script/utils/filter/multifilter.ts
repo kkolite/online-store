@@ -5,7 +5,7 @@ export const produceArr: string[] = [];
 export const categoryArr: string[] = [];
 export let searchStr = '';
 
-export function sortByalphabet(data: IGoods[]) {
+export function sortByAlphabet(data: IGoods[]) {
   data.sort((a, b) => {
     if (a.title > b.title) {
       return 1;

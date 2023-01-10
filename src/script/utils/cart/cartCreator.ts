@@ -14,9 +14,11 @@ export function createCartWithoutHistory(itemsPerPage = CART_LIMIT, pageNumber =
 
   const main = <Element>document.querySelector('.main__content');
   main.innerHTML = '';
+
   const page = document.createElement('div');
-  const list = document.createElement('ul');
   page.classList.add('cart');
+
+  const list = document.createElement('ul');
 
   const uniqGoods: Array<IGoods> = [];
   cart.cartArr.forEach((el) => {
@@ -26,7 +28,6 @@ export function createCartWithoutHistory(itemsPerPage = CART_LIMIT, pageNumber =
   });
 
   if (uniqGoods.length === 0) {
-    //history.pushState({}, 'newUrl', `cart`);
     page.innerHTML = `<p>Cart is Empty</p>
       <button class="cart__close-empty">Back to List</button>`;
     page.classList.add('cart_empty');
@@ -36,8 +37,6 @@ export function createCartWithoutHistory(itemsPerPage = CART_LIMIT, pageNumber =
     return;
   }
 
-  //history.pushState({}, 'newUrl', `cart?page=${pageNumber}&items=${itemsPerPage}`);
-
   const itemsCount = document.createElement('div');
   itemsCount.innerHTML = `<label for="items_show">Show items:</label>
   <input type="number" id="items_show" value="${itemsPerPage}" min="0" max="${MAX_ITEMS_PER_PAGE}">
@@ -45,21 +44,26 @@ export function createCartWithoutHistory(itemsPerPage = CART_LIMIT, pageNumber =
   main.appendChild(itemsCount);
 
   if (uniqGoods.length > itemsPerPage) {
-    const countPages = Math.ceil(uniqGoods.length / itemsPerPage);
-    const pagination = document.createElement('div');
-    pagination.classList.add('pagination');
     const pageSpan = document.createElement('span');
     pageSpan.innerHTML = 'Page:';
+
+    const pagination = document.createElement('div');
+    pagination.classList.add('pagination');
     pagination.appendChild(pageSpan);
+
+    const countPages = Math.ceil(uniqGoods.length / itemsPerPage);
     for (let i = 1; i <= countPages; i++) {
       const paginationPage = document.createElement('span');
       paginationPage.classList.add('pagination-page');
+      paginationPage.innerHTML = `${i}`;
+
       if (i === pageNumber) {
         paginationPage.classList.add('pagination-page_active');
       }
-      paginationPage.innerHTML = `${i}`;
+
       pagination.appendChild(paginationPage);
     }
+
     main.appendChild(pagination);
   }
 
@@ -98,14 +102,16 @@ export function createCartWithoutHistory(itemsPerPage = CART_LIMIT, pageNumber =
       <label class="cart__controls-promo-helper">2023, rsschool and our githubs</label>
       <ul class="promo-list"></ul>
       <button class="cart__controls-pay">Pay</button>`;
+
   page.appendChild(list);
   page.appendChild(controls);
-  main?.appendChild(page);
+  main.appendChild(page);
+
   if (Promocode.activePromo.length > 0) {
     const promo = new Promocode();
     promo.afterReload();
   }
-  //Promocode.activePromo = [];
+
   cartListener();
   hideSearch();
   document.title = 'Cart';

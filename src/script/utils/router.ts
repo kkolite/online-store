@@ -9,7 +9,6 @@ import { categoryArr, produceArr, fltr } from './filter/multifilter';
 import { showGrid, showList } from './view/view';
 import SortData, { sortType } from './filter/sort';
 import { showPopup } from './goods/goodsListener';
-//import { mainQuery } from './mainQuery';
 
 export function router(event: Event) {
   event.preventDefault();
@@ -189,12 +188,19 @@ export function location() {
     const dataSort = new SortData();
     fltr(dataSort, data);
     showPopup();
-    //mainQuery();
 
-    //if (view) {
+    const gridView = document.querySelector('.goods__view_grid');
+    const listView = document.querySelector('.goods__view_list');
+
+    if (!gridView || !listView) return;
+
     if (view === 'grid') {
+      listView.classList.remove('goods__view_active');
+      gridView.classList.add('goods__view_active');
       showGrid();
-    } else if (view === 'list') {
+    } else {
+      gridView.classList.remove('goods__view_active');
+      listView.classList.add('goods__view_active');
       showList();
     }
 

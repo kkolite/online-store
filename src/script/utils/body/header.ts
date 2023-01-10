@@ -1,7 +1,6 @@
 import cart from '../cart/cart';
 import { createMain } from './mainCreator';
 import { createCart } from '../cart/cartCreator';
-//import { mainQuery } from '../mainQuery';
 import { showPopup } from '../goods/goodsListener';
 import { fltr } from '../filter/multifilter';
 import data from '../../data/data';
@@ -23,7 +22,6 @@ export function headerListener() {
     const dataSort = new SortData();
     fltr(dataSort, data);
     showPopup();
-    //mainQuery();
   });
 }
 

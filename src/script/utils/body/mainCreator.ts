@@ -7,6 +7,7 @@ import cart from '../cart/cart';
 import { createHeader } from './headerCreator';
 import { createFooter } from './footerCreator';
 import { showGrid, showList, view } from '../view/view';
+import { viewType } from '../../data/types';
 
 export function createMain() {
   createHeader();
@@ -70,7 +71,6 @@ export function createMain() {
       <div class="items">
       </div>
     </section>`;
-  //history.pushState({}, 'newUrl', '/');
   createFilters();
   const filter = new FilterData();
   filter.filterGoods(data);
@@ -84,7 +84,7 @@ export function createMain() {
 
   if (!gridView || !listView) return;
 
-  if (view === 'grid') {
+  if (view === viewType.Grid) {
     listView.classList.remove('goods__view_active');
     gridView.classList.add('goods__view_active');
     showGrid();

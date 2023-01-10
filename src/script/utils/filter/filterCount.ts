@@ -8,7 +8,7 @@ export function produceCount(arr: IGoods[]) {
     const count = arr.filter((item) => item.produce === key).length;
     const all = data.filter((item) => item.produce === key).length;
     el.classList.add('active');
-    if (count === 0) {
+    if (!count) {
       el.classList.remove('active');
     }
     el.textContent = `${key} (${count}/${all})`;
@@ -22,7 +22,7 @@ export function categoryCount(arr: IGoods[]) {
     const count = arr.filter((item) => item.category === key).length;
     const all = data.filter((item) => item.category === key).length;
     el.classList.add('active');
-    if (count === 0) {
+    if (!count) {
       el.classList.remove('active');
     }
     el.textContent = `${key} (${count}/${all})`;
@@ -35,7 +35,7 @@ export function priceCount(arr: IGoods[]) {
   const minPrice = document.getElementById('minPrice');
   const maxPrice = document.getElementById('maxPrice');
   const priceArr = arr.map((el) => el.price / 1000000);
-  if (priceArr.length !== 0) {
+  if (priceArr.length) {
     const min = Math.min(...priceArr);
     const max = Math.max(...priceArr);
 
@@ -55,7 +55,7 @@ export function capacityCount(arr: IGoods[]) {
   const maxCapacity = document.getElementById('maxCapacity');
   const capacityArr = arr.map((el) => el.capacity);
 
-  if (capacityArr.length !== 0) {
+  if (capacityArr.length) {
     const min = Math.min(...capacityArr);
     const max = Math.max(...capacityArr);
 

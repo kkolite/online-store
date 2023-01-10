@@ -1,6 +1,6 @@
 import Goods from '../goods/goodsCreator';
 import { IGoods, ISort, sortBy } from '../../data/types';
-import { sortByalphabet } from './multifilter';
+import { sortByAlphabet } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import { mainQuery } from '../mainQuery';
 
@@ -21,13 +21,13 @@ class SortData {
       const index = select.selectedIndex;
 
       if (index === sortBy.alphabetUp) {
-        sortByalphabet(data);
+        sortByAlphabet(data);
         this.goods.createGoods(data);
         sortType.type = 'a';
       }
 
       if (index === sortBy.alphabetDown) {
-        sortByalphabet(data);
+        sortByAlphabet(data);
         this.goods.createGoods(data.reverse());
         sortType.type = 'z';
       }

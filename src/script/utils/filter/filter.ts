@@ -1,12 +1,12 @@
 import SortData from './sort';
-import { IGoods, IFilter } from '../../data/types';
-import { addProperty, fltr, produceArr, categoryArr /*sortByalphabet*/ } from './multifilter';
+import { IGoods, IFilter, viewType } from '../../data/types';
+import { addProperty, fltr, produceArr, categoryArr } from './multifilter';
 import { showPopup } from '../goods/goodsListener';
 import Goods from '../goods/goodsCreator';
-//import { sortType } from '../filter/sort';
 import { createMain } from '../body/mainCreator';
 import { showGrid, showList, view } from '../view/view';
 import { mainQuery } from '../mainQuery';
+import { COPY, COPY_DONE } from '../../data/constants';
 
 class FilterData {
   sortGood: IFilter;
@@ -50,7 +50,6 @@ class FilterData {
     }
 
     reset.addEventListener('click', () => {
-      //const temp = (<HTMLSelectElement>document.getElementById('sortBy')).selectedIndex;
       search.value = '';
       while (produceArr.length !== 0) {
         produceArr.pop();
@@ -62,34 +61,26 @@ class FilterData {
       sessionStorage.setItem('maxPrice', toPrice.max);
       sessionStorage.setItem('minCapacity', fromCapacity.min);
       sessionStorage.setItem('maxCapacity', toCapacity.max);
-      data.sort((a, b) => {
-        if (a.title > b.title) {
-          return 1;
-        }
-        return -1;
-      });
-      //sortType.type = 'default';
+      data.sort((a, b) => (a.title > b.title ? 1 : -1));
       createMain();
       const dataSort = new SortData();
       (<HTMLInputElement>document.querySelector('#search')).value = '';
-      if (view === 'grid') {
+      if (view === viewType.Grid) {
         showGrid();
       } else {
         showList();
       }
       fltr(dataSort, data);
       showPopup();
-      //mainQuery();
-      //(<HTMLSelectElement>document.getElementById('sortBy')).selectedIndex = temp;
     });
 
     copy.addEventListener('click', () => {
       const temp = window.location.href;
       navigator.clipboard.writeText(temp);
-      copy.textContent = 'Done!';
+      copy.textContent = COPY_DONE;
       copy.classList.add('filter__copy_done');
       setTimeout(function () {
-        copy.textContent = 'Copy';
+        copy.textContent = COPY;
         copy.classList.remove('filter__copy_done');
       }, 2000);
     });

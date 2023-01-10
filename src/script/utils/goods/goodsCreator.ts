@@ -30,7 +30,6 @@ class Goods {
         goodsElement.classList.add('item');
         goodsElement.classList.add('item__list');
       }
-      //goodsElement.classList.add('item');
       goodsElement.innerHTML = `<h3 class="item-title">
   ${goods.title}
   </h3>

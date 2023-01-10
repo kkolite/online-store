@@ -11,12 +11,7 @@ class Cart {
     data.forEach((good) => {
       if (good.title === str) {
         this.cartArr.push(good);
-        this.cartArr.sort((a: IGoods, b: IGoods) => {
-          if (a.title > b.title) {
-            return 1;
-          }
-          return -1;
-        });
+        this.cartArr.sort((a: IGoods, b: IGoods) => (a.title > b.title ? 1 : -1));
         this.saveLocalStorage();
       }
     });
@@ -45,20 +40,14 @@ class Cart {
 
   isEnough(title: string) {
     const arr = this.cartArr.filter((item) => item.title === title);
-    if (arr.length > 0) {
-      const onstock = arr[0].onstock;
-      if (onstock > 0 && onstock <= arr.length) {
-        return true;
-      }
-    }
-    return false;
+    if (!arr.length) return false;
+    const onstock = arr[0].onstock;
+    return onstock > 0 && onstock <= arr.length;
   }
 
   moneySum() {
     const sum = this.cartArr.reduce((acc, el) => acc + el.price, 0);
-    if (sum === 0) {
-      return '0';
-    }
+    if (!sum) return '0';
     return `${sum / 1000000} m.`;
   }
 
