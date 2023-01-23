@@ -8,6 +8,7 @@ const { NetlifyPlugin } = require('netlify-webpack-plugin');
 module.exports = {
   entry: './src/index.ts',
   mode: 'production',
+  watch: false,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',

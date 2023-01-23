@@ -21,8 +21,10 @@ export function createMain() {
   page.classList.remove('error__background');
   main.classList.remove('error__main');
   main.innerHTML = `<aside class="filter">
-      <button class="filter__reset">Reset</button>
-      <button class="filter__copy">Copy</button>
+      <div class="filter__button-container">
+        <button class="filter__reset">Reset</button>
+        <button class="filter__copy">Copy</button>
+      </div>
       <div>
         <h4 class="filter__title">Produce</h4>
         <ul class="filter__list produce"></ul>
