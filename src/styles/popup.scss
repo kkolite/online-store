@@ -1,0 +1,31 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+
+    &_active {
+        display: block;
+    }
+  }
+  
+  .alert {  
+    margin: 300px auto;
+    width: 300px;
+    height: 150px;
+    border: 2px solid #14294b;
+    border-radius: 5px;
+    background: #eaeaea;
+    
+    &__message {
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-style: normal;
+        font-size: 35px;
+        line-height: 150px;
+        color: #14294b;
+        text-align: center;
+      }
+  }

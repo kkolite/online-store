@@ -1,0 +1,202 @@
+.pagination {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.pagination-page {
+    display: inline-block;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.pagination-page_active {
+    font-weight: 700;
+}
+
+#items_show {
+    width: 25px;
+    text-align: center;
+}
+
+#items_show::-webkit-inner-spin-button,
+#items_show::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.cart {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-evenly;
+    width: 100%;
+    &_empty {
+        flex-direction: column;
+        align-items: center;
+        font-size: 40px;
+        margin-top: 30px;
+    }
+    &__close-empty {
+        width: 200px;
+        align-self: center;
+        height: 40px;
+        margin-top: 20px;
+        margin-bottom: 25px;
+        font-size: 25px;
+        border-radius: 10px;
+        opacity: .9;
+        text-align: center;
+        background-color: #14294b;
+        color: aliceblue;
+        transition: all .2s;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    &__new-price {
+        color: red;
+    }
+}
+
+.cart__controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    height: 265px;
+    padding: 10px;
+    border: 2px solid #14294b;
+    border-radius: 10px;
+    font-size: 22px;
+    &-pay {
+        width: 70%;
+        align-self: center;
+        height: 50px;
+        font-size: 30px;
+        border-radius: 10px;
+        opacity: .9;
+        text-align: center;
+        background-color: #14294b;
+        color: aliceblue;
+        transition: all .2s;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    &-promo {
+        height: 30px;
+        font-size: 20px;
+        border-radius: 5px;
+        background-color: rgb(226, 242, 255);
+        margin-top: 15px;
+        text-align: center;
+        &-helper {
+            font-size: 10px;
+        }
+    }
+    &-sum_none {
+        text-decoration: line-through;
+        font-size: 18px;
+    }
+}
+
+.cart__item {
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    &-index {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+    &-img {
+        max-height: 90px;
+        width: 140px;
+        border-radius: 10px;
+    }
+
+    &-link {
+        text-decoration: none;
+        color: #14294b;
+    }
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        width: 300px;
+    }
+
+    &-controls {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        margin-right: 30px;
+        align-items: center;
+        justify-content: space-between;
+        height: 90px;
+    }
+
+    &-desc {
+        margin-top: 10px;
+    }
+
+    &-remove {
+        color: white;
+        padding: 2px;
+        border-radius: 3px;
+        background-color: #14294b;
+        opacity: .9;
+        transition: all .2s;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+}
+
+@media screen and (max-width: 920px) {
+    .cart {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        ul {
+            margin-bottom: 20px;
+        }
+        &__item {
+            align-items: center;
+            &-index {
+                font-size: 14px;
+                margin-right: 0;
+            }
+            &-img {
+                display: none;
+            }
+        
+            &-info {
+                width: 100px;
+                font-size: 13px;
+                font-weight: bold;
+            }
+
+            &-desc {
+                display: none;
+            }
+        
+            &-controls {
+                margin-right: 10px;
+            }       
+        }
+        &__controls {
+            margin-bottom: 20px;
+        }
+    }
+    
+    .pagination {
+        width: 90%;
+        margin-left: 10px;
+    }
+}

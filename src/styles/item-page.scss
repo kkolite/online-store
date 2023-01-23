@@ -1,0 +1,212 @@
+.item-page {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 70vh;
+    max-height: 650px;
+    width: 100%;
+
+    &__img-box {
+        display: flex;
+        flex-direction: column;
+        height: 225px;
+        justify-content: space-between;
+    }
+
+    &__container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 90px;
+        width: 680px;
+    }
+
+    &__info-container {
+        display: flex;
+        height: 300px;
+        padding-right: 10px;
+        &_active{
+            background-color: rgb(209, 232, 252);
+            border-radius: 30px;
+        }
+    }
+
+    &__route {
+        margin-bottom: 15px;
+        font-family: 'Roboto';
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 20px;
+        height: 270px;
+        margin-top: 5px;
+    }
+
+    &__title{
+        /*&_incart{
+            background-color: red; //temp
+        }*/
+        margin-bottom: 20px;
+    }
+    &__img {
+        max-height: 90px;
+        border-radius: 8px;
+        max-width: 160px;
+        cursor: pointer;
+    }
+
+    &__main-img {
+        max-height: 280px;
+        width: 430px;
+        margin: 0px 20px 20px 0px;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    &__desc {
+        font-size: 18px;
+        margin-top: 15px;
+        width: 600px;
+    }
+
+    &__buttons-box {
+        margin-top: 25px;
+        width: 330px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__button {
+        width: 150px;
+        height: 45px;
+        font-size: 20px;
+        color: aliceblue;
+        background-color: #14294b;
+        border-radius: 15px;
+        opacity: .9;
+        transition: all .2s;
+        cursor: pointer;
+        &:hover {
+          opacity: 1;
+        }
+      }
+}
+
+.bread__main {
+    cursor: pointer;
+}
+
+.gallery {
+    position: absolute;
+    background-color: rgba(0,0,0,.7);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+@media screen and (max-width: 1200px) {
+    .item-page {
+        &__info {
+            font-size: 16px;
+            height: 200px;
+        }
+        
+        &__container {
+            margin-left: 40px;
+            width: 530px;
+        }
+
+        &__desc {
+            width: 500px;
+        }
+
+        &__main-img {
+            max-height: 200px;
+            width: 308px;
+            margin: 0px 15px 20px 0px;
+            border-radius: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .item-page {
+        flex-direction: column;
+        align-items: center;
+
+        &__img-box {
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 375px;
+            height: 155px;
+            justify-content: space-around;
+        }
+
+        &__container {
+            margin-top: 10px;
+            justify-content: flex-start;
+        }
+
+        &__info-container {
+            height: 250px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .item-page {
+        max-height: none;
+        &__info-container {
+            flex-direction: column;
+            min-height: 440px;
+        }
+        
+        &__container {
+            width: 310px;
+            margin-left: 0px;
+        }
+
+        &__main-img {
+            max-height: 200px;
+            width: 308px;
+            margin: 0px 0px 20px 0px;
+        }
+
+        &__desc {
+            width: 300px;
+        }
+
+        &__buttons-box {
+            margin-top: 10px;
+            width: 150px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .item-page {
+        &__route {
+            font-size: 12px;
+        }
+        &__img-box {
+            width: 310px;
+        }
+    
+        &__img {
+            max-height: 80px;
+            max-width: 145px;
+        }
+    }
+}

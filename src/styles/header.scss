@@ -1,0 +1,112 @@
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    padding: 0 20px;
+    //border-bottom: 3px solid #14294b;
+    background-color: rgb(156, 209, 255);
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__title {
+        font-family: 'Sriracha', cursive;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 35px;
+        color: #14294b;
+        cursor: pointer;
+    }
+
+    &__search {
+        position: relative;
+        padding-top: 5px;
+        //transition: all .2s;
+        opacity: 1;
+    }
+
+    &__cart {
+        position: relative;
+        height: 35px;
+        cursor: pointer;
+    }
+
+    &__money {
+      font-size: 20px;
+      width: 155px;
+    }
+  }
+   
+  #search {
+    width: 400px;
+    height: 30px;
+    padding-top: 5px;
+    border: 1px solid #14294b;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(95, 140, 191, 0.75);
+    padding-left: 10px;
+    padding-top: 2px;
+    background: rgba(250, 250, 250, 0.7);
+  }
+  
+  #search:focus {
+    border: 1px solid #14294b;
+    outline: none;
+  }
+  
+  .cancel {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    right: 8px;
+    top: 12px;
+    //filter: invert(0.4);
+    cursor: pointer;
+  }
+  
+  .header__cart-img {
+    display: block;
+    height: 35px;
+    //filter: invert(12%) sepia(90%) saturate(944%) hue-rotate(192deg) brightness(89%) contrast(94%);
+  }
+  
+  .count {
+    position: absolute;
+    top: 20px;
+    left: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: darkred;
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 920px) {
+    .header__search {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .header {
+      &__money {
+        display: none;
+      }
+
+      &__title {
+        font-size: 28px;
+      }
+    }
+  }

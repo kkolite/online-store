@@ -1,0 +1,25 @@
+.promo-list {
+    font-size: 14px;
+    align-self: center;
+    margin-top: 10px;
+    height: 50px;
+    overflow-y: auto;
+
+    &__item {
+        list-style: none;
+        margin-bottom: 4px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    &__remove {
+        margin-left: 15px;
+        color: aliceblue;
+        background-color: #14294b;
+        opacity: .9;
+        transition: .2s;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
